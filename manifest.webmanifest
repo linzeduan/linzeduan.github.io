@@ -1,0 +1,18 @@
+{
+  "name": "中项导学｜软考中项学习工作台",
+  "short_name": "中项导学",
+  "description": "系统集成项目管理工程师免费备考导学，支持课程、练习、错题和离线学习。",
+  "id": "/",
+  "start_url": "/dashboard?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f2e9",
+  "theme_color": "#0b2d2a",
+  "lang": "zh-CN",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

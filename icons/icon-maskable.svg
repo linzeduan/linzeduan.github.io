@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="中项导学">
+  <rect width="512" height="512" fill="#0d2744"/>
+  <circle cx="256" cy="256" r="190" fill="#113657"/>
+  <path d="M142 314 226 238l68 38 80-82" fill="none" stroke="#fffdf7" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="142" cy="314" r="31" fill="#f1a30b" stroke="#fffdf7" stroke-width="13"/>
+  <circle cx="226" cy="238" r="31" fill="#0b7e66" stroke="#fffdf7" stroke-width="13"/>
+  <circle cx="294" cy="276" r="31" fill="#0b7e66" stroke="#fffdf7" stroke-width="13"/>
+  <circle cx="374" cy="194" r="31" fill="#f1a30b" stroke="#fffdf7" stroke-width="13"/>
+</svg>
