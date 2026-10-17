@@ -1,11 +1,15 @@
-export type ProbeResult = {
-  operation: string;
-  ok: boolean;
-  elapsedMs: number;
-  status: number;
-  error?: string;
-  at: string;
-};
+import type { Profile } from "../../domain/types";
+import type { ProbePath, ProbeResult } from "../../domain/network-report";
+export type { ProbePath, ProbeResult } from "../../domain/network-report";
+const serverErrors = new Set([
+  "unauthorized",
+  "probe_not_configured",
+  "origin_not_allowed",
+  "database_unavailable",
+  "verification_failed",
+  "not_found",
+  "body_not_allowed",
+]);
 export function validateApiUrl(value: string): string {
   const url = new URL(value);
   if (
@@ -24,50 +28,94 @@ export function validateApiUrl(value: string): string {
 }
 export async function probeRequest(
   base: string,
-  path: string,
+  path: ProbePath,
   token?: string,
+  options: { signal?: AbortSignal; expectedActor?: Profile } = {},
 ): Promise<ProbeResult> {
   const start = performance.now();
+  const controller = new AbortController();
+  const cancel = () => controller.abort();
+  if (options.signal?.aborted) cancel();
+  else options.signal?.addEventListener("abort", cancel, { once: true });
+  let timedOut = false;
+  const timeout = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, 10000);
   const operation =
     path === "/health"
       ? "连通性"
       : path === "/probe"
         ? "授权数据库读写"
         : "无效凭证拒绝";
+  const result = (
+    ok: boolean,
+    status: number,
+    error?: string,
+  ): ProbeResult => ({
+    operation,
+    path,
+    ok,
+    status,
+    elapsedMs: Math.round(performance.now() - start),
+    at: new Date().toISOString(),
+    ...(error ? { error } : {}),
+  });
   try {
+    if (controller.signal.aborted) return result(false, 0, "cancelled");
     const response = await fetch(`${validateApiUrl(base)}${path}`, {
       method: path === "/health" ? "GET" : "POST",
       cache: "no-store",
-      signal: AbortSignal.timeout(10000),
+      signal: controller.signal,
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
-    const body = (await response.json()) as {
-      ok?: boolean;
-      code?: string;
-      marker?: string;
-    };
+    let body: unknown;
+    try {
+      body = await response.json();
+    } catch (error) {
+      if (controller.signal.aborted) throw error;
+      return result(false, response.status, "invalid_response");
+    }
+    if (!body || typeof body !== "object" || Array.isArray(body))
+      return result(false, response.status, "invalid_response");
+    const data = body as Record<string, unknown>;
     const rejected = path === "/probe/reject";
     const ok = rejected
-      ? response.status === 401
+      ? response.status === 401 &&
+        data.ok === false &&
+        data.code === "unauthorized"
       : response.ok &&
-        body.ok === true &&
-        (path === "/health" || body.marker === "between-answers-network-probe");
-    return {
-      operation,
-      ok,
-      elapsedMs: Math.round(performance.now() - start),
-      status: response.status,
-      at: new Date().toISOString(),
-      ...(!ok ? { error: body.code ?? "unexpected_response" } : {}),
-    };
-  } catch (error) {
-    return {
-      operation,
-      ok: false,
-      elapsedMs: Math.round(performance.now() - start),
-      status: 0,
-      error: error instanceof Error ? error.name : "network_error",
-      at: new Date().toISOString(),
-    };
+        data.ok === true &&
+        (path === "/health"
+          ? data.service === "between-answers-network-probe"
+          : data.marker === "between-answers-network-probe");
+    if (!ok)
+      return result(
+        false,
+        response.status,
+        typeof data.code === "string" && serverErrors.has(data.code)
+          ? data.code
+          : "unexpected_response",
+      );
+    if (
+      path === "/probe" &&
+      options.expectedActor &&
+      data.actor !== options.expectedActor
+    )
+      return result(false, response.status, "unexpected_actor");
+    return result(true, response.status);
+  } catch {
+    return result(
+      false,
+      0,
+      options.signal?.aborted
+        ? "cancelled"
+        : timedOut
+          ? "timeout"
+          : "network_error",
+    );
+  } finally {
+    clearTimeout(timeout);
+    options.signal?.removeEventListener("abort", cancel);
   }
 }

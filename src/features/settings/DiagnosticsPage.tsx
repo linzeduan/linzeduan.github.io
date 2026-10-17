@@ -1,23 +1,41 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   CheckCircle2,
   CircleAlert,
   LoaderCircle,
 } from "lucide-react";
-import { probeRequest, validateApiUrl } from "../../data/http/probe";
-import type { ProbeResult } from "../../data/http/probe";
+import { validateApiUrl } from "../../data/http/probe";
+import { runNetworkProbe } from "../../data/http/run-probe";
+import { networkOutcomeLabels } from "../../domain/network-report";
+import type {
+  NetworkReport,
+  NetworkResult,
+  NetworkRunContext,
+} from "../../domain/network-report";
+import type { Profile } from "../../domain/types";
 import { downloadJson } from "./SettingsPage";
 
 export function DiagnosticsPage() {
   const [base, setBase] = useState(import.meta.env.VITE_API_BASE_URL ?? "");
   const [token, setToken] = useState("");
-  const [network, setNetwork] = useState("Wi-Fi");
-  const [results, setResults] = useState<ProbeResult[]>([]);
+  const [network, setNetwork] = useState<NetworkRunContext["network"]>("Wi-Fi");
+  const [tester, setTester] = useState<Profile>("a");
+  const [direct, setDirect] = useState(false);
+  const [results, setResults] = useState<NetworkResult[]>([]);
+  const [report, setReport] = useState<NetworkReport>();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const cancel = useRef(false);
+  const active = useRef<AbortController | null>(null);
+  useEffect(
+    () => () => {
+      active.current?.abort();
+      active.current = null;
+    },
+    [],
+  );
   const start = async () => {
+    if (active.current) return;
     setError("");
     try {
       validateApiUrl(base);
@@ -25,28 +43,52 @@ export function DiagnosticsPage() {
       setError(e instanceof Error ? e.message : "地址无效");
       return;
     }
-    if (!token.trim()) {
-      setError("请输入临时探针密钥，不是你的账号密码。");
+    if (!/^\S{32,256}$/.test(token.trim())) {
+      setError(
+        "请输入完整的临时探针密钥（32–256 个非空白字符），不是你的账号密码。",
+      );
       return;
     }
     setResults([]);
+    setReport(undefined);
     setBusy(true);
-    cancel.current = false;
+    const controller = new AbortController();
+    active.current = controller;
     try {
-      for (let i = 0; i < 10 && !cancel.current; i++) {
-        for (const [path, key] of [
-          ["/health", undefined],
-          ["/probe", token],
-          ["/probe/reject", "invalid-probe-token"],
-        ] as const) {
-          if (cancel.current) break;
-          const result = await probeRequest(base, path, key);
-          setResults((items) => [...items, result]);
-        }
-      }
+      const browser = /Edg\//.test(navigator.userAgent)
+        ? "Edge"
+        : /Firefox\//.test(navigator.userAgent)
+          ? "Firefox"
+          : /Chrome\//.test(navigator.userAgent)
+            ? "Chrome"
+            : /Safari\//.test(navigator.userAgent)
+              ? "Safari"
+              : "other";
+      const completed = await runNetworkProbe(
+        {
+          serviceOrigin: base,
+          token: token.trim(),
+          tester,
+          network,
+          directConnection: direct,
+          browser,
+          standalone: matchMedia("(display-mode: standalone)").matches,
+        },
+        controller.signal,
+        (result) => {
+          if (active.current === controller)
+            setResults((items) => [...items, result]);
+        },
+      );
+      if (active.current === controller) setReport(completed);
+    } catch {
+      if (active.current === controller) setError("检查未能完成，请重试。");
     } finally {
-      setBusy(false);
-      setToken("");
+      if (active.current === controller) {
+        active.current = null;
+        setBusy(false);
+        setToken("");
+      }
     }
   };
   const passed = results.filter((r) => r.ok).length;
@@ -90,12 +132,34 @@ export function DiagnosticsPage() {
         <select
           id="network"
           value={network}
-          onChange={(e) => setNetwork(e.target.value)}
+          onChange={(e) =>
+            setNetwork(e.target.value as NetworkRunContext["network"])
+          }
           disabled={busy}
         >
           <option>Wi-Fi</option>
           <option>移动网络</option>
         </select>
+        <label htmlFor="tester">测试者</label>
+        <select
+          id="tester"
+          value={tester}
+          onChange={(e) => setTester(e.target.value as Profile)}
+          disabled={busy}
+        >
+          <option value="a">A</option>
+          <option value="b">B</option>
+        </select>
+        <label className="direct-check" htmlFor="direct-connection">
+          <input
+            type="checkbox"
+            id="direct-connection"
+            checked={direct}
+            onChange={(e) => setDirect(e.target.checked)}
+            disabled={busy}
+          />
+          <span>本次测试已关闭 VPN / 代理，使用普通网络直连</span>
+        </label>
         {error && (
           <p role="alert" className="error-text">
             {error}
@@ -120,25 +184,17 @@ export function DiagnosticsPage() {
             <button
               className="button secondary"
               onClick={() => {
-                cancel.current = true;
+                active.current?.abort();
               }}
             >
-              停止后续请求
+              停止检查
             </button>
           )}
-          {results.length > 0 && !busy && (
+          {report && !busy && (
             <button
               className="button secondary"
               onClick={() =>
-                downloadJson(
-                  {
-                    schemaVersion: 1,
-                    network,
-                    completedAt: new Date().toISOString(),
-                    results,
-                  },
-                  "between-answers-network-check.json",
-                )
+                downloadJson(report, "between-answers-network-check.json")
               }
             >
               下载结果
@@ -147,22 +203,35 @@ export function DiagnosticsPage() {
         </div>
         <p className="settings-hint">
           每轮：连通性、授权数据库读写、无效密钥拒绝。超时为 10
-          秒。完成后清除输入的密钥。请分别测试双方手机的 Wi-Fi
+          秒；停止检查或离开页面会终止当前请求。报告固定本次的网络和测试者，不含密钥；浏览器只记录名称，不记录
+          IP 或完整设备标识。请分别测试双方手机的 Wi-Fi
           和移动网络；通过探针不等于生产登录和权限已验收。
         </p>
       </section>
-      {results.length > 0 && (
+      {(results.length > 0 || report) && (
         <section className="paper-card diagnostic-card">
           <h2>
             {busy
               ? "检查进行中"
-              : passed === 30
-                ? "这次连接检查通过"
+              : report
+                ? networkOutcomeLabels[report.assessment.outcome]
                 : "检查结果"}{" "}
             <span className="muted">
               {passed} / {results.length}
             </span>
           </h2>
+          {report && (
+            <p className="settings-hint" role="status">
+              本次记录：{report.context.tester.toUpperCase()} ·{" "}
+              {report.context.network} · {report.context.browser} ·{" "}
+              {report.context.directConnection
+                ? "本人已确认直连"
+                : "未确认直连"}
+              。
+              {report.assessment.coreLatencyP95Ms !== null &&
+                `核心请求 95% 耗时不超过 ${report.assessment.coreLatencyP95Ms} ms。`}
+            </p>
+          )}
           <ol className="probe-results">
             {results.map((r, i) => (
               <li key={i}>
@@ -172,7 +241,7 @@ export function DiagnosticsPage() {
                   <CircleAlert size={16} className="error-text" />
                 )}
                 <span>
-                  {Math.floor(i / 3) + 1}. {r.operation}
+                  {r.round}. {r.operation}
                   {r.error && <small>{r.error}</small>}
                 </span>
                 <span>
