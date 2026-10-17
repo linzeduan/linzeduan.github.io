@@ -655,6 +655,86 @@ describe("local authenticated API", () => {
       ).status,
     ).toBe(409);
   });
+  it("exports enough context for owned comments after answers are deleted and the space dissolves", async () => {
+    const c = await paired();
+    const a = await save(c, c.a, "A answer", "A note"),
+      b = await save(c, c.b, "B secret answer", "B secret note");
+    const path = `/api/rounds/${encodeURIComponent(c.roundId)}`;
+    for (const [cookie, entry] of [
+      [c.a, a],
+      [c.b, b],
+    ] as const)
+      await c.request(
+        path + "/submit",
+        "POST",
+        { entryId: entry.id, expectedRevision: 1, operationId: randomUUID() },
+        cookie,
+      );
+    await c.request(
+      path + "/comments",
+      "POST",
+      { text: "A retained thought", operationId: randomUUID() },
+      c.a,
+    );
+    await c.request(
+      path + "/comments",
+      "POST",
+      { text: "B private-owned thought", operationId: randomUUID() },
+      c.b,
+    );
+    await c.request("/api/skips", "POST", { questionId: "q014" }, c.a);
+    await c.request("/api/skips", "POST", { questionId: "q133" }, c.b);
+    await c.request(`/api/entries/${a.id}`, "DELETE", undefined, c.a);
+    await c.request(
+      `/api/spaces/${c.spaceId}/dissolve`,
+      "POST",
+      { confirmation: "DISSOLVE_SPACE" },
+      c.a,
+    );
+    const foreign = await c.request("/api/spaces", "POST", {}, c.b);
+    const exported = await c.request(
+      "/api/export?includePartner=true",
+      "GET",
+      undefined,
+      c.a,
+    );
+    expect(exported.status).toBe(200);
+    expect(exported.body.entries).toEqual([]);
+    expect(exported.body.submissions).toEqual([]);
+    expect(exported.body.shared).toEqual([]);
+    expect(exported.body.skipped).toEqual(["q014"]);
+    expect(exported.body.comments).toHaveLength(1);
+    const comment = exported.body.comments[0];
+    const round = exported.body.rounds.find(
+      (r: { roundId: string }) => r.roundId === comment.round_id,
+    );
+    expect(round).toMatchObject({
+      questionId: "q057",
+      spaceId: c.spaceId,
+      date: "2026-10-17",
+      kind: "daily",
+      closed: true,
+      spaceStatus: "dissolved",
+    });
+    expect(round.planVersion).toBeTypeOf("string");
+    const question = exported.body.questions.find(
+      (q: { questionId: string }) => q.questionId === round.questionId,
+    );
+    expect(question.originalNumber).toBe(57);
+    const serialized = JSON.stringify(exported.body);
+    for (const secret of [
+      "A answer",
+      "A note",
+      "B secret answer",
+      "B secret note",
+      "B private-owned thought",
+      foreign.body.id,
+      "q133",
+      "password_hash",
+      "token_hash",
+    ])
+      expect(serialized).not.toContain(secret);
+  });
   it("rejects cross-origin JSON operations and limits failed login attempts", async () => {
     const c = await fixture();
     expect(

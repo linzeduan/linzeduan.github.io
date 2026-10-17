@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   LockKeyhole,
@@ -17,18 +17,31 @@ export function SharedPage({ roundId }: { roundId?: string }) {
   const { snapshot, profile, repo, run, confirm } = useApp();
   const [message, setMessage] = useState("");
   const [replyTo, setReplyTo] = useState<string>();
+  const [posting, setPosting] = useState(false);
+  const postingRef = useRef(false);
+  const draftGeneration = useRef(0);
   const local = repo instanceof ConnectedJournal ? repo : undefined;
-  const selected =
-    snapshot.roundViews.find((r) => r.roundId === roundId) ??
+  const initialRound =
     snapshot.roundViews.find((r) => r.state === "unlocked") ??
     snapshot.roundViews[0];
+  const [selectedId, setSelectedId] = useState(
+    roundId ?? initialRound?.roundId,
+  );
+  useEffect(() => {
+    if (!selectedId && initialRound) setSelectedId(initialRound.roundId);
+  }, [selectedId, initialRound]);
+  const selected = snapshot.roundViews.find((r) => r.roundId === selectedId);
   if (!selected)
     return (
-      <EmptyState title="交集还留着一页空白">
-        绑定后可以从每日一题开始，也可以在题库邀请对方一起回答。
+      <EmptyState
+        title={selectedId ? "暂时无法打开这轮问答" : "交集还留着一页空白"}
+      >
+        {selectedId
+          ? "请确认链接，或回到交集选择仍可访问的问答。"
+          : "绑定后可以从每日一题开始，也可以在题库邀请对方一起回答。"}
         <br />
-        <a className="text-link" href="#/pairing">
-          管理双人空间
+        <a className="text-link" href={selectedId ? "#/shared" : "#/pairing"}>
+          {selectedId ? "返回我们的交集" : "管理双人空间"}
         </a>
       </EmptyState>
     );
@@ -164,7 +177,10 @@ export function SharedPage({ roundId }: { roundId?: string }) {
                   <p>{c.text}</p>
                   <button
                     className="quiet-button"
-                    onClick={() => setReplyTo(c.id)}
+                    onClick={() => {
+                      draftGeneration.current++;
+                      setReplyTo(c.id);
+                    }}
                   >
                     追问
                   </button>
@@ -194,7 +210,10 @@ export function SharedPage({ roundId }: { roundId?: string }) {
                 正在追问这条留言
                 <button
                   className="quiet-button"
-                  onClick={() => setReplyTo(undefined)}
+                  onClick={() => {
+                    draftGeneration.current++;
+                    setReplyTo(undefined);
+                  }}
                 >
                   取消
                 </button>
@@ -204,15 +223,30 @@ export function SharedPage({ roundId }: { roundId?: string }) {
               className="comment-form"
               onSubmit={async (e) => {
                 e.preventDefault();
-                if (
-                  await run(
-                    () =>
-                      repo.comment(profile, selected.roundId, message, replyTo),
-                    "留言已留在这段对话里。",
-                  )
-                ) {
-                  setMessage("");
-                  setReplyTo(undefined);
+                if (postingRef.current || !message.trim()) return;
+                postingRef.current = true;
+                setPosting(true);
+                const generation = draftGeneration.current;
+                try {
+                  if (
+                    (await run(
+                      () =>
+                        repo.comment(
+                          profile,
+                          selected.roundId,
+                          message,
+                          replyTo,
+                        ),
+                      "留言已留在这段对话里。",
+                    )) &&
+                    generation === draftGeneration.current
+                  ) {
+                    setMessage("");
+                    setReplyTo(undefined);
+                  }
+                } finally {
+                  postingRef.current = false;
+                  setPosting(false);
                 }
               }}
             >
@@ -223,15 +257,18 @@ export function SharedPage({ roundId }: { roundId?: string }) {
                 id="comment"
                 maxLength={2000}
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => {
+                  draftGeneration.current++;
+                  setMessage(e.target.value);
+                }}
                 placeholder="读完这份答案，你想说些什么？"
               />
               <button
                 className="button"
-                disabled={!message.trim()}
+                disabled={posting || !message.trim()}
                 type="submit"
               >
-                留下这句话 <Send size={14} />
+                {posting ? "正在留下…" : "留下这句话"} <Send size={14} />
               </button>
             </form>
           </section>

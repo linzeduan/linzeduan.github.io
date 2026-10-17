@@ -20,6 +20,16 @@ export type EntryRevision = {
   note: string;
   savedAt: string;
 };
+export type ExportRound = {
+  roundId: string;
+  questionId: string;
+  spaceId: string;
+  date: string;
+  kind: "daily" | "free";
+  planVersion: string;
+  spaceStatus: LocalSpace["status"];
+  closed: boolean;
+};
 export type LocalExport = {
   schemaVersion: 2;
   source: "local";
@@ -29,6 +39,8 @@ export type LocalExport = {
   revisions: EntryRevision[];
   submissions: unknown[];
   comments: unknown[];
+  rounds: ExportRound[];
+  skipped: string[];
   questions: unknown[];
   shared?: unknown[];
 };

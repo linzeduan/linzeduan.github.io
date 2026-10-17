@@ -6,13 +6,48 @@ import { test, expect } from "@playwright/test";
 import type { BrowserContext, Page } from "@playwright/test";
 
 const password = "Local-browser-testing-password-2026";
+const apiPort = 8789;
 let child: ChildProcess;
 let directory: string;
 const peers: BrowserContext[] = [];
 async function start() {
   child = spawn(process.execPath, ["server/main.ts"], {
     stdio: "pipe",
-    env: { ...process.env, BETWEEN_ANSWERS_DB: join(directory, "app.sqlite") },
+    env: {
+      ...process.env,
+      BETWEEN_ANSWERS_DB: join(directory, "app.sqlite"),
+      BETWEEN_ANSWERS_PORT: String(apiPort),
+    },
+  });
+  await new Promise<void>((ready, reject) => {
+    let output = "";
+    const timer = setTimeout(
+      () => done(new Error("Owned test API did not start")),
+      10000,
+    );
+    const done = (error?: Error) => {
+      clearTimeout(timer);
+      child.stdout?.off("data", receive);
+      child.off("exit", exited);
+      child.off("error", failed);
+      if (error) reject(error);
+      else ready();
+    };
+    const receive = (chunk: Buffer) => {
+      output += chunk.toString();
+      if (output.includes(`Local API ready at http://127.0.0.1:${apiPort}`))
+        done();
+    };
+    const exited = (code: number | null) =>
+      done(
+        new Error(
+          `Owned test API exited (${code}); refusing to reuse another service`,
+        ),
+      );
+    const failed = (error: Error) => done(error);
+    child.stdout?.on("data", receive);
+    child.once("exit", exited);
+    child.once("error", failed);
   });
   child.stdout?.resume();
   child.stderr?.resume();
@@ -20,7 +55,7 @@ async function start() {
     .poll(
       async () => {
         try {
-          return (await fetch("http://127.0.0.1:8788/api/health")).status;
+          return (await fetch(`http://127.0.0.1:${apiPort}/api/health`)).status;
         } catch {
           return 0;
         }
@@ -30,7 +65,7 @@ async function start() {
     .toBe(200);
 }
 async function stop() {
-  if (child?.exitCode === null) {
+  if (child?.pid && child.exitCode === null && child.signalCode === null) {
     const ended = new Promise<void>((done) => child.once("exit", () => done()));
     child.kill();
     await ended;
@@ -42,15 +77,18 @@ test.beforeEach(async () => {
   await start();
 });
 test.afterEach(async () => {
-  for (const peer of peers.splice(0)) await peer.close();
-  await stop();
-  const base = resolve(".local");
-  if (
-    !directory.startsWith(base + "\\local-e2e-") &&
-    !directory.startsWith(base + "/local-e2e-")
-  )
-    throw new Error("Unsafe cleanup path");
-  await rm(directory, { recursive: true, force: true });
+  try {
+    await Promise.all(peers.splice(0).map((peer) => peer.close()));
+  } finally {
+    await stop();
+    const base = resolve(".local");
+    if (
+      !directory.startsWith(base + "\\local-e2e-") &&
+      !directory.startsWith(base + "/local-e2e-")
+    )
+      throw new Error("Unsafe cleanup path");
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 async function login(page: Page, profile: "a" | "b") {
   await page.goto("/");
@@ -64,6 +102,67 @@ async function login(page: Page, profile: "a" | "b") {
 async function submit(page: Page) {
   await page.getByRole("button", { name: "正式提交", exact: true }).click();
   await page.getByRole("button", { name: "确认正式提交", exact: true }).click();
+}
+
+async function seedUnlocked(page: Page, peer: BrowserContext) {
+  const setup = await page.request.post("/api/setup", {
+    data: { a: { name: "A", password }, b: { name: "B", password } },
+  });
+  expect(setup.status()).toBe(201);
+  expect(
+    (
+      await page.request.post("/api/login", {
+        data: { profile: "a", password },
+      })
+    ).status(),
+  ).toBe(200);
+  await page.request.post("/api/spaces", { data: {} });
+  const invite = await (
+    await page.request.post("/api/spaces/invite", { data: {} })
+  ).json();
+  await peer.request.post("/api/login", { data: { profile: "b", password } });
+  await peer.request.post("/api/spaces/join", { data: { code: invite.code } });
+  const state = await (await page.request.get("/api/state")).json();
+  await seedAnswers(page, peer, state.todayRoundId, state.todayQuestionId);
+  return state.todayRoundId as string;
+}
+async function seedAnswers(
+  page: Page,
+  peer: BrowserContext,
+  roundId: string,
+  questionId: string,
+) {
+  for (const [client, answer] of [
+    [page.request, "A shared answer"],
+    [peer.request, "B shared answer"],
+  ] as const) {
+    const id = crypto.randomUUID();
+    expect(
+      (
+        await client.post("/api/entries", {
+          data: {
+            id,
+            questionId,
+            roundId,
+            text: answer,
+            note: "private note",
+            expectedRevision: 0,
+          },
+        })
+      ).status(),
+    ).toBe(200);
+    expect(
+      (
+        await client.post(`/api/rounds/${encodeURIComponent(roundId)}/submit`, {
+          data: {
+            entryId: id,
+            expectedRevision: 1,
+            operationId: crypto.randomUUID(),
+          },
+        })
+      ).status(),
+    ).toBe(200);
+  }
 }
 
 test("two isolated sessions bind, persist, unlock, discuss, withdraw and retain personal data", async ({
@@ -122,16 +221,18 @@ test("two isolated sessions bind, persist, unlock, discuss, withdraw and retain 
   await page.getByLabel("写一条留言").fill("想继续聊聊这份回答");
   await page.getByRole("button", { name: "留下这句话" }).click();
   await expect(
-    page.getByText("想继续聊聊这份回答", { exact: true }),
+    page.locator(".comment").getByText("想继续聊聊这份回答", { exact: true }),
   ).toBeVisible();
   await other.goto("/#/shared?round=" + round);
   await expect(
-    other.getByText("想继续聊聊这份回答", { exact: true }),
+    other.locator(".comment").getByText("想继续聊聊这份回答", { exact: true }),
   ).toBeVisible();
   await other.getByRole("button", { name: "追问", exact: true }).click();
   await other.getByLabel("写一条留言").fill("这是我的追问");
   await other.getByRole("button", { name: "留下这句话" }).click();
-  await expect(other.getByText("这是我的追问", { exact: true })).toBeVisible();
+  await expect(
+    other.locator(".comment").getByText("这是我的追问", { exact: true }),
+  ).toBeVisible();
   await page.screenshot({
     path: `.local/screenshots/${info.project.name}-shared.png`,
     fullPage: true,
@@ -313,4 +414,108 @@ test("failed saves and expired login preserve input; reanswers remain separate",
     path: `.local/screenshots/${info.project.name}-settings-dark.png`,
     fullPage: true,
   });
+});
+
+test("comment retries stay unique, later typing survives, and incoming rounds do not move the draft", async ({
+  page,
+  browser,
+}) => {
+  const peer = await browser.newContext({ baseURL: "http://127.0.0.1:4175" });
+  peers.push(peer);
+  const roundId = await seedUnlocked(page, peer);
+  await page.goto("/#/shared");
+  await expect(
+    page.getByText("B shared answer", { exact: true }),
+  ).toBeVisible();
+  const originalQuestion = await page
+    .locator(".shared-question h2")
+    .innerText();
+  const commentsPath = "**/api/rounds/*/comments";
+  let rejectReads = false;
+  let firstWrite = true;
+  await page.route("**/api/state", async (route) => {
+    if (rejectReads) await route.abort("connectionfailed");
+    else await route.continue();
+  });
+  await page.route(commentsPath, async (route) => {
+    const response = await route.fetch();
+    if (firstWrite) {
+      rejectReads = true;
+      firstWrite = false;
+    }
+    await route.fulfill({ response });
+  });
+  await page.getByLabel("写一条留言").fill("只应保存一次的留言");
+  await page.getByRole("button", { name: "留下这句话" }).click();
+  await expect(
+    page.getByRole("heading", { name: "连接恢复后，再打开答案" }),
+  ).toBeVisible();
+  rejectReads = false;
+  await page.evaluate(() => window.dispatchEvent(new Event("online")));
+  await expect(
+    page.locator(".comment").getByText("只应保存一次的留言", { exact: true }),
+  ).toBeVisible();
+  await expect(page.getByLabel("写一条留言")).toHaveValue("只应保存一次的留言");
+  await page.getByRole("button", { name: "留下这句话" }).click();
+  await expect(page.getByLabel("写一条留言")).toHaveValue("");
+  const synced = await (await page.request.get("/api/state")).json();
+  expect(
+    synced.roundViews.find((r: { roundId: string }) => r.roundId === roundId)
+      .comments,
+  ).toHaveLength(1);
+  await page.unroute("**/api/state");
+  await page.unroute(commentsPath);
+
+  let release!: () => void;
+  const pending = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  await page.route(commentsPath, async (route) => {
+    await pending;
+    await route.continue();
+  });
+  await page.getByLabel("写一条留言").fill("正在发送的这一条");
+  await page.getByRole("button", { name: "留下这句话" }).click();
+  try {
+    await expect(
+      page.getByRole("button", { name: "正在留下…" }),
+    ).toBeDisabled();
+    await page.getByLabel("写一条留言").fill("发送过程中继续写的下一条");
+  } finally {
+    release();
+  }
+  await expect(
+    page.getByText("正在发送的这一条", { exact: true }),
+  ).toBeVisible();
+  await expect(page.getByLabel("写一条留言")).toHaveValue(
+    "发送过程中继续写的下一条",
+  );
+  await page.unroute(commentsPath);
+
+  const created = await (
+    await page.request.post("/api/rounds/free", {
+      data: { questionId: "q014", sensitiveConsent: false },
+    })
+  ).json();
+  expect(
+    (
+      await peer.request.post(`/api/rounds/${created.id}/accept`, { data: {} })
+    ).status(),
+  ).toBe(200);
+  await seedAnswers(page, peer, created.id, "q014");
+  await page.evaluate(() => window.dispatchEvent(new Event("online")));
+  await expect(page.locator(".round-tabs a")).toHaveCount(2);
+  await expect(page.locator(".shared-question h2")).toHaveText(
+    originalQuestion,
+  );
+  await expect(page.getByLabel("写一条留言")).toHaveValue(
+    "发送过程中继续写的下一条",
+  );
+  await page.goto("/#/shared?round=unavailable-round");
+  await expect(
+    page.getByRole("heading", { name: "暂时无法打开这轮问答" }),
+  ).toBeVisible();
+  await expect(page.getByText("B shared answer", { exact: true })).toHaveCount(
+    0,
+  );
 });

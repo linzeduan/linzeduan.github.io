@@ -1,6 +1,11 @@
 import type { JournalController, SaveStatus } from "../ports/controller";
 import type { DemoSnapshot, Entry, Profile } from "../../domain/types";
-import type { EntryRevision, LocalState, LocalUser } from "../../domain/local";
+import type {
+  EntryRevision,
+  LocalState,
+  LocalUser,
+  LocalExport,
+} from "../../domain/local";
 import { LocalApiError, localRequest } from "./local-api";
 
 type Draft = {
@@ -265,8 +270,8 @@ export class ConnectedJournal implements JournalController {
         operationId: this.operation(key),
       },
     );
-    this.operations.delete(key);
     await this.refresh();
+    this.operations.delete(key);
   }
   async withdraw(_profile: Profile, roundId: string) {
     await localRequest(
@@ -292,8 +297,8 @@ export class ConnectedJournal implements JournalController {
         ...(replyTo ? { replyTo } : {}),
       },
     );
-    this.operations.delete(key);
     await this.refresh();
+    this.operations.delete(key);
   }
   async removeComment(_profile: Profile, _roundId: string, id: string) {
     await localRequest(`/comments/${encodeURIComponent(id)}`, "DELETE");
@@ -320,7 +325,7 @@ export class ConnectedJournal implements JournalController {
   }
   async exportOwn(_profile: Profile, includePartner = false) {
     await this.flush();
-    return localRequest(
+    return localRequest<LocalExport>(
       `/export${includePartner ? "?includePartner=true" : ""}`,
     );
   }

@@ -14,6 +14,8 @@ import type {
   LocalState,
   LocalUser,
   EntryRevision,
+  LocalExport,
+  ExportRound,
 } from "../src/domain/local.ts";
 import { ApiError, fail, text, number } from "./errors.ts";
 import { tokenHash } from "./password.ts";
@@ -636,7 +638,7 @@ export class Store {
         : {}),
     };
   }
-  export(uid: string, includePartner = false) {
+  export(uid: string, includePartner = false): LocalExport {
     const entries = this.all(
       "SELECT * FROM entries WHERE owner=? ORDER BY created_at,rowid",
       uid,
@@ -650,9 +652,34 @@ export class Store {
       "SELECT id,round_id,text,reply_to,created_at FROM comments WHERE owner=?",
       uid,
     );
-    const related = new Set(entries.map((e) => e.questionId));
-    for (const r of [...submissions, ...comments])
-      related.add(String(this.round(uid, String(r.round_id)).question_id));
+    const roundIds = new Set([
+      ...entries.flatMap((e) => (e.roundId ? [e.roundId] : [])),
+      ...submissions.map((s) => String(s.round_id)),
+      ...comments.map((c) => String(c.round_id)),
+    ]);
+    const rounds: ExportRound[] = [...roundIds].map((id) => {
+      const r = this.round(uid, id);
+      const s = this.space(uid, String(r.space_id));
+      return {
+        roundId: id,
+        questionId: String(r.question_id),
+        spaceId: String(r.space_id),
+        date: String(r.day),
+        kind: r.kind as ExportRound["kind"],
+        planVersion: String(s.plan_version),
+        spaceStatus: s.status as LocalSpace["status"],
+        closed: Boolean(r.closed) || s.status !== "active",
+      };
+    });
+    const skipped = this.all(
+      "SELECT question_id FROM skips WHERE owner=? ORDER BY question_id",
+      uid,
+    ).map((s) => String(s.question_id));
+    const related = new Set([
+      ...entries.map((e) => e.questionId),
+      ...rounds.map((r) => r.questionId),
+      ...skipped,
+    ]);
     const shared = includePartner
       ? this.state(uid)
           .roundViews.filter((r) => r.state === "unlocked")
@@ -672,6 +699,8 @@ export class Store {
       revisions,
       submissions,
       comments,
+      rounds,
+      skipped,
       questions: [...related].map(question),
       ...(shared ? { shared } : {}),
     };

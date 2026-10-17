@@ -9,7 +9,14 @@ const child = spawn(
     "4175",
     "--strictPort",
   ],
-  { stdio: "inherit", env: { ...process.env, VITE_APP_MODE: "local" } },
+  {
+    stdio: "inherit",
+    env: {
+      ...process.env,
+      VITE_APP_MODE: "local",
+      BETWEEN_ANSWERS_API_ORIGIN: "http://127.0.0.1:8789",
+    },
+  },
 );
 process.on("SIGTERM", () => child.kill());
 process.on("SIGINT", () => child.kill());

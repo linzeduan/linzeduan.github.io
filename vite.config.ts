@@ -6,7 +6,13 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   base: "/",
   server: {
-    proxy: { "/api": { target: "http://127.0.0.1:8788", changeOrigin: true } },
+    proxy: {
+      "/api": {
+        target:
+          process.env.BETWEEN_ANSWERS_API_ORIGIN ?? "http://127.0.0.1:8788",
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     react(),

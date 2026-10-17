@@ -2,7 +2,7 @@
 
 我们各自回答人生，也在答案之间慢慢认识彼此。
 
-两位朋友的私人问答 PWA。当前开发版本 **0.2.0-local** 已提供本机双账号、SQLite 持久保存与服务端双向解锁。云端配置按用户要求后置，尚不能让两台异地手机同步。GitHub Pages 仍为合成数据演示，不能作为私人记录服务。
+两位朋友的私人问答 PWA。当前开发版本 **0.2.1-local** 已提供本机双账号、SQLite 持久保存与服务端双向解锁。云端配置按用户要求后置，尚不能让两台异地手机同步。GitHub Pages 仍为合成数据演示，不能作为私人记录服务。
 
 ## 本地运行
 
@@ -37,5 +37,6 @@ pnpm test:local
 - [大陆网络验收](docs/NETWORK_VALIDATION.md)
 - [部署及账号配置](docs/DEPLOYMENT.md)
 - [本地使用与备份](docs/LOCAL_DEVELOPMENT.md)
+- [JSON 导出格式](docs/DATA_EXPORT.md)
 
 源码和题库可公开；私人答案、导出、密钥禁止进入 Git。不要将任何服务端密钥命名为 VITE\_\*。

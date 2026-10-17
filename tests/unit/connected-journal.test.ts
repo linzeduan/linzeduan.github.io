@@ -77,6 +77,39 @@ afterEach(() => {
   vi.resetAllMocks();
 });
 describe("connected drafts and private state", () => {
+  it("reuses the comment operation after an acknowledged write followed by failed refresh", async () => {
+    const { repo, state } = fixture();
+    request
+      .mockResolvedValueOnce({ ok: true })
+      .mockRejectedValueOnce(new LocalApiError(0, "network_error", "offline"));
+    await expect(repo.comment("a", "round-1", "one comment")).rejects.toThrow(
+      "offline",
+    );
+    const first = request.mock.calls[0]![2] as { operationId: string };
+    request.mockResolvedValueOnce({ ok: true }).mockResolvedValueOnce(state);
+    await repo.comment("a", "round-1", "one comment");
+    const retry = request.mock.calls[2]![2] as { operationId: string };
+    expect(retry.operationId).toBe(first.operationId);
+    request.mockResolvedValueOnce({ ok: true }).mockResolvedValueOnce(state);
+    await repo.comment("a", "round-1", "one comment");
+    const separate = request.mock.calls[4]![2] as { operationId: string };
+    expect(separate.operationId).not.toBe(first.operationId);
+  });
+  it("reuses the submitted snapshot operation when only its refresh failed", async () => {
+    const { repo, state } = fixture();
+    request
+      .mockResolvedValueOnce({ ok: true })
+      .mockRejectedValueOnce(new LocalApiError(0, "network_error", "offline"));
+    await expect(repo.submit("a", "round-1", "original")).rejects.toThrow(
+      "offline",
+    );
+    const first = request.mock.calls[0]![2] as { operationId: string };
+    request.mockResolvedValueOnce({ ok: true }).mockResolvedValueOnce(state);
+    await repo.submit("a", "round-1", "original");
+    expect(
+      (request.mock.calls[2]![2] as { operationId: string }).operationId,
+    ).toBe(first.operationId);
+  });
   it("serializes typing during an in-flight save without losing the newer input", async () => {
     const { repo, entry, save } = fixture();
     const first = deferred<Entry>();

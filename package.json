@@ -1,7 +1,7 @@
 {
   "name": "between-answers",
   "private": true,
-  "version": "0.2.0-local",
+  "version": "0.2.1-local",
   "type": "module",
   "packageManager": "pnpm@11.25.0",
   "engines": {
