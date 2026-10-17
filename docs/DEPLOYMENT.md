@@ -12,6 +12,8 @@
 
 ## 本地验证探针
 
+当前优先体验真实本地应用：双击根目录 `启动本地版.cmd`，或执行 `node scripts/local-dev.mjs`，访问 http://127.0.0.1:5173 。不需要外部账号，具体见 LOCAL_DEVELOPMENT.md。以下探针步骤留到用户准备云端配置时执行。
+
 ```sh
 cp worker/.dev.vars.example worker/.dev.vars
 pnpm worker:db:local

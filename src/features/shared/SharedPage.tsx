@@ -10,15 +10,28 @@ import {
 import { useApp } from "../../app/context";
 import { getQuestion } from "../../data/catalog";
 import { dateLabel } from "../../domain/date";
+import { ConnectedJournal } from "../../data/http/connected-journal";
+import { EmptyState } from "../../components/EmptyState";
 
 export function SharedPage({ roundId }: { roundId?: string }) {
   const { snapshot, profile, repo, run, confirm } = useApp();
   const [message, setMessage] = useState("");
   const [replyTo, setReplyTo] = useState<string>();
+  const local = repo instanceof ConnectedJournal ? repo : undefined;
   const selected =
     snapshot.roundViews.find((r) => r.roundId === roundId) ??
     snapshot.roundViews.find((r) => r.state === "unlocked") ??
-    snapshot.roundViews[0]!;
+    snapshot.roundViews[0];
+  if (!selected)
+    return (
+      <EmptyState title="交集还留着一页空白">
+        绑定后可以从每日一题开始，也可以在题库邀请对方一起回答。
+        <br />
+        <a className="text-link" href="#/pairing">
+          管理双人空间
+        </a>
+      </EmptyState>
+    );
   const q = getQuestion(selected.questionId);
   return (
     <>
@@ -40,7 +53,11 @@ export function SharedPage({ roundId }: { roundId?: string }) {
             href={`#/shared?round=${r.roundId}`}
             key={r.roundId}
           >
-            {r.roundId === "today" ? "今日问题" : "一段已留下的对话"}
+            {r.roundId === (local?.state.todayRoundId ?? "today")
+              ? "今日问题"
+              : r.date
+                ? `${dateLabel(r.date)}${r.kind === "free" ? " · 自由选题" : ""}`
+                : "一段已留下的对话"}
             <span>
               {r.state === "unlocked"
                 ? "已解锁"
@@ -57,6 +74,45 @@ export function SharedPage({ roundId }: { roundId?: string }) {
         <span className="eyebrow">原题 {q.originalNumber} · 共同问答</span>
         <h2>{q.content}？</h2>
       </section>
+      {local && selected.needsAcceptance && (
+        <section className="paper-card settings-section">
+          <h2>愿意一起回答这一题吗？</h2>
+          <p className="settings-hint">
+            {q.sensitivity === "high"
+              ? "这道题涉及较私人内容，需要你明确同意。"
+              : "你可以按自己的意愿接受或拒绝，不影响每日问题。"}
+          </p>
+          <div className="button-row">
+            <button
+              className="button secondary"
+              onClick={() =>
+                confirm({
+                  title: "婉拒这一题？",
+                  description: "这轮邀请会关闭，不影响自己的记录和其他问答。",
+                  label: "婉拒这一题",
+                  action: () => local.decline(selected.roundId),
+                })
+              }
+            >
+              暂时不答
+            </button>
+            <button
+              className="button"
+              onClick={() =>
+                confirm({
+                  title: "接受这一题？",
+                  description:
+                    q.content + "。接受后仍由双方各自回答、各自决定何时提交。",
+                  label: "愿意回答这一题",
+                  action: () => local.accept(selected.roundId, true),
+                })
+              }
+            >
+              接受这一题
+            </button>
+          </div>
+        </section>
+      )}
       {selected.state === "unlocked" ? (
         <>
           <div className="answers-pair">
@@ -146,10 +202,10 @@ export function SharedPage({ roundId }: { roundId?: string }) {
             )}
             <form
               className="comment-form"
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
                 if (
-                  run(
+                  await run(
                     () =>
                       repo.comment(profile, selected.roundId, message, replyTo),
                     "留言已留在这段对话里。",
@@ -188,16 +244,22 @@ export function SharedPage({ roundId }: { roundId?: string }) {
               ? "这轮共享已经撤回"
               : selected.state === "dissolved"
                 ? "共同空间已经关闭"
-                : "答案还在各自的信封里"}
+                : selected.state === "unavailable"
+                  ? "连接恢复后，再打开答案"
+                  : "答案还在各自的信封里"}
           </h2>
           <p>
-            {selected.state === "waiting"
-              ? "你已经提交，给对方一点自由书写的时间。"
-              : selected.state === "partner-ready"
-                ? "对方已经提交。等你也准备好，两份答案才会同时打开。"
-                : selected.state === "draft"
-                  ? "双方都正式提交以后，才能看见彼此的答案。"
-                  : "自己的记录仍在我的宇宙，对方的内容不再可读。"}
+            {selected.awaitingAcceptance
+              ? "这轮还在等待对方接受。你可以先在自己的宇宙里记录想法。"
+              : selected.state === "unavailable"
+                ? "请重新连接并确认共享状态后，再查看对方的内容。"
+                : selected.state === "waiting"
+                  ? "你已经提交，给对方一点自由书写的时间。"
+                  : selected.state === "partner-ready"
+                    ? "对方已经提交。等你也准备好，两份答案才会同时打开。"
+                    : selected.state === "draft"
+                      ? "双方都正式提交以后，才能看见彼此的答案。"
+                      : "自己的记录仍在我的宇宙，对方的内容不再可读。"}
           </p>
           {selected.own && (
             <div className="own-locked-answer">
@@ -206,7 +268,10 @@ export function SharedPage({ roundId }: { roundId?: string }) {
             </div>
           )}
           {!snapshot.dissolved && selected.state !== "withdrawn" && (
-            <a href={`#/today?q=${q.questionId}`} className="text-link">
+            <a
+              href={`#/today?q=${q.questionId}${local ? `&round=${encodeURIComponent(selected.roundId)}` : ""}`}
+              className="text-link"
+            >
               回到我的回答 <ArrowRight size={15} />
             </a>
           )}

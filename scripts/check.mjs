@@ -3,6 +3,7 @@ const commands = [
   ["scripts/extract-questions.mjs", "--check"],
   ["node_modules/typescript/bin/tsc", "--noEmit"],
   ["node_modules/typescript/bin/tsc", "--noEmit", "-p", "worker/tsconfig.json"],
+  ["node_modules/typescript/bin/tsc", "--noEmit", "-p", "server/tsconfig.json"],
   ["node_modules/vitest/vitest.mjs", "run"],
   ["node_modules/vite/bin/vite.js", "build"],
 ];

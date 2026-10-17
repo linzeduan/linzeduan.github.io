@@ -11,6 +11,9 @@ worker/.wrangler/
 test-results/
 playwright-report/
 .local/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
 docs/*.docx
 exports/
 *.log

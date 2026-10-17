@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "types": ["node"], "allowImportingTsExtensions": true },
+  "include": [
+    "./**/*.ts",
+    "../src/domain/types.ts",
+    "../src/domain/local.ts",
+    "../src/domain/date.ts"
+  ]
+}

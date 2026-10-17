@@ -9,6 +9,9 @@ import {
 } from "lucide-react";
 import { useApp } from "../../app/context";
 import { version } from "../../../package.json";
+import { useState } from "react";
+import { ConnectedJournal } from "../../data/http/connected-journal";
+import { LocalAccountSettings } from "../local/LocalAccountSettings";
 
 export type Theme = "light" | "dark" | "system";
 export function downloadJson(value: unknown, name: string) {
@@ -28,7 +31,18 @@ export function SettingsPage({
   theme: Theme;
   setTheme: (theme: Theme) => void;
 }) {
-  const { profile, setProfile, snapshot, repo, confirm, notify } = useApp();
+  const { profile, setProfile, snapshot, repo, confirm, run } = useApp();
+  const local = repo instanceof ConnectedJournal ? repo : undefined;
+  const [includePartner, setIncludePartner] = useState(false);
+  const exportData = async () => {
+    const value = local
+      ? await local.exportOwn(profile, includePartner)
+      : await repo.exportOwn(profile);
+    downloadJson(
+      value,
+      `between-answers-${local ? "local" : "demo"}-${profile}.json`,
+    );
+  };
   return (
     <>
       <header className="page-heading">
@@ -63,45 +77,63 @@ export function SettingsPage({
           ))}
         </div>
       </section>
-      <section className="paper-card settings-section">
-        <div className="section-heading">
-          <h2>演示身份</h2>
-          <p>
-            切换两个人的视角，体验独立回答和相互解锁。所有内容仅在本次打开中模拟。
+      {local ? (
+        <LocalAccountSettings />
+      ) : (
+        <section className="paper-card settings-section">
+          <div className="section-heading">
+            <h2>演示身份</h2>
+            <p>
+              切换两个人的视角，体验独立回答和相互解锁。所有内容仅在本次打开中模拟。
+            </p>
+          </div>
+          <div className="profile-choices">
+            {(["a", "b"] as const).map((p) => (
+              <button
+                className={profile === p ? "selected" : ""}
+                onClick={() => setProfile(p)}
+                key={p}
+                aria-pressed={profile === p}
+              >
+                <span className={`avatar ${p === "b" ? "partner" : ""}`}>
+                  {p.toUpperCase()}
+                </span>
+                体验 {p === "a" ? "A" : "B"} 的视角
+              </button>
+            ))}
+          </div>
+          <p className="settings-hint">
+            演示内容不是安全存储。请勿输入真实私密信息，刷新页面会还原示例。
           </p>
-        </div>
-        <div className="profile-choices">
-          {(["a", "b"] as const).map((p) => (
-            <button
-              className={profile === p ? "selected" : ""}
-              onClick={() => setProfile(p)}
-              key={p}
-              aria-pressed={profile === p}
-            >
-              <span className={`avatar ${p === "b" ? "partner" : ""}`}>
-                {p.toUpperCase()}
-              </span>
-              体验 {p === "a" ? "A" : "B"} 的视角
-            </button>
-          ))}
-        </div>
-        <p className="settings-hint">
-          演示内容不是安全存储。请勿输入真实私密信息，刷新页面会还原示例。
-        </p>
-      </section>
+        </section>
+      )}
       <section className="paper-card settings-section">
         <div className="section-heading">
           <h2>把记录握在自己手里</h2>
           <p>每个人都拥有自己的答案，即使以后不再一起答题。</p>
         </div>
+        {local && (
+          <label className="direct-check">
+            <input
+              type="checkbox"
+              checked={includePartner}
+              onChange={(e) => setIncludePartner(e.target.checked)}
+            />
+            同时导出目前仍解锁的对方内容
+          </label>
+        )}
         <button
           className="settings-row"
           onClick={() => {
-            downloadJson(
-              repo.exportOwn(profile),
-              `between-answers-demo-${profile}.json`,
-            );
-            notify("已导出当前身份的演示记录。");
+            if (includePartner)
+              confirm({
+                title: "一并导出仍共享的内容？",
+                description:
+                  "只导出目前仍获得访问权限的对方答案和交流。导出的副本由你自行保管。",
+                label: "确认导出",
+                action: exportData,
+              });
+            else void run(exportData, "已导出自己的记录。");
           }}
         >
           <span>
@@ -117,15 +149,16 @@ export function SettingsPage({
           className="settings-row"
           onClick={() =>
             confirm({
-              title: "解散这个演示空间？",
-              description:
-                "对方的答案将不再可读，双方自己的记录都会保留。此操作不能恢复；可以通过“还原演示”重新体验。",
+              title: local ? "解散这个双人空间？" : "解散这个演示空间？",
+              description: local
+                ? "对方的答案将不再可读，双方自己的记录都会保留。此空间关闭后不能恢复。"
+                : "对方的答案将不再可读，双方自己的记录都会保留。此操作不能恢复；可以通过“还原演示”重新体验。",
               label: "确认解散",
               danger: true,
               action: () => repo.dissolve(),
             })
           }
-          disabled={snapshot.dissolved}
+          disabled={snapshot.dissolved || Boolean(local && !local.state.space)}
         >
           <span>
             <ShieldCheck size={20} />
@@ -153,30 +186,32 @@ export function SettingsPage({
           </span>
           <ArrowUpRight size={18} />
         </a>
-        <button
-          className="settings-row"
-          onClick={() =>
-            confirm({
-              title: "还原全部演示内容？",
-              description:
-                "将丢弃本次演示中的编辑，恢复合成示例；这不会操作任何云端私人数据。",
-              label: "还原演示",
-              action: () => repo.reset(),
-            })
-          }
-        >
-          <span>
-            <RotateCcw size={20} />
+        {!local && (
+          <button
+            className="settings-row"
+            onClick={() =>
+              confirm({
+                title: "还原全部演示内容？",
+                description:
+                  "将丢弃本次演示中的编辑，恢复合成示例；这不会操作任何云端私人数据。",
+                label: "还原演示",
+                action: () => repo.reset(),
+              })
+            }
+          >
             <span>
-              <strong>还原演示</strong>
-              <small>清空本次体验中的更改</small>
+              <RotateCcw size={20} />
+              <span>
+                <strong>还原演示</strong>
+                <small>清空本次体验中的更改</small>
+              </span>
             </span>
-          </span>
-          <ArrowUpRight size={18} />
-        </button>
+            <ArrowUpRight size={18} />
+          </button>
+        )}
       </section>
       <p className="center-note">
-        答案之间 · {version} 演示预览
+        答案之间 · {version} {local ? "本地版本" : "演示预览"}
         <br />
         慢慢认识彼此，也慢慢认识自己。
       </p>

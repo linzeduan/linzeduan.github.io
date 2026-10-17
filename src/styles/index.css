@@ -2118,3 +2118,114 @@ span svg {
     display: none;
   }
 }
+.local-entry {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  gap: 20px;
+}
+.local-form {
+  width: 100%;
+  max-width: 640px;
+  padding: 28px;
+  margin-inline: auto;
+}
+.local-form .brand {
+  margin-bottom: 28px;
+}
+.local-form h1 {
+  font-family: var(--serif);
+  font-size: 26px;
+  text-wrap: balance;
+  font-weight: 500;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.local-form h2 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  margin: 18px 0;
+}
+.local-form > p {
+  font-size: 12px;
+  line-height: 2;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.local-form label {
+  display: block;
+  font-size: 12px;
+  margin: 18px 0 9px;
+}
+.local-form input,
+.local-form select {
+  width: 100%;
+  min-height: 43px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 10px 12px;
+  font-size: 14px;
+}
+.local-form .button {
+  margin-top: 19px;
+}
+.local-form .button-row {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.reauth-dialog {
+  position: fixed;
+  margin: auto;
+  max-width: min(640px, calc(100vw - 32px));
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  padding: 0;
+  border-radius: 12px;
+}
+.reauth-dialog::backdrop {
+  background: #172719a0;
+  backdrop-filter: blur(5px);
+}
+.draft-warning {
+  border-top: 1px solid var(--line);
+  padding: 15px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.9;
+}
+.draft-warning .button-row {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.backfill-form {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 18px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.backfill-form input {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+}
+.settings-section > .direct-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  margin-top: 20px;
+  line-height: 1.9;
+}
