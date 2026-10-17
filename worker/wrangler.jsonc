@@ -1,0 +1,17 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "between-answers-network-probe",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-17",
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "vars": {
+    "ALLOWED_ORIGINS": "https://linzeduan.github.io,http://127.0.0.1:5173,http://127.0.0.1:4173"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "between-answers-probe",
+    "database_id": "00000000-0000-0000-0000-000000000000",
+    "migrations_dir": "migrations"
+  }]
+}

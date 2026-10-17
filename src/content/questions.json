@@ -1,0 +1,4002 @@
+[
+  {
+    "questionId": "q001",
+    "originalNumber": 1,
+    "content": "你的身高",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q002",
+    "originalNumber": 2,
+    "content": "你的体重",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q003",
+    "originalNumber": 3,
+    "content": "你的年龄",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q004",
+    "originalNumber": 4,
+    "content": "你的星座",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q005",
+    "originalNumber": 5,
+    "content": "你的生日",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q006",
+    "originalNumber": 6,
+    "content": "你的鞋码",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q007",
+    "originalNumber": 7,
+    "content": "你的性格",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q008",
+    "originalNumber": 8,
+    "content": "你的爱好",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q009",
+    "originalNumber": 9,
+    "content": "你的口味",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q010",
+    "originalNumber": 10,
+    "content": "你的优点",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q011",
+    "originalNumber": 11,
+    "content": "你的缺点",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q012",
+    "originalNumber": 12,
+    "content": "你的习惯",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q013",
+    "originalNumber": 13,
+    "content": "你的理想型",
+    "category": "intimacy",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q014",
+    "originalNumber": 14,
+    "content": "你喜欢的花",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q015",
+    "originalNumber": 15,
+    "content": "你喜欢的音乐",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q016",
+    "originalNumber": 16,
+    "content": "你喜欢的食物",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q017",
+    "originalNumber": 17,
+    "content": "你喜欢的饮品",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q018",
+    "originalNumber": 18,
+    "content": "你喜欢的颜色",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q019",
+    "originalNumber": 19,
+    "content": "你喜欢的穿搭",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q020",
+    "originalNumber": 20,
+    "content": "你喜欢的风格",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q021",
+    "originalNumber": 21,
+    "content": "你喜欢的季节",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q022",
+    "originalNumber": 22,
+    "content": "你喜欢的天气",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q023",
+    "originalNumber": 23,
+    "content": "你喜欢的城市",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q024",
+    "originalNumber": 24,
+    "content": "你喜欢的风景",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q025",
+    "originalNumber": 25,
+    "content": "你喜欢的动物",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q026",
+    "originalNumber": 26,
+    "content": "你喜欢的动漫",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q027",
+    "originalNumber": 27,
+    "content": "你喜欢的电影",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q028",
+    "originalNumber": 28,
+    "content": "你喜欢的电视剧",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q029",
+    "originalNumber": 29,
+    "content": "你喜欢的小说",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q030",
+    "originalNumber": 30,
+    "content": "你喜欢的博主",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q031",
+    "originalNumber": 31,
+    "content": "你喜欢的歌手",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q032",
+    "originalNumber": 32,
+    "content": "你喜欢的明星",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q033",
+    "originalNumber": 33,
+    "content": "你喜欢的作家",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q034",
+    "originalNumber": 34,
+    "content": "你喜欢的照片",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q035",
+    "originalNumber": 35,
+    "content": "你喜欢的运动",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q036",
+    "originalNumber": 36,
+    "content": "你喜欢的朋友",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q037",
+    "originalNumber": 37,
+    "content": "你喜欢的拍照姿势",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q038",
+    "originalNumber": 38,
+    "content": "你讨厌的人",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q039",
+    "originalNumber": 39,
+    "content": "你讨厌的行为",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q040",
+    "originalNumber": 40,
+    "content": "你喜欢喝酸奶还是牛奶",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q041",
+    "originalNumber": 41,
+    "content": "你喜欢喝奶茶还是果茶",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q042",
+    "originalNumber": 42,
+    "content": "你喜欢白天还是黑夜",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q043",
+    "originalNumber": 43,
+    "content": "你的输入法是9键还是26键",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q044",
+    "originalNumber": 44,
+    "content": "你上次哭是什么时候",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q045",
+    "originalNumber": 45,
+    "content": "你小时候都玩什么",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q046",
+    "originalNumber": 46,
+    "content": "你小时候有什么糗事",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q047",
+    "originalNumber": 47,
+    "content": "你小时候是听话的还是淘气的",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q048",
+    "originalNumber": 48,
+    "content": "你身上的伤疤都是怎么来的",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q049",
+    "originalNumber": 49,
+    "content": "你有没有选择困难症",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q050",
+    "originalNumber": 50,
+    "content": "你有没有恐高",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q051",
+    "originalNumber": 51,
+    "content": "你害不害怕虫子",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q052",
+    "originalNumber": 52,
+    "content": "你会不会做饭",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q053",
+    "originalNumber": 53,
+    "content": "你挑不挑食",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q054",
+    "originalNumber": 54,
+    "content": "你会选择你喜欢的还是喜欢你的",
+    "category": "intimacy",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q055",
+    "originalNumber": 55,
+    "content": "和我相处最舒服的瞬间是哪次",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q056",
+    "originalNumber": 56,
+    "content": "你的梦想是什么",
+    "category": "future",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q057",
+    "originalNumber": 57,
+    "content": "你最喜欢自己一个人做什么事",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q058",
+    "originalNumber": 58,
+    "content": "和我待在一起会觉得放松吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q059",
+    "originalNumber": 59,
+    "content": "你相信一见钟情还是日久生情",
+    "category": "intimacy",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q060",
+    "originalNumber": 60,
+    "content": "你觉得友情能维持一辈子吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q061",
+    "originalNumber": 61,
+    "content": "你会主动维系疏远的朋友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q062",
+    "originalNumber": 62,
+    "content": "被朋友忽略你会难过吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q063",
+    "originalNumber": 63,
+    "content": "你谈恋爱是看长相还是看感觉",
+    "category": "intimacy",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q064",
+    "originalNumber": 64,
+    "content": "你谈恋爱的话想要平淡的还是热烈的",
+    "category": "intimacy",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q065",
+    "originalNumber": 65,
+    "content": "你觉得谈恋爱最重要的是什么",
+    "category": "intimacy",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q066",
+    "originalNumber": 66,
+    "content": "你想要收到什么样的礼物",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q067",
+    "originalNumber": 67,
+    "content": "你觉得送礼物是心意重要还是价钱重要",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q068",
+    "originalNumber": 68,
+    "content": "遇到烦心事会第一时间找谁倾诉",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q069",
+    "originalNumber": 69,
+    "content": "你认为吵架的时候沟通重要吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q070",
+    "originalNumber": 70,
+    "content": "和朋友闹矛盾你会怎么沟通和解",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q071",
+    "originalNumber": 71,
+    "content": "你一个人独处的时候会不会觉得孤独",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q072",
+    "originalNumber": 72,
+    "content": "你觉得他人的看法重要吗",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q073",
+    "originalNumber": 73,
+    "content": "你会不会在意他人的情绪",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q074",
+    "originalNumber": 74,
+    "content": "你会不会在别人伤心时主动去安慰",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q075",
+    "originalNumber": 75,
+    "content": "你有没有特别emo的时候",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q076",
+    "originalNumber": 76,
+    "content": "你会不会主动向他人倾诉你的情绪",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q077",
+    "originalNumber": 77,
+    "content": "你心情低落的时候一般都怎么解决",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q078",
+    "originalNumber": 78,
+    "content": "你有没有跟家里人吵过架",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q079",
+    "originalNumber": 79,
+    "content": "你有没有什么特别神奇的经历",
+    "category": "emotions",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q080",
+    "originalNumber": 80,
+    "content": "你无聊的时候会做些什么",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q081",
+    "originalNumber": 81,
+    "content": "你喜欢一个人的时候是什么样子",
+    "category": "intimacy",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q082",
+    "originalNumber": 82,
+    "content": "和恋人相处会变得粘人吗",
+    "category": "intimacy",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q083",
+    "originalNumber": 83,
+    "content": "你有没有什么小癖好",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q084",
+    "originalNumber": 84,
+    "content": "你觉得人与人之间最舒服的相处方式是什么",
+    "category": "friendship",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q085",
+    "originalNumber": 85,
+    "content": "你和很久没有联系的朋友聊天会觉得尴尬吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q086",
+    "originalNumber": 86,
+    "content": "你喜欢出去旅游吗",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q087",
+    "originalNumber": 87,
+    "content": "你最想去哪个地方旅行",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q088",
+    "originalNumber": 88,
+    "content": "你最大的愿望是什么",
+    "category": "future",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q089",
+    "originalNumber": 89,
+    "content": "你以后想在哪个城市发展",
+    "category": "future",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q090",
+    "originalNumber": 90,
+    "content": "你对未来有什么规划吗",
+    "category": "future",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q091",
+    "originalNumber": 91,
+    "content": "你是那种善于表达的人吗",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q092",
+    "originalNumber": 92,
+    "content": "你有没有什么事让你觉得遗憾",
+    "category": "emotions",
+    "difficulty": 3,
+    "sensitivity": "medium",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q093",
+    "originalNumber": 93,
+    "content": "你收到朋友做的礼物会怎么样",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q094",
+    "originalNumber": 94,
+    "content": "你喜欢打篮球吗",
+    "category": "interests",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q095",
+    "originalNumber": 95,
+    "content": "你对暧昧的定义是什么",
+    "category": "intimacy",
+    "difficulty": 3,
+    "sensitivity": "medium",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q096",
+    "originalNumber": 96,
+    "content": "和好朋友相处你会考虑长远吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q097",
+    "originalNumber": 97,
+    "content": "你是特别看重友情的人吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q098",
+    "originalNumber": 98,
+    "content": "你觉得你现在和以前有什么变化",
+    "category": "self",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q099",
+    "originalNumber": 99,
+    "content": "你交朋友最看重对方什么特质",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q100",
+    "originalNumber": 100,
+    "content": "如果用三个词形容我你会选什么",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q101",
+    "originalNumber": 101,
+    "content": "交朋友最看重对方身上什么特质",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q102",
+    "originalNumber": 102,
+    "content": "你能接受朋友频繁放你鸽子吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q103",
+    "originalNumber": 103,
+    "content": "朋友借钱不还你会主动开口要吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q104",
+    "originalNumber": 104,
+    "content": "你会介意朋友有其他关系很好的挚友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q105",
+    "originalNumber": 105,
+    "content": "什么样的行为会让你主动疏远一个朋友",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q106",
+    "originalNumber": 106,
+    "content": "你会和朋友分享自己的感情琐事吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q107",
+    "originalNumber": 107,
+    "content": "你能接受朋友拿你的短板开玩笑吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q108",
+    "originalNumber": 108,
+    "content": "线下见面和线上聊天你更喜欢哪种相处模式",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q109",
+    "originalNumber": 109,
+    "content": "你会为了朋友妥协自己的计划吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q110",
+    "originalNumber": 110,
+    "content": "三观不合的朋友还有必要维持关系吗",
+    "category": "friendship",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q111",
+    "originalNumber": 111,
+    "content": "你会主动记住朋友的生日和喜好吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q112",
+    "originalNumber": 112,
+    "content": "朋友做错事你会直白指出还是委婉包容",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q113",
+    "originalNumber": 113,
+    "content": "你有没有过和朋友断联后重逢的经历",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q114",
+    "originalNumber": 114,
+    "content": "你觉得朋友之间需要保持距离感吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q115",
+    "originalNumber": 115,
+    "content": "你会嫉妒身边朋友过得比你好吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q116",
+    "originalNumber": 116,
+    "content": "聚餐时你习惯主动买单还是AA制",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q117",
+    "originalNumber": 117,
+    "content": "你会把心事全部告诉普通朋友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q118",
+    "originalNumber": 118,
+    "content": "朋友误会你时你会第一时间解释吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q119",
+    "originalNumber": 119,
+    "content": "你能接受朋友频繁吐槽负能量吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q120",
+    "originalNumber": 120,
+    "content": "你心中理想的友谊状态是什么样",
+    "category": "friendship",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q121",
+    "originalNumber": 121,
+    "content": "许久不联系的好友突然找你帮忙会帮忙吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q122",
+    "originalNumber": 122,
+    "content": "你会带新朋友认识自己的老朋友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q123",
+    "originalNumber": 123,
+    "content": "朋友谈恋爱之后慢慢忽略你你会难过吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q124",
+    "originalNumber": 124,
+    "content": "你觉得异性之间存在纯粹的友情吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q125",
+    "originalNumber": 125,
+    "content": "和朋友产生巨大分歧你会冷战多久",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q126",
+    "originalNumber": 126,
+    "content": "你会刻意讨好身边的朋友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q127",
+    "originalNumber": 127,
+    "content": "你最讨厌朋友哪一种说话方式",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q128",
+    "originalNumber": 128,
+    "content": "你会主动规划和朋友的出行约会吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q129",
+    "originalNumber": 129,
+    "content": "朋友隐瞒重要事情你会选择追问吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q130",
+    "originalNumber": 130,
+    "content": "你觉得朋友之间需要事事报备行程吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q131",
+    "originalNumber": 131,
+    "content": "性格反差很大的两个人能成为好朋友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q132",
+    "originalNumber": 132,
+    "content": "你会安慰情绪崩溃的朋友到很晚吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q133",
+    "originalNumber": 133,
+    "content": "你会和朋友互相分享手机密码吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "high",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q134",
+    "originalNumber": 134,
+    "content": "朋友和你喜欢上同一个人你会退让吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q135",
+    "originalNumber": 135,
+    "content": "你会记住朋友不经意说过的小愿望吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q136",
+    "originalNumber": 136,
+    "content": "社交聚会你更愿意独处还是主动搭话",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q137",
+    "originalNumber": 137,
+    "content": "你能包容朋友偶尔的自私行为吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q138",
+    "originalNumber": 138,
+    "content": "你会主动修复破碎的友情吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q139",
+    "originalNumber": 139,
+    "content": "你觉得朋友之间可以互相攀比吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q140",
+    "originalNumber": 140,
+    "content": "出门和朋友玩你会提前做好攻略吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q141",
+    "originalNumber": 141,
+    "content": "朋友当众反驳你的观点你会尴尬吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q142",
+    "originalNumber": 142,
+    "content": "你会主动和朋友分享好吃的东西吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q143",
+    "originalNumber": 143,
+    "content": "朋友取得成就你是真心替对方开心吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q144",
+    "originalNumber": 144,
+    "content": "你会随便翻朋友的手机相册吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "high",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q145",
+    "originalNumber": 145,
+    "content": "朋友向你求助超出能力范围你会拒绝吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q146",
+    "originalNumber": 146,
+    "content": "长时间不见面的好友感情会变淡吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q147",
+    "originalNumber": 147,
+    "content": "你会因为别人的评价远离某个朋友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q148",
+    "originalNumber": 148,
+    "content": "和朋友吵架后你会先低头求和吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q149",
+    "originalNumber": 149,
+    "content": "你能接受朋友和你讨厌的人来往吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q150",
+    "originalNumber": 150,
+    "content": "你会给朋友准备手工小礼物当惊喜吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q151",
+    "originalNumber": 151,
+    "content": "朋友总麻烦你办事你会心生厌烦吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q152",
+    "originalNumber": 152,
+    "content": "你觉得朋友之间不用刻意维持关系吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q153",
+    "originalNumber": 153,
+    "content": "旅行你更愿意独自出行还是结伴朋友",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q154",
+    "originalNumber": 154,
+    "content": "朋友当众揭你的短你会当场生气吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q155",
+    "originalNumber": 155,
+    "content": "你会主动打听朋友的感情近况吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q156",
+    "originalNumber": 156,
+    "content": "家境差距大的两个人适合做长期好友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q157",
+    "originalNumber": 157,
+    "content": "朋友失恋你会全天陪伴开导对方吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q158",
+    "originalNumber": 158,
+    "content": "你会和朋友立下长久陪伴的约定吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q159",
+    "originalNumber": 159,
+    "content": "朋友过度依赖你会让你觉得有压力吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q160",
+    "originalNumber": 160,
+    "content": "你会保留和多年好友的聊天记录吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q161",
+    "originalNumber": 161,
+    "content": "朋友随口许下的承诺你会放在心上吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q162",
+    "originalNumber": 162,
+    "content": "多人聚会你会照顾内向朋友的情绪吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q163",
+    "originalNumber": 163,
+    "content": "你会拒绝朋友不合理的要求吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q164",
+    "originalNumber": 164,
+    "content": "朋友发达之后疏远你你会释怀吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q165",
+    "originalNumber": 165,
+    "content": "你喜欢和朋友深夜谈心吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q166",
+    "originalNumber": 166,
+    "content": "朋友拿你的痛点开玩笑你会直接制止吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q167",
+    "originalNumber": 167,
+    "content": "你会主动和朋友分享日常琐碎小事吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q168",
+    "originalNumber": 168,
+    "content": "你觉得朋友之间可以隐瞒秘密吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q169",
+    "originalNumber": 169,
+    "content": "和朋友消费观念不同会影响相处吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q170",
+    "originalNumber": 170,
+    "content": "你会主动邀请独处的朋友一起玩耍吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q171",
+    "originalNumber": 171,
+    "content": "朋友对你撒谎被发现你会直接摊牌吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q172",
+    "originalNumber": 172,
+    "content": "你会为朋友牺牲自己的休息时间吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q173",
+    "originalNumber": 173,
+    "content": "你心中最好的朋友是什么模样",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q174",
+    "originalNumber": 174,
+    "content": "朋友频繁找你倾诉负面情绪你会回避吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q175",
+    "originalNumber": 175,
+    "content": "你会和朋友互相吐槽身边其他人吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q176",
+    "originalNumber": 176,
+    "content": "距离很远的异地友情能长久维持吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q177",
+    "originalNumber": 177,
+    "content": "你能接受朋友有比你更要好的伙伴吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q178",
+    "originalNumber": 178,
+    "content": "朋友犯错连累到你你会选择原谅吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q179",
+    "originalNumber": 179,
+    "content": "你会提前为朋友的生日准备惊喜吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q180",
+    "originalNumber": 180,
+    "content": "社交场合你会优先顾及朋友感受吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q181",
+    "originalNumber": 181,
+    "content": "你会主动和很久没联系的朋友寒暄吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q182",
+    "originalNumber": 182,
+    "content": "朋友三观和你相悖还能好好相处吗",
+    "category": "friendship",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q183",
+    "originalNumber": 183,
+    "content": "你会借贵重物品给普通朋友吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q184",
+    "originalNumber": 184,
+    "content": "朋友忽视你的情绪你会主动说出来吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q185",
+    "originalNumber": 185,
+    "content": "你喜欢和朋友安静待着还是热闹玩耍",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q186",
+    "originalNumber": 186,
+    "content": "朋友嫉妒你的优秀你会主动疏远对方吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q187",
+    "originalNumber": 187,
+    "content": "你会和朋友制定共同的小目标吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q188",
+    "originalNumber": 188,
+    "content": "朋友无意间伤害到你你会记很久吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q189",
+    "originalNumber": 189,
+    "content": "你会主动维护朋友在外的形象吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q190",
+    "originalNumber": 190,
+    "content": "你觉得友情需要双向奔赴才有意义吗",
+    "category": "friendship",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q191",
+    "originalNumber": 191,
+    "content": "朋友临时取消约会你会生气吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q192",
+    "originalNumber": 192,
+    "content": "你会倾听朋友藏在心底的心事吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q193",
+    "originalNumber": 193,
+    "content": "朋友和你吵架后冷战你会主动破冰吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q194",
+    "originalNumber": 194,
+    "content": "你会包容朋友身上难以改变的缺点吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q195",
+    "originalNumber": 195,
+    "content": "你会和朋友分享自己的未来规划吗",
+    "category": "friendship",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q196",
+    "originalNumber": 196,
+    "content": "朋友获得好运你不会心生嫉妒吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q197",
+    "originalNumber": 197,
+    "content": "你会避免和朋友产生金钱往来吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q198",
+    "originalNumber": 198,
+    "content": "你会记住和好朋友相遇的纪念日吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "low",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q199",
+    "originalNumber": 199,
+    "content": "朋友一味索取不付出你会及时止损吗",
+    "category": "friendship",
+    "difficulty": 2,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q200",
+    "originalNumber": 200,
+    "content": "你觉得一段友情的保质期大概多久",
+    "category": "friendship",
+    "difficulty": 3,
+    "sensitivity": "low",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q201",
+    "originalNumber": 201,
+    "content": "早餐你一般会选择吃什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q202",
+    "originalNumber": 202,
+    "content": "能接受连续一周吃同一种食物吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q203",
+    "originalNumber": 203,
+    "content": "最不能接受的食材是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q204",
+    "originalNumber": 204,
+    "content": "奶茶固定点什么口味搭配",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q205",
+    "originalNumber": 205,
+    "content": "吃火锅必点的三样菜品是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q206",
+    "originalNumber": 206,
+    "content": "偏爱甜食还是咸口食物",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q207",
+    "originalNumber": 207,
+    "content": "冷饮和热饮你更常喝哪一种",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q208",
+    "originalNumber": 208,
+    "content": "有无忌口或者过敏的食物",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q209",
+    "originalNumber": 209,
+    "content": "街边小吃里你最爱的一款是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q210",
+    "originalNumber": 210,
+    "content": "能吃辣的程度大概是微辣还是特辣",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q211",
+    "originalNumber": 211,
+    "content": "水果里常年回购的是哪几种",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q212",
+    "originalNumber": 212,
+    "content": "蛋糕更喜欢奶油款还是慕斯款",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q213",
+    "originalNumber": 213,
+    "content": "吃面喜欢清汤还是重辣重油汤底",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q214",
+    "originalNumber": 214,
+    "content": "外出吃饭优先选中餐还是西餐",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q215",
+    "originalNumber": 215,
+    "content": "有无特别喜欢的家常菜",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q216",
+    "originalNumber": 216,
+    "content": "碳酸饮料多久喝一次",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q217",
+    "originalNumber": 217,
+    "content": "夜宵会选择吃烧烤还是泡面",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q218",
+    "originalNumber": 218,
+    "content": "饺子爱吃肉馅还是素馅",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q219",
+    "originalNumber": 219,
+    "content": "喝咖啡还是喝果茶更多",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q220",
+    "originalNumber": 220,
+    "content": "有没有尝试过但再也不想吃的食物",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q221",
+    "originalNumber": 221,
+    "content": "做饭更擅长炒菜还是甜品",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q222",
+    "originalNumber": 222,
+    "content": "吃米饭会搭配很多菜还是简单一菜",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q223",
+    "originalNumber": 223,
+    "content": "冰淇淋最喜欢什么口味",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q224",
+    "originalNumber": 224,
+    "content": "螺蛳粉、臭豆腐这类味道重的食物能接受吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q225",
+    "originalNumber": 225,
+    "content": "聚餐点菜你会主动照顾别人口味吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q226",
+    "originalNumber": 226,
+    "content": "有没有从小吃到大的零食",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q227",
+    "originalNumber": 227,
+    "content": "喝奶茶会正常糖还是无糖",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q228",
+    "originalNumber": 228,
+    "content": "海鲜里面最喜欢哪一种",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q229",
+    "originalNumber": 229,
+    "content": "蒸菜、炸物、烤物更偏爱哪一类",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q230",
+    "originalNumber": 230,
+    "content": "空腹能直接喝冰的饮品吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q231",
+    "originalNumber": 231,
+    "content": "有没有为了某一种美食专门跑很远",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q232",
+    "originalNumber": 232,
+    "content": "粽子爱吃甜粽还是咸粽",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q233",
+    "originalNumber": 233,
+    "content": "月饼能接受五仁口味吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q234",
+    "originalNumber": 234,
+    "content": "日常喝水多还是喝饮料多",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q235",
+    "originalNumber": 235,
+    "content": "凉拌菜里必加的调料是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q236",
+    "originalNumber": 236,
+    "content": "不喜欢吃蔬菜会强迫自己吃吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q237",
+    "originalNumber": 237,
+    "content": "自助餐你一般优先拿什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q238",
+    "originalNumber": 238,
+    "content": "喜欢脆口还是软糯口感的食物",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q239",
+    "originalNumber": 239,
+    "content": "节假日必吃的特色美食是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q240",
+    "originalNumber": 240,
+    "content": "外卖点单频率大概一周几次",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q241",
+    "originalNumber": 241,
+    "content": "煮面会加鸡蛋、青菜还是只放调料",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q242",
+    "originalNumber": 242,
+    "content": "巧克力偏爱黑巧还是牛奶巧",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q243",
+    "originalNumber": 243,
+    "content": "喝汤喜欢饭前喝还是饭后喝",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q244",
+    "originalNumber": 244,
+    "content": "讨厌香菜、葱花这类配菜吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q245",
+    "originalNumber": 245,
+    "content": "旅游会专门打卡当地特色小吃吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q246",
+    "originalNumber": 246,
+    "content": "烤肉必点肉类是哪一款",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q247",
+    "originalNumber": 247,
+    "content": "酸奶喜欢原味还是果粒款",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q248",
+    "originalNumber": 248,
+    "content": "能接受食物搭配奇怪的组合吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q249",
+    "originalNumber": 249,
+    "content": "家里常备的零食是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q250",
+    "originalNumber": 250,
+    "content": "喝粥配咸菜还是糕点",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q251",
+    "originalNumber": 251,
+    "content": "吃到难吃的东西会直接吐槽吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q252",
+    "originalNumber": 252,
+    "content": "有无想尝试但一直没吃过的美食",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q253",
+    "originalNumber": 253,
+    "content": "吃烧烤必点素菜是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q254",
+    "originalNumber": 254,
+    "content": "面食和米饭你更偏向主食哪一种",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q255",
+    "originalNumber": 255,
+    "content": "气泡水会不会经常买来喝",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q256",
+    "originalNumber": 256,
+    "content": "芒果、榴莲这类气味重水果能接受吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q257",
+    "originalNumber": 257,
+    "content": "自己做饭多还是外出就餐多",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q258",
+    "originalNumber": 258,
+    "content": "甜品吃到什么程度会觉得腻",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q259",
+    "originalNumber": 259,
+    "content": "关东煮每次必拿的食材是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q260",
+    "originalNumber": 260,
+    "content": "吃火锅会搭配米饭还是面条",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q261",
+    "originalNumber": 261,
+    "content": "腌制类食物会经常吃吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q262",
+    "originalNumber": 262,
+    "content": "最喜欢的菜系是川湘还是粤淮扬",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q263",
+    "originalNumber": 263,
+    "content": "薄荷味的食物你能接受吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q264",
+    "originalNumber": 264,
+    "content": "冬天会频繁吃热汤类食物吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q265",
+    "originalNumber": 265,
+    "content": "夏天离不开冰西瓜还是冰奶茶",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q266",
+    "originalNumber": 266,
+    "content": "吃薯片偏爱原味还是香辣味",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q267",
+    "originalNumber": 267,
+    "content": "喝汤会把汤底全部喝完吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q268",
+    "originalNumber": 268,
+    "content": "有没有因为颜值去买一款食物",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q269",
+    "originalNumber": 269,
+    "content": "牛蛙、兔肉类食物你敢吃吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q270",
+    "originalNumber": 270,
+    "content": "早餐不吃会不会一整天不舒服",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q271",
+    "originalNumber": 271,
+    "content": "冷冻速食会经常囤在家里吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q272",
+    "originalNumber": 272,
+    "content": "水果干和新鲜水果更喜欢哪个",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q273",
+    "originalNumber": 273,
+    "content": "喝酒更爱果酒还是啤酒",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q274",
+    "originalNumber": 274,
+    "content": "吃饭速度快还是细嚼慢咽",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q275",
+    "originalNumber": 275,
+    "content": "吃到好吃的会主动分享给身边人吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q276",
+    "originalNumber": 276,
+    "content": "青团、年糕这类糯食能吃很多吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q277",
+    "originalNumber": 277,
+    "content": "不喜欢的食物会勉强自己咽下吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q278",
+    "originalNumber": 278,
+    "content": "便利店最常购买的吃食是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q279",
+    "originalNumber": 279,
+    "content": "炖肉喜欢软烂还是有嚼劲",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q280",
+    "originalNumber": 280,
+    "content": "柠檬水、蜂蜜水日常会冲泡吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q281",
+    "originalNumber": 281,
+    "content": "素食餐你能坚持吃一整天吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q282",
+    "originalNumber": 282,
+    "content": "有没有一款食物是你的治愈美食",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q283",
+    "originalNumber": 283,
+    "content": "吃汉堡会搭配可乐还是热牛奶",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q284",
+    "originalNumber": 284,
+    "content": "野菜类食物你愿意尝试吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q285",
+    "originalNumber": 285,
+    "content": "零食更喜欢膨化食品还是糖果",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q286",
+    "originalNumber": 286,
+    "content": "吃辣上火之后还会继续吃吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q287",
+    "originalNumber": 287,
+    "content": "蒸红薯、烤红薯更爱吃哪一个",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q288",
+    "originalNumber": 288,
+    "content": "果汁会选鲜榨还是瓶装饮料",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q289",
+    "originalNumber": 289,
+    "content": "多人吃饭你会主动分餐具吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q290",
+    "originalNumber": 290,
+    "content": "有无觉得很贵但值得一试的美食",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q291",
+    "originalNumber": 291,
+    "content": "吃鱼更喜欢清蒸还是红烧",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q292",
+    "originalNumber": 292,
+    "content": "糖果偏爱硬糖还是软糖",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q293",
+    "originalNumber": 293,
+    "content": "熬夜会专门准备夜宵吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q294",
+    "originalNumber": 294,
+    "content": "沙拉会搭配沙拉酱还是油醋汁",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q295",
+    "originalNumber": 295,
+    "content": "家乡独有的特色小吃是什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q296",
+    "originalNumber": 296,
+    "content": "喝咖啡会加糖加奶还是纯黑咖啡",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q297",
+    "originalNumber": 297,
+    "content": "菌类食材里面最喜欢哪一种",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q298",
+    "originalNumber": 298,
+    "content": "吃太饱之后会立刻躺下休息吗",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q299",
+    "originalNumber": 299,
+    "content": "有无不吃就会想念的美食",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q300",
+    "originalNumber": 300,
+    "content": "如果只能选一种食物吃一年你会选什么",
+    "category": "food",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q301",
+    "originalNumber": 301,
+    "content": "平时固定几点起床、几点睡觉",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q302",
+    "originalNumber": 302,
+    "content": "熬夜最长坚持到几点",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q303",
+    "originalNumber": 303,
+    "content": "早起困难户还是自然醒选手",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q304",
+    "originalNumber": 304,
+    "content": "周末会赖床到中午吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q305",
+    "originalNumber": 305,
+    "content": "睡前会不会刷短视频停不下来",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q306",
+    "originalNumber": 306,
+    "content": "睡觉必须关灯还是留小夜灯",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q307",
+    "originalNumber": 307,
+    "content": "睡觉喜欢侧睡、仰睡还是趴着睡",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q308",
+    "originalNumber": 308,
+    "content": "不午休下午会犯困吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q309",
+    "originalNumber": 309,
+    "content": "出门前收拾自己大概要多久",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q310",
+    "originalNumber": 310,
+    "content": "出门必带的三样东西是什么",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q311",
+    "originalNumber": 311,
+    "content": "手机电量低于多少会感到焦虑",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q312",
+    "originalNumber": 312,
+    "content": "手机静音模式还是常年开铃声",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q313",
+    "originalNumber": 313,
+    "content": "房间多久会彻底打扫一次",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q314",
+    "originalNumber": 314,
+    "content": "桌面物品习惯整齐摆放还是随性乱一点",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q315",
+    "originalNumber": 315,
+    "content": "衣服脏了会立刻洗还是攒一堆再洗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q316",
+    "originalNumber": 316,
+    "content": "换季衣物会认真收纳分类吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q317",
+    "originalNumber": 317,
+    "content": "洗完头自然风干还是必用吹风机",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q318",
+    "originalNumber": 318,
+    "content": "洗澡顺序一般先洗头还是先洗身体",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q319",
+    "originalNumber": 319,
+    "content": "护肤品会坚持每天全套使用吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q320",
+    "originalNumber": 320,
+    "content": "多久剪一次头发",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q321",
+    "originalNumber": 321,
+    "content": "指甲长到一定长度就会修剪吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q322",
+    "originalNumber": 322,
+    "content": "居家更喜欢穿宽松睡衣还是休闲外套",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q323",
+    "originalNumber": 323,
+    "content": "在家会经常开窗通风吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q324",
+    "originalNumber": 324,
+    "content": "喜欢房间光线亮一点还是昏暗柔和",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q325",
+    "originalNumber": 325,
+    "content": "独处时喜欢安静还是放轻音乐",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q326",
+    "originalNumber": 326,
+    "content": "做家务时会同步听歌或者追剧吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q327",
+    "originalNumber": 327,
+    "content": "丢垃圾会分类处理吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q328",
+    "originalNumber": 328,
+    "content": "快递纸箱会留存收纳还是直接扔掉",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q329",
+    "originalNumber": 329,
+    "content": "囤货习惯：日用品会大量囤吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q330",
+    "originalNumber": 330,
+    "content": "买东西优先实体店还是线上网购",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q331",
+    "originalNumber": 331,
+    "content": "网购收到不满意会果断退货吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q332",
+    "originalNumber": 332,
+    "content": "逛街能连续逛几个小时不累",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q333",
+    "originalNumber": 333,
+    "content": "出门下雨会常备雨伞还是临时买",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q334",
+    "originalNumber": 334,
+    "content": "晕车晕船这类情况会经常出现吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q335",
+    "originalNumber": 335,
+    "content": "换季容易感冒或者皮肤敏感吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q336",
+    "originalNumber": 336,
+    "content": "日常会主动运动锻炼身体吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q337",
+    "originalNumber": 337,
+    "content": "运动更偏爱跑步、跳绳还是散步",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q338",
+    "originalNumber": 338,
+    "content": "出汗之后会立刻洗澡吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q339",
+    "originalNumber": 339,
+    "content": "口渴才喝水还是定时主动补水",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q340",
+    "originalNumber": 340,
+    "content": "一天大概会喝多少杯水",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q341",
+    "originalNumber": 341,
+    "content": "生理期/不舒服会好好照顾自己吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "high",
+    "recommendedStage": "deep",
+    "enabled": true
+  },
+  {
+    "questionId": "q342",
+    "originalNumber": 342,
+    "content": "小病小痛会硬扛还是及时买药",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q343",
+    "originalNumber": 343,
+    "content": "家里常备感冒药、创可贴这类药品吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q344",
+    "originalNumber": 344,
+    "content": "出门旅游行李会提前一晚收拾好吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q345",
+    "originalNumber": 345,
+    "content": "出行行李箱东西会塞满还是留空位",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q346",
+    "originalNumber": 346,
+    "content": "外出住宿会自带床单被套吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q347",
+    "originalNumber": 347,
+    "content": "陌生环境睡觉容易失眠吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q348",
+    "originalNumber": 348,
+    "content": "出门在外会按时吃饭吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q349",
+    "originalNumber": 349,
+    "content": "乘坐交通工具喜欢靠窗还是过道",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q350",
+    "originalNumber": 350,
+    "content": "路上堵车会烦躁还是淡定听歌",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q351",
+    "originalNumber": 351,
+    "content": "日常作息被打乱会很难受吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q352",
+    "originalNumber": 352,
+    "content": "放假会彻底颠倒作息黑白颠倒吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q353",
+    "originalNumber": 353,
+    "content": "闹钟设置一个还是多个防止起不来",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q354",
+    "originalNumber": 354,
+    "content": "醒来第一件事先摸手机吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q355",
+    "originalNumber": 355,
+    "content": "早上空腹会喝温水还是直接吃东西",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q356",
+    "originalNumber": 356,
+    "content": "饭后会散步消食还是坐下玩手机",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q357",
+    "originalNumber": 357,
+    "content": "晚上吃太饱会影响入睡吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q358",
+    "originalNumber": 358,
+    "content": "节假日会早起还是全天躺平",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q359",
+    "originalNumber": 359,
+    "content": "家里绿植能养活还是总养枯萎",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q360",
+    "originalNumber": 360,
+    "content": "喜欢养小动物吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q361",
+    "originalNumber": 361,
+    "content": "看到路边流浪小动物会停下观察吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q362",
+    "originalNumber": 362,
+    "content": "出门会随身携带纸巾湿巾吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q363",
+    "originalNumber": 363,
+    "content": "拍照会随手记录日常碎片吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q364",
+    "originalNumber": 364,
+    "content": "相册照片会定期清理删除吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q365",
+    "originalNumber": 365,
+    "content": "喜欢囤好看小物件吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q366",
+    "originalNumber": 366,
+    "content": "冲动消费多还是理性谨慎购物",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q367",
+    "originalNumber": 367,
+    "content": "看中的东西会当场下单还是观望很久",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q368",
+    "originalNumber": 368,
+    "content": "每月会简单规划花销吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q369",
+    "originalNumber": 369,
+    "content": "零花钱工资会存一部分起来吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q370",
+    "originalNumber": 370,
+    "content": "很少会超前透支消费吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q371",
+    "originalNumber": 371,
+    "content": "丢东西之后会反复回想寻找吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q372",
+    "originalNumber": 372,
+    "content": "路痴吗，出门需要导航全程带路",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q373",
+    "originalNumber": 373,
+    "content": "过马路会谨慎看两边车辆吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q374",
+    "originalNumber": 374,
+    "content": "陌生人主动搭话会警惕吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q375",
+    "originalNumber": 375,
+    "content": "取快递外卖会及时拆开吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q376",
+    "originalNumber": 376,
+    "content": "收到礼物会当场拆开还是私下打开",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q377",
+    "originalNumber": 377,
+    "content": "换季会主动添置新衣服吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q378",
+    "originalNumber": 378,
+    "content": "穿搭偏爱简约款还是花哨有设计感",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q379",
+    "originalNumber": 379,
+    "content": "喜欢戴配饰吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q380",
+    "originalNumber": 380,
+    "content": "冬天手脚容易冰凉吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q381",
+    "originalNumber": 381,
+    "content": "夏天怕热，冬天怕冷哪一种更明显",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q382",
+    "originalNumber": 382,
+    "content": "空调温度习惯调到多少度",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q383",
+    "originalNumber": 383,
+    "content": "吹久冷风会头疼不舒服吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "medium",
+    "recommendedStage": "familiar",
+    "enabled": true
+  },
+  {
+    "questionId": "q384",
+    "originalNumber": 384,
+    "content": "驱蚊产品夏天会常备吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q385",
+    "originalNumber": 385,
+    "content": "蚊虫叮咬会忍不住一直抓挠吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q386",
+    "originalNumber": 386,
+    "content": "坐沙发喜欢盘腿还是伸直双腿",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q387",
+    "originalNumber": 387,
+    "content": "看电视剧会一次性看完还是分次看",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q388",
+    "originalNumber": 388,
+    "content": "追剧喜欢开弹幕还是关闭弹幕",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q389",
+    "originalNumber": 389,
+    "content": "看剧会准备一大堆零食放在旁边吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q390",
+    "originalNumber": 390,
+    "content": "无聊时会主动找事做还是发呆放空",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q391",
+    "originalNumber": 391,
+    "content": "发呆一般会想些什么内容",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q392",
+    "originalNumber": 392,
+    "content": "喜欢傍晚出门散步吹风吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q393",
+    "originalNumber": 393,
+    "content": "路过花店会停下看花吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q394",
+    "originalNumber": 394,
+    "content": "收到鲜花会细心养护到枯萎吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q395",
+    "originalNumber": 395,
+    "content": "纸巾更喜欢印花款还是简约纯色",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q396",
+    "originalNumber": 396,
+    "content": "牙膏、沐浴露用完会及时补货吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q397",
+    "originalNumber": 397,
+    "content": "耳机是有线还是无线蓝牙耳机常用",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q398",
+    "originalNumber": 398,
+    "content": "耳机音量习惯开偏大还是偏小",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q399",
+    "originalNumber": 399,
+    "content": "走路的时候会戴着耳机听歌吗",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  },
+  {
+    "questionId": "q400",
+    "originalNumber": 400,
+    "content": "下雨更喜欢宅家还是出门淋雨",
+    "category": "daily",
+    "difficulty": 1,
+    "sensitivity": "low",
+    "recommendedStage": "initial",
+    "enabled": true
+  }
+]
