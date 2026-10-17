@@ -31,3 +31,12 @@
 按 DEPLOYMENT.md 登录 Cloudflare、创建免费 D1、设置探针密钥并部署。双方完成 NETWORK_VALIDATION.md 后确定后端，再进入生产认证与权限实现。网络未通过前不把演示开关当作生产身份，也不接收真实私密数据。
 
 当前无付费云资源、无计费账户绑定、无保活任务；只使用一个应用工程和一个候选后端探针，没有增加额外服务。
+
+## 发布记录
+
+- 代码提交：ada3cf96e66498f4c5da9085eb75a71b3d7dcbcb；PR #1 已合并，发布合并提交为 d712ef8f75a5d50451aa83039361c85db6416b65。
+- Pages 已从旧的分支发布方式切换到 GitHub Actions，演示地址为 https://linzeduan.github.io/ 。
+- 线上 Check 与 Deploy Pages 均 success；发布任务：https://github.com/linzeduan/linzeduan.github.io/actions/runs/38996325031 。
+- 线上 Chromium 手机尺寸冒烟验证：首页 HTTP 200，标题正确，manifest 与 sw.js 均 200，Service Worker 接管成功，无 pageerror。
+- 仓库忽略规则已验证原始 DOCX、临时脚本、导出和本地 D1 状态不进入 Git；工作区已提交。
+- Cloudflare `wrangler whoami` 实际返回未登录，远程探针仍未部署。需要用户在本机终端完成登录，不能把这一项写成已完成。

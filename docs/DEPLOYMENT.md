@@ -24,6 +24,8 @@ pnpm worker:dev
 
 用户注册或登录 Cloudflare，Workers & Pages 保持 Free，不开 Workers Paid、R2、付费附加项。没有配置账号前，不能声称已部署或大陆直连可用。
 
+当前 Windows 工作区已有依赖但 `pnpm` 不在全局 PATH。可以在项目根目录使用等价命令 `node node_modules/wrangler/bin/wrangler.js login` 完成登录；其余 Wrangler 命令也可用该前缀替代 `pnpm exec wrangler`。授权必须由用户本人在浏览器完成，账号密码和登录凭证不要发到聊天中。
+
 1. 本机终端执行 `pnpm exec wrangler login`，由用户在浏览器授权，凭证不发聊天、不提交 Git。
 2. 执行 `pnpm exec wrangler d1 create between-answers-probe`，将返回的 database_id 写入 worker/wrangler.jsonc，替换全零占位值。该 ID 是公开资源标识，非密钥。
 3. 执行 `pnpm exec wrangler d1 migrations apply between-answers-probe --remote --config worker/wrangler.jsonc`。
