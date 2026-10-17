@@ -1,7 +1,7 @@
 {
   "name": "between-answers",
   "private": true,
-  "version": "0.2.1-local",
+  "version": "0.2.2-local",
   "type": "module",
   "packageManager": "pnpm@11.25.0",
   "engines": {
@@ -11,6 +11,9 @@
     "dev": "vite --host 127.0.0.1",
     "dev:local": "node scripts/local-dev.mjs",
     "local:server": "node server/main.ts",
+    "local:backup": "node scripts/local-data.mjs backup",
+    "local:verify": "node scripts/local-data.mjs verify",
+    "local:restore": "node scripts/local-data.mjs restore",
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit && tsc --noEmit -p worker/tsconfig.json && tsc --noEmit -p server/tsconfig.json",
     "preview": "vite preview --host 127.0.0.1",
