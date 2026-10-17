@@ -8,6 +8,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useApp } from "../../app/context";
+import { version } from "../../../package.json";
 
 export type Theme = "light" | "dark" | "system";
 export function downloadJson(value: unknown, name: string) {
@@ -175,7 +176,7 @@ export function SettingsPage({
         </button>
       </section>
       <p className="center-note">
-        答案之间 · 0.1.0 演示预览
+        答案之间 · {version} 演示预览
         <br />
         慢慢认识彼此，也慢慢认识自己。
       </p>
