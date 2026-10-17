@@ -3,9 +3,12 @@ import { ArrowUpRight, Search, ShieldCheck } from "lucide-react";
 import { questions } from "../../data/catalog";
 import { categoryNames } from "../../domain/types";
 import { useApp } from "../../app/context";
+import { ConnectedJournal } from "../../data/http/connected-journal";
 
 export function ArchivePage() {
-  const { snapshot } = useApp();
+  const { snapshot, repo, run } = useApp();
+  const local = repo instanceof ConnectedJournal ? repo : undefined;
+  const [date, setDate] = useState("");
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
@@ -32,6 +35,35 @@ export function ArchivePage() {
         <ShieldCheck size={18} />
         <span>全部保留原题与编号。涉及私人内容的题目可以随时跳过。</span>
       </div>
+      {local?.state.space?.status === "active" && (
+        <form
+          className="paper-card backfill-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            void run(async () => {
+              const id = await local.daily(date);
+              const round = local.state.roundViews.find(
+                (r) => r.roundId === id,
+              );
+              location.hash = `/today?q=${round!.questionId}&round=${encodeURIComponent(id)}`;
+            });
+          }}
+        >
+          <label htmlFor="backfill-date">想补答哪一天？</label>
+          <input
+            id="backfill-date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            required
+            min={local.state.space.startDay ?? undefined}
+            max={local.state.serverDay}
+          />
+          <button className="button secondary" type="submit">
+            打开那天的问题
+          </button>
+        </form>
+      )}
       <div className="filter-row">
         <label className="search-field">
           <Search size={17} />

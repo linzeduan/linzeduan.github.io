@@ -24,6 +24,12 @@ import { SettingsPage } from "../features/settings/SettingsPage";
 import type { Theme } from "../features/settings/SettingsPage";
 import { DiagnosticsPage } from "../features/settings/DiagnosticsPage";
 import { questionMap } from "../data/catalog";
+import type { JournalController } from "../data/ports/controller";
+import { ConnectedJournal } from "../data/http/connected-journal";
+import { PairingPage } from "../features/local/PairingPage";
+import { HistoryPage } from "../features/local/HistoryPage";
+import { writingTarget } from "./writing-route";
+import { EmptyState } from "../components/EmptyState";
 
 const navigation = [
   { id: "today", label: "今日问题", Icon: CalendarDays },
@@ -46,16 +52,76 @@ function initialTheme(): Theme {
     return "system";
   }
 }
-export function App() {
+export function App({
+  controller = demoJournal,
+}: {
+  controller?: JournalController;
+}) {
+  const local = controller instanceof ConnectedJournal ? controller : undefined;
   const [route, setRoute] = useState(getRoute);
-  const [profile, setProfile] = useState<Profile>("a");
+  const [profile, setProfile] = useState<Profile>(local?.user.id ?? "a");
   const [theme, setTheme] = useState<Theme>(initialTheme);
   const [toast, setToast] = useState("");
   const [dialog, setDialog] = useState<ConfirmAction | null>(null);
+  const [actionBusy, setActionBusy] = useState(false);
   const [online, setOnline] = useState(navigator.onLine);
   const [update, setUpdate] = useState(false);
-  useSyncExternalStore(demoJournal.subscribe, demoJournal.getVersion);
-  const snapshot = demoJournal.snapshot(profile);
+  useSyncExternalStore(controller.subscribe, controller.getVersion);
+  const snapshot = controller.snapshot(profile);
+  const todayQuestionId = local?.state.todayQuestionId;
+  const todayRoundId = local?.state.todayRoundId;
+  useEffect(() => {
+    if (
+      !local ||
+      route.page !== "today" ||
+      !todayQuestionId ||
+      !todayRoundId ||
+      ["q", "entry", "round"].some((key) => route.params.has(key))
+    )
+      return;
+    const current = getRoute();
+    if (
+      current.page !== route.page ||
+      current.params.toString() !== route.params.toString()
+    )
+      return;
+    const params = new URLSearchParams(route.params);
+    params.set("q", todayQuestionId);
+    params.set("round", todayRoundId);
+    history.replaceState(history.state, "", `#/today?${params}`);
+    setRoute(getRoute());
+  }, [local, route, todayQuestionId, todayRoundId]);
+  useEffect(() => {
+    if (!local) return;
+    const check = () => {
+      if (document.visibilityState === "hidden") local.hidePartner();
+      else void local.refresh().catch(() => {});
+    };
+    const offline = () => local.hidePartner();
+    const before = (event: BeforeUnloadEvent) => {
+      if (local.hasPending()) {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    };
+    const interval = setInterval(() => {
+      if (document.visibilityState === "visible")
+        void local.refresh().catch(() => {});
+    }, 5000);
+    window.addEventListener("focus", check);
+    window.addEventListener("online", check);
+    window.addEventListener("offline", offline);
+    document.addEventListener("visibilitychange", check);
+    window.addEventListener("beforeunload", before);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("focus", check);
+      window.removeEventListener("online", check);
+      window.removeEventListener("offline", offline);
+      document.removeEventListener("visibilitychange", check);
+      window.removeEventListener("beforeunload", before);
+    };
+  }, [local]);
   useEffect(() => {
     const change = () => {
       setRoute(getRoute());
@@ -119,9 +185,12 @@ export function App() {
       mounted = false;
     };
   }, []);
-  const run = (action: () => void, message?: string) => {
+  const run = async (
+    action: () => unknown | Promise<unknown>,
+    message?: string,
+  ) => {
     try {
-      action();
+      await action();
       if (message) setToast(message);
       return true;
     } catch (e) {
@@ -129,10 +198,52 @@ export function App() {
       return false;
     }
   };
-  const questionId = route.params.get("q") ?? "q057";
+  const target = local
+    ? writingTarget(route.params, snapshot.entries, snapshot.roundViews, {
+        questionId: todayQuestionId,
+        roundId: todayRoundId,
+      })
+    : {
+        questionId: route.params.get("q") ?? "q057",
+        entryId: route.params.get("entry") ?? undefined,
+        roundId: route.params.get("round") ?? undefined,
+      };
   const content =
-    route.page === "today" && questionMap.has(questionId) ? (
-      <TodayPage key={`${profile}-${questionId}`} questionId={questionId} />
+    route.page === "pairing" && local ? (
+      <PairingPage />
+    ) : route.page === "history" && local ? (
+      <HistoryPage entryId={route.params.get("entry") ?? ""} />
+    ) : route.page === "today" &&
+      local &&
+      !local.state.space?.startDay &&
+      !route.params.has("q") ? (
+      <PairingPage />
+    ) : route.page === "today" &&
+      local?.state.space?.status === "active" &&
+      !todayRoundId &&
+      !["q", "entry", "round"].some((key) => route.params.has(key)) ? (
+      <EmptyState title="推荐日程已经走完">
+        可以自由选题、补答，或者看看以前的自己。
+        <br />
+        <a className="text-link" href="#/archive">
+          翻一翻题库
+        </a>
+      </EmptyState>
+    ) : route.page === "today" &&
+      target &&
+      questionMap.has(target.questionId) ? (
+      <TodayPage
+        key={`${profile}-${target.questionId}-${target.entryId}-${target.roundId}`}
+        {...target}
+      />
+    ) : route.page === "today" ? (
+      <EmptyState title="暂时无法打开这份回答">
+        题目、记录或问答轮次不匹配，请从自己的档案重新打开。
+        <br />
+        <a className="text-link" href="#/universe">
+          返回我的宇宙
+        </a>
+      </EmptyState>
     ) : route.page === "universe" ? (
       <UniversePage />
     ) : route.page === "shared" ? (
@@ -160,7 +271,7 @@ export function App() {
         profile,
         setProfile,
         snapshot,
-        repo: demoJournal,
+        repo: controller,
         notify: setToast,
         run,
         confirm: setDialog,
@@ -208,7 +319,9 @@ export function App() {
             <a href="#/settings" className="profile-link">
               <span className="avatar">{profile.toUpperCase()}</span>
               <div>
-                <strong>演示体验者 {profile.toUpperCase()}</strong>
+                <strong>
+                  {local?.user.name ?? `演示体验者 ${profile.toUpperCase()}`}
+                </strong>
                 <span>每一份表达，都有自己的节奏</span>
               </div>
               <Settings2 size={17} />
@@ -249,15 +362,30 @@ export function App() {
           <div className="demo-banner">
             <Sparkles size={14} />
             <span>
-              演示预览 · 使用合成内容，刷新会还原。请勿输入真实私密信息。
+              {local
+                ? "本地版本 · 答案保存在这台电脑，尚未连接云端。"
+                : "演示预览 · 使用合成内容，刷新会还原。请勿输入真实私密信息。"}
             </span>
             <a href="#/settings">
-              切换视角 <ArrowUpRight size={13} />
+              {local ? "账号与数据" : "切换视角"} <ArrowUpRight size={13} />
             </a>
           </div>
           {!online && (
             <div className="network-banner" role="status">
-              网络已断开。当前为演示，输入仅留在当前页面会话中。
+              {local
+                ? "网络连接已变化，请以草稿保存状态为准。"
+                : "网络已断开。当前为演示，输入仅留在当前页面会话中。"}
+            </div>
+          )}
+          {local?.connectionError && (
+            <div className="network-banner" role="status">
+              {local.connectionError}
+              <button
+                className="quiet-button"
+                onClick={() => void run(() => local.refresh())}
+              >
+                重试连接
+              </button>
             </div>
           )}
           {update && (
@@ -268,10 +396,14 @@ export function App() {
                 onClick={() =>
                   setDialog({
                     title: "刷新到新版本？",
-                    description:
-                      "本次演示的编辑将还原。需要保留的内容可以先去设置导出。",
+                    description: local
+                      ? "刷新前会先保存当前草稿。"
+                      : "本次演示的编辑将还原。需要保留的内容可以先去设置导出。",
                     label: "刷新页面",
-                    action: () => location.reload(),
+                    action: async () => {
+                      await controller.flush();
+                      location.reload();
+                    },
                   })
                 }
               >
@@ -316,9 +448,15 @@ export function App() {
         )}
         <ConfirmDialog
           value={dialog}
-          onClose={() => setDialog(null)}
-          onConfirm={() => {
-            if (dialog && run(dialog.action, "操作已完成。")) setDialog(null);
+          busy={actionBusy}
+          onClose={() => {
+            if (!actionBusy) setDialog(null);
+          }}
+          onConfirm={async () => {
+            if (!dialog || actionBusy) return;
+            setActionBusy(true);
+            if (await run(dialog.action, "操作已完成。")) setDialog(null);
+            setActionBusy(false);
           }}
         />
       </div>

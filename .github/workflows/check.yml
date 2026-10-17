@@ -2,7 +2,7 @@ name: Check
 on:
   pull_request:
   push:
-    branches: [main, feat/between-answers]
+    branches: [main, feat/between-answers, feat/local-v1]
 permissions:
   contents: read
 jobs:
@@ -21,3 +21,4 @@ jobs:
       - run: pnpm check
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
+      - run: pnpm test:local

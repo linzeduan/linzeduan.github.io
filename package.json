@@ -1,19 +1,27 @@
 {
   "name": "between-answers",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.3.0-design",
   "type": "module",
   "packageManager": "pnpm@11.25.0",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
+    "dev:local": "node scripts/local-dev.mjs",
+    "local:server": "node server/main.ts",
+    "local:backup": "node scripts/local-data.mjs backup",
+    "local:verify": "node scripts/local-data.mjs verify",
+    "local:restore": "node scripts/local-data.mjs restore",
+    "design:capture": "node scripts/capture-design.mjs",
+    "handoff:package": "node scripts/package-handoff.mjs",
     "build": "tsc --noEmit && vite build",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p worker/tsconfig.json",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p worker/tsconfig.json && tsc --noEmit -p server/tsconfig.json",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:local": "playwright test --config playwright.local.config.ts",
     "questions:extract": "node scripts/extract-questions.mjs",
     "questions:check": "node scripts/extract-questions.mjs --check",
     "check": "node scripts/check.mjs",

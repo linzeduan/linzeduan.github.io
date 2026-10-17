@@ -28,6 +28,7 @@ export type Entry = {
   updatedAt: string;
   revision: number;
   status: "draft" | "submitted";
+  roundId?: string;
 };
 export type Submission = {
   owner: Profile;
@@ -59,10 +60,15 @@ export type SharedView = {
     | "partner-ready"
     | "unlocked"
     | "withdrawn"
-    | "dissolved";
+    | "dissolved"
+    | "unavailable";
   own?: Submission;
   partner?: Submission;
   comments: Comment[];
+  date?: string;
+  kind?: "daily" | "free";
+  needsAcceptance?: boolean;
+  awaitingAcceptance?: boolean;
 };
 export type DemoSnapshot = {
   profile: Profile;

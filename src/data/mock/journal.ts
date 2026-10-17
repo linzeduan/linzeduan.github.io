@@ -12,6 +12,9 @@ import { getQuestion } from "../catalog";
 
 // Deliberately in-memory and synthetic. This is NOT an authorization boundary.
 export class DemoJournal implements JournalRepository {
+  mode = "demo" as const;
+  flush = async () => {};
+  saveStatus = () => "saved" as const;
   private entries: Entry[] = [];
   private rounds: Round[] = [];
   private skipped: Record<Profile, string[]> = { a: [], b: [] };
@@ -128,12 +131,16 @@ export class DemoJournal implements JournalRepository {
     text: string,
     note: string,
     expectedRevision: number,
+    entryId?: string,
   ): Entry {
     getQuestion(questionId);
     if (text.length > 12000 || note.length > 12000)
       throw new Error("每项内容最多 12000 字。");
     let entry = this.entries.findLast(
-      (e) => e.owner === profile && e.questionId === questionId,
+      (e) =>
+        e.owner === profile &&
+        e.questionId === questionId &&
+        (!entryId || e.id === entryId),
     );
     if ((entry?.revision ?? 0) !== expectedRevision)
       throw new Error("另一处编辑已更新这份记录，请先重新查看。");

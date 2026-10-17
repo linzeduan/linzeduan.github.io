@@ -1,20 +1,23 @@
 import { createContext, useContext } from "react";
 import type { DemoSnapshot, Profile } from "../domain/types";
-import type { DemoJournal } from "../data/mock/journal";
+import type { JournalController } from "../data/ports/controller";
 export type ConfirmAction = {
   title: string;
   description: string;
   label: string;
-  action: () => void;
+  action: () => unknown | Promise<unknown>;
   danger?: boolean;
 };
 export type AppContextValue = {
   profile: Profile;
   setProfile: (profile: Profile) => void;
   snapshot: DemoSnapshot;
-  repo: DemoJournal;
+  repo: JournalController;
   notify: (message: string) => void;
-  run: (action: () => void, message?: string) => boolean;
+  run: (
+    action: () => unknown | Promise<unknown>,
+    message?: string,
+  ) => Promise<boolean>;
   confirm: (value: ConfirmAction) => void;
 };
 export const AppContext = createContext<AppContextValue | null>(null);

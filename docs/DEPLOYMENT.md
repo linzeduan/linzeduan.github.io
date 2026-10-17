@@ -1,5 +1,7 @@
 # 部署和外部配置
 
+用户最新指定由 Work Buddy 使用已有域名和云数据库接入、上传。先读 HANDOFF_WORK_BUDDY.md；以下 GitHub Pages/Cloudflare 步骤作为历史参考保留，不是本轮必须执行的外部配置，也不要求新增 Cloudflare 账号。
+
 ## 版本控制
 
 目标仓库 https://github.com/linzeduan/linzeduan.github.io ，默认 main。旧站起点 1695756bcc6df930c43e6e466e316cd629d24e4b，已建立 archive/legacy-site-20261017 快照。开发使用 feat/between-answers，不 force-push，不清空 Git 历史。阶段提交先经过检查。
@@ -11,6 +13,8 @@
 首次上线替换旧站，应验证同路径 /sw.js 完成接管并清理 zhongxiang-guide-\* 缓存；用曾访问过旧站的浏览器及已安装 PWA 测试。原站 localStorage/IndexedDB 不自动删除。当前阶段的安装元数据不代表离线私人数据存储。
 
 ## 本地验证探针
+
+当前优先体验真实本地应用：双击根目录 `启动本地版.cmd`，或执行 `node scripts/local-dev.mjs`，访问 http://127.0.0.1:5173 。不需要外部账号，具体见 LOCAL_DEVELOPMENT.md。以下探针步骤留到用户准备云端配置时执行。
 
 ```sh
 cp worker/.dev.vars.example worker/.dev.vars

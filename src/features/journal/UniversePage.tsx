@@ -10,7 +10,7 @@ import {
 import { useApp } from "../../app/context";
 import { categoryNames } from "../../domain/types";
 import { getQuestion } from "../../data/catalog";
-import { dateLabel } from "../../domain/date";
+import { dateLabel, dayKey } from "../../domain/date";
 import { EmptyState } from "../../components/EmptyState";
 
 export function UniversePage() {
@@ -23,7 +23,7 @@ export function UniversePage() {
       const q = getQuestion(e.questionId);
       return (
         (!category || q.category === category) &&
-        (!date || e.createdAt.startsWith(date)) &&
+        (!date || dayKey(new Date(e.createdAt)) === date) &&
         (!search || `${q.content}${e.text}${e.note}`.includes(search))
       );
     })
@@ -113,7 +113,11 @@ export function UniversePage() {
                   </span>
                 </div>
                 <h2>
-                  <a href={`#/today?q=${q.questionId}`}>{q.content}？</a>
+                  <a
+                    href={`#/today?q=${q.questionId}&entry=${encodeURIComponent(e.id)}${e.roundId ? `&round=${encodeURIComponent(e.roundId)}` : ""}`}
+                  >
+                    {q.content}？
+                  </a>
                 </h2>
                 <p className="entry-text">
                   {e.text || "还没有写下答案，留一页空白也很好。"}
@@ -134,6 +138,14 @@ export function UniversePage() {
                     }).format(new Date(e.updatedAt))}
                   </span>
                   <div>
+                    {repo.mode === "local" && (
+                      <a
+                        className="quiet-button"
+                        href={`#/history?entry=${encodeURIComponent(e.id)}`}
+                      >
+                        历史版本
+                      </a>
+                    )}
                     <button
                       className="quiet-button"
                       onClick={() =>
@@ -142,9 +154,13 @@ export function UniversePage() {
                           description:
                             "原来的记录会保留，新答案是一份独立的私人记录。",
                           label: "写一份新答案",
-                          action: () => {
-                            repo.reanswer(profile, q.questionId);
-                            location.hash = `/today?q=${q.questionId}`;
+                          action: async () => {
+                            const entry = await repo.reanswer(
+                              profile,
+                              q.questionId,
+                              e.id,
+                            );
+                            location.hash = `/today?q=${q.questionId}${entry ? `&entry=${encodeURIComponent(entry.id)}` : ""}`;
                           },
                         })
                       }

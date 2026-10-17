@@ -2,6 +2,7 @@ import { StrictMode, Component } from "react";
 import type { ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./app/App";
+import { LocalRoot } from "./features/local/LocalRoot";
 import "./styles/index.css";
 class ErrorBoundary extends Component<
   { children: ReactNode },
@@ -28,7 +29,7 @@ class ErrorBoundary extends Component<
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary>
-      <App />
+      {import.meta.env.VITE_APP_MODE === "local" ? <LocalRoot /> : <App />}
     </ErrorBoundary>
   </StrictMode>,
 );
