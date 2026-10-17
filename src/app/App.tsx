@@ -28,6 +28,8 @@ import type { JournalController } from "../data/ports/controller";
 import { ConnectedJournal } from "../data/http/connected-journal";
 import { PairingPage } from "../features/local/PairingPage";
 import { HistoryPage } from "../features/local/HistoryPage";
+import { writingTarget } from "./writing-route";
+import { EmptyState } from "../components/EmptyState";
 
 const navigation = [
   { id: "today", label: "今日问题", Icon: CalendarDays },
@@ -66,6 +68,29 @@ export function App({
   const [update, setUpdate] = useState(false);
   useSyncExternalStore(controller.subscribe, controller.getVersion);
   const snapshot = controller.snapshot(profile);
+  const todayQuestionId = local?.state.todayQuestionId;
+  const todayRoundId = local?.state.todayRoundId;
+  useEffect(() => {
+    if (
+      !local ||
+      route.page !== "today" ||
+      !todayQuestionId ||
+      !todayRoundId ||
+      ["q", "entry", "round"].some((key) => route.params.has(key))
+    )
+      return;
+    const current = getRoute();
+    if (
+      current.page !== route.page ||
+      current.params.toString() !== route.params.toString()
+    )
+      return;
+    const params = new URLSearchParams(route.params);
+    params.set("q", todayQuestionId);
+    params.set("round", todayRoundId);
+    history.replaceState(history.state, "", `#/today?${params}`);
+    setRoute(getRoute());
+  }, [local, route, todayQuestionId, todayRoundId]);
   useEffect(() => {
     if (!local) return;
     const check = () => {
@@ -173,11 +198,16 @@ export function App({
       return false;
     }
   };
-  const questionId =
-    route.params.get("q") ?? local?.state.todayQuestionId ?? "q057";
-  const roundId =
-    route.params.get("round") ??
-    (!route.params.has("q") ? local?.state.todayRoundId : undefined);
+  const target = local
+    ? writingTarget(route.params, snapshot.entries, snapshot.roundViews, {
+        questionId: todayQuestionId,
+        roundId: todayRoundId,
+      })
+    : {
+        questionId: route.params.get("q") ?? "q057",
+        entryId: route.params.get("entry") ?? undefined,
+        roundId: route.params.get("round") ?? undefined,
+      };
   const content =
     route.page === "pairing" && local ? (
       <PairingPage />
@@ -188,13 +218,32 @@ export function App({
       !local.state.space?.startDay &&
       !route.params.has("q") ? (
       <PairingPage />
-    ) : route.page === "today" && questionMap.has(questionId) ? (
+    ) : route.page === "today" &&
+      local?.state.space?.status === "active" &&
+      !todayRoundId &&
+      !["q", "entry", "round"].some((key) => route.params.has(key)) ? (
+      <EmptyState title="推荐日程已经走完">
+        可以自由选题、补答，或者看看以前的自己。
+        <br />
+        <a className="text-link" href="#/archive">
+          翻一翻题库
+        </a>
+      </EmptyState>
+    ) : route.page === "today" &&
+      target &&
+      questionMap.has(target.questionId) ? (
       <TodayPage
-        key={`${profile}-${questionId}-${route.params.get("entry")}-${roundId}`}
-        questionId={questionId}
-        entryId={route.params.get("entry") ?? undefined}
-        roundId={roundId}
+        key={`${profile}-${target.questionId}-${target.entryId}-${target.roundId}`}
+        {...target}
       />
+    ) : route.page === "today" ? (
+      <EmptyState title="暂时无法打开这份回答">
+        题目、记录或问答轮次不匹配，请从自己的档案重新打开。
+        <br />
+        <a className="text-link" href="#/universe">
+          返回我的宇宙
+        </a>
+      </EmptyState>
     ) : route.page === "universe" ? (
       <UniversePage />
     ) : route.page === "shared" ? (

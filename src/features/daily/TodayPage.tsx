@@ -90,6 +90,20 @@ export function TodayPage({
           翻一翻题库 <ArrowUpRight size={16} />
         </a>
       </header>
+      {local &&
+        round?.kind === "daily" &&
+        round.roundId !== local.state.todayRoundId &&
+        local.state.todayRoundId && (
+          <div className="gentle-banner day-change-banner" role="status">
+            <span>
+              你正在继续 {dateLabel(round.date!)}{" "}
+              的问题，当前输入会保留在这一题。
+            </span>
+            <a className="text-link" href="#/today">
+              打开今日问题
+            </a>
+          </div>
+        )}
       <section className="question-card" aria-labelledby="question-title">
         <div className="question-meta">
           <span>
@@ -299,26 +313,30 @@ export function TodayPage({
           </section>
         </aside>
       </div>
-      {local?.state.space?.status === "active" && !round && (
-        <button
-          className="button secondary"
-          onClick={() =>
-            confirm({
-              title: "邀请对方回答这道题？",
-              description: `${q.content}。${q.sensitivity === "high" ? "这道题涉及较私人内容，双方都明确同意后才能提交。" : "对方可以接受或拒绝，不会替换今日问题。"}`,
-              label: "发起共同问答",
-              action: async () => {
-                const id = await local.free(questionId, true);
-                location.hash = `/today?q=${questionId}&round=${encodeURIComponent(id)}`;
-              },
-            })
-          }
-        >
-          发起共同问答
-        </button>
-      )}
+      {local?.state.space?.status === "active" &&
+        (!round || ["withdrawn", "dissolved"].includes(round.state)) && (
+          <button
+            className="button secondary"
+            onClick={() =>
+              confirm({
+                title: "邀请对方回答这道题？",
+                description: `${q.content}。${entry ? "当前回答会复制为新一轮草稿，原记录保留，笔记仍仅自己可见。" : "这不会替换今日问题。"}${q.sensitivity === "high" ? "这道题涉及较私人内容，双方都明确同意后才能提交。" : "对方可以接受或拒绝。"}`,
+                label: "发起共同问答",
+                action: async () => {
+                  const id = await local.free(questionId, true, entry?.id);
+                  location.hash = `/today?q=${questionId}&round=${encodeURIComponent(id)}`;
+                },
+              })
+            }
+          >
+            {round ? "重新发起共同问答" : "发起共同问答"}
+          </button>
+        )}
       <footer className="page-footnote">
-        <span>{dateLabel(dayKey())} · Asia/Shanghai</span>
+        <span>
+          {dateLabel(round?.date ?? local?.state.serverDay ?? dayKey())} ·
+          Asia/Shanghai
+        </span>
         <span>不是每天都要回答，每一次都值得被留下。</span>
       </footer>
     </>

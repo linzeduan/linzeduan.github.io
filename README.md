@@ -2,7 +2,9 @@
 
 我们各自回答人生，也在答案之间慢慢认识彼此。
 
-两位朋友的私人问答 PWA。当前开发版本 **0.2.2-local** 已提供本机双账号、SQLite 持久保存与服务端双向解锁。云端配置按用户要求后置，尚不能让两台异地手机同步。GitHub Pages 仍为合成数据演示，不能作为私人记录服务。
+两位朋友的私人问答 PWA。当前 **0.3.0-design 产品交接版** 提供完整产品流程、响应式页面、本机双账号持久记录和服务端双向解锁。用户已指定 Work Buddy 使用已有域名、云数据库完成接入与上传；本轮不再配置新云平台。现有 GitHub Pages 仍为合成演示，尚无异地私人同步。
+
+先看 [产品设计与页面预览](docs/PRODUCT_DESIGN.md)，再读 [Work Buddy 交接入口](docs/HANDOFF_WORK_BUDDY.md) 和 [接口合约](docs/API_CONTRACT.md)。干净提交后执行 `node scripts/package-handoff.mjs`，生成包含源码、设计图与静态演示的 ZIP；包中不含私人数据。
 
 ## 本地运行
 

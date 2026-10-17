@@ -172,21 +172,11 @@ export function SettingsPage({
           <ArrowUpRight size={18} />
         </button>
       </section>
-      <section className="paper-card settings-section">
-        <div className="section-heading">
-          <h2>连接与体验</h2>
-        </div>
-        <a href="#/diagnostics" className="settings-row">
-          <span>
-            <Monitor size={20} />
-            <span>
-              <strong>检查网络连接</strong>
-              <small>验证未来的云同步服务能否直连</small>
-            </span>
-          </span>
-          <ArrowUpRight size={18} />
-        </a>
-        {!local && (
+      {!local && (
+        <section className="paper-card settings-section">
+          <div className="section-heading">
+            <h2>演示体验</h2>
+          </div>
           <button
             className="settings-row"
             onClick={() =>
@@ -208,8 +198,8 @@ export function SettingsPage({
             </span>
             <ArrowUpRight size={18} />
           </button>
-        )}
-      </section>
+        </section>
+      )}
       <p className="center-note">
         答案之间 · {version} {local ? "本地版本" : "演示预览"}
         <br />

@@ -551,6 +551,151 @@ describe("local authenticated API", () => {
       ).needsAcceptance,
     ).toBe(false);
   });
+  it("ends the automatic schedule without pretending old questions are today's, while retaining backfill and free questions", async () => {
+    const c = await paired();
+    c.time("2028-01-01T04:00:00Z");
+    const a = await c.login("a");
+    const state = (await c.request("/api/state", "GET", undefined, a)).body;
+    expect(state.space.status).toBe("active");
+    expect(state.todayRoundId).toBeUndefined();
+    expect(state.todayQuestionId).toBeUndefined();
+    expect(
+      (await c.request("/api/rounds/daily", "POST", { date: "2026-10-17" }, a))
+        .body.id,
+    ).toBe(c.roundId);
+    expect(
+      (await c.request("/api/rounds/free", "POST", { questionId: "q014" }, a))
+        .status,
+    ).toBe(201);
+  });
+  it("atomically copies an owned answer into one idempotent invitation while keeping notes private", async () => {
+    const c = await paired();
+    const sourceId = randomUUID();
+    expect(
+      (
+        await c.request(
+          "/api/entries",
+          "POST",
+          {
+            id: sourceId,
+            questionId: "q014",
+            text: "A private seed answer",
+            note: "A private seed note",
+            expectedRevision: 0,
+          },
+          c.a,
+        )
+      ).status,
+    ).toBe(200);
+    const command = {
+      questionId: "q014",
+      sensitiveConsent: false,
+      roundId: randomUUID(),
+      sourceEntryId: sourceId,
+      expectedRevision: 1,
+    };
+    const created = await Promise.all([
+      c.request("/api/rounds/free", "POST", command, c.a),
+      c.request("/api/rounds/free", "POST", command, c.a),
+    ]);
+    expect(created.map((r) => r.status)).toEqual([201, 201]);
+    expect(
+      c.store.one("SELECT count(*) AS n FROM rounds WHERE kind='free'")?.n,
+    ).toBe(1);
+    const state = (await c.request("/api/state", "GET", undefined, c.a)).body;
+    const seed = state.entries.find(
+      (e: { roundId?: string }) => e.roundId === command.roundId,
+    );
+    expect(seed).toMatchObject({
+      text: "A private seed answer",
+      note: "A private seed note",
+      revision: 1,
+      status: "draft",
+    });
+    expect(seed.id).not.toBe(sourceId);
+    const other = (await c.request("/api/state", "GET", undefined, c.b)).body;
+    expect(JSON.stringify(other)).not.toContain("A private seed");
+    const base = `/api/rounds/${command.roundId}`;
+    expect(
+      (
+        await c.request(
+          base + "/submit",
+          "POST",
+          { entryId: seed.id, expectedRevision: 1, operationId: randomUUID() },
+          c.a,
+        )
+      ).status,
+    ).toBe(409);
+    expect(
+      (await c.request(base + "/answers/a", "GET", undefined, c.b)).status,
+    ).toBe(403);
+    expect((await c.request(base + "/accept", "POST", {}, c.b)).status).toBe(
+      200,
+    );
+    await c.request(
+      base + "/submit",
+      "POST",
+      { entryId: seed.id, expectedRevision: 1, operationId: randomUUID() },
+      c.a,
+    );
+    const b = await c.request(
+      "/api/entries",
+      "POST",
+      {
+        id: randomUUID(),
+        questionId: "q014",
+        roundId: command.roundId,
+        text: "B independent answer",
+        note: "B private note",
+        expectedRevision: 0,
+      },
+      c.b,
+    );
+    await c.request(
+      base + "/submit",
+      "POST",
+      { entryId: b.body.id, expectedRevision: 1, operationId: randomUUID() },
+      c.b,
+    );
+    const revealed = await c.request(
+      base + "/answers/a",
+      "GET",
+      undefined,
+      c.b,
+    );
+    expect(revealed.body.text).toBe("A private seed answer");
+    expect(JSON.stringify(revealed.body)).not.toContain("note");
+    expect(
+      (await c.request(`/api/entries/${sourceId}`, "GET", undefined, c.a)).body
+        .roundId,
+    ).toBeUndefined();
+    expect(
+      (await c.request(`/api/entries/${sourceId}`, "GET", undefined, c.a)).body
+        .note,
+    ).toBe("A private seed note");
+    for (const [cookie, changes, status] of [
+      [c.b, {}, 404],
+      [c.a, { expectedRevision: 99 }, 409],
+      [c.a, { questionId: "q057" }, 400],
+    ] as const) {
+      expect(
+        (
+          await c.request(
+            "/api/rounds/free",
+            "POST",
+            { ...command, roundId: randomUUID(), ...changes },
+            cookie,
+          )
+        ).status,
+      ).toBe(status);
+    }
+    expect(
+      (await c.request("/api/rounds/free", "POST", command, c.b)).status,
+    ).toBe(409);
+    expect(
+      c.store.one("SELECT count(*) AS n FROM rounds WHERE kind='free'")?.n,
+    ).toBe(1);
+  });
   it("exports only owned records by default and deletes own snapshots, notes and versions", async () => {
     const c = await paired();
     const a = await save(c, c.a, "A answer", "A private"),

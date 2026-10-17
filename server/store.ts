@@ -239,22 +239,90 @@ export class Store {
       fail(409, "round_closed", "这轮共享已关闭。");
     return r;
   }
-  free(uid: string, qid: unknown, consent: unknown) {
+  free(
+    uid: string,
+    qid: unknown,
+    consent: unknown,
+    options: {
+      roundId?: unknown;
+      sourceEntryId?: unknown;
+      expectedRevision?: unknown;
+    } = {},
+  ) {
     const q = question(qid);
     if (q.sensitivity === "high" && consent !== true)
       fail(400, "consent_required", "这道题需要明确同意后再邀请。");
-    const s = this.active(uid);
-    const id = randomUUID();
-    this.run(
-      "INSERT INTO rounds VALUES (?,?,?,?,'free',?,NULL,0,?)",
-      id,
-      s.id,
-      q.questionId,
-      dayKey(this.now()),
-      uid,
-      this.stamp(),
-    );
-    return id;
+    const id =
+      options.roundId === undefined
+        ? randomUUID()
+        : text(options.roundId, "问答编号", 36, false);
+    if (!/^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/i.test(id))
+      fail(400, "invalid_round_id", "问答编号格式不正确。");
+    if (
+      options.sourceEntryId === undefined &&
+      options.expectedRevision !== undefined
+    )
+      fail(400, "invalid_input", "原记录与版本需要一并指定。");
+    return this.tx(() => {
+      const s = this.active(uid);
+      const existing = this.one("SELECT * FROM rounds WHERE id=?", id);
+      if (existing) {
+        if (
+          existing.creator !== uid ||
+          existing.space_id !== s.id ||
+          existing.question_id !== q.questionId ||
+          existing.kind !== "free"
+        )
+          fail(409, "operation_conflict", "这个问答编号已经使用。");
+        return id;
+      }
+      const source =
+        options.sourceEntryId === undefined
+          ? undefined
+          : this.entry(
+              uid,
+              text(options.sourceEntryId, "原记录编号", 160, false),
+            );
+      if (source && source.question_id !== q.questionId)
+        fail(400, "invalid_question", "原记录与邀请题目不匹配。");
+      if (
+        source &&
+        Number(source.revision) !== number(options.expectedRevision)
+      )
+        fail(409, "revision_conflict", "原记录已经更新，请重新查看后再邀请。");
+      const now = this.stamp();
+      this.run(
+        "INSERT INTO rounds VALUES (?,?,?,?,'free',?,NULL,0,?)",
+        id,
+        s.id,
+        q.questionId,
+        dayKey(this.now()),
+        uid,
+        now,
+      );
+      if (source) {
+        const entryId = randomUUID();
+        this.run(
+          "INSERT INTO entries VALUES (?,?,?,?,?,?,1,'draft',?,?)",
+          entryId,
+          uid,
+          q.questionId,
+          id,
+          source.text,
+          source.note,
+          now,
+          now,
+        );
+        this.run(
+          "INSERT INTO entry_revisions VALUES (?,1,?,?,?)",
+          entryId,
+          source.text,
+          source.note,
+          now,
+        );
+      }
+      return id;
+    });
   }
   accept(uid: string, id: string, consent: unknown) {
     const r = this.openRound(uid, id);

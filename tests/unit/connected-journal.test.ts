@@ -77,6 +77,43 @@ afterEach(() => {
   vi.resetAllMocks();
 });
 describe("connected drafts and private state", () => {
+  it("keeps the invitation ID after a failed refresh and only sends a source reference", async () => {
+    const { repo, entry, state } = fixture();
+    request
+      .mockResolvedValueOnce({ id: "created-round" })
+      .mockRejectedValueOnce(new LocalApiError(0, "network_error", "offline"));
+    await expect(repo.free(entry.questionId, true, entry.id)).rejects.toThrow(
+      "offline",
+    );
+    const first = request.mock.calls[0]![2] as { roundId: string };
+    expect(first).toMatchObject({
+      sourceEntryId: entry.id,
+      expectedRevision: 1,
+    });
+    expect(JSON.stringify(first)).not.toContain(entry.note);
+    request
+      .mockResolvedValueOnce({ id: "created-round" })
+      .mockResolvedValueOnce(state);
+    expect(await repo.free(entry.questionId, true, entry.id)).toBe(
+      "created-round",
+    );
+    expect((request.mock.calls[2]![2] as { roundId: string }).roundId).toBe(
+      first.roundId,
+    );
+  });
+  it("does not create an invitation if the original answer could not be saved", async () => {
+    const { repo, entry, save } = fixture();
+    save("unsaved original answer");
+    request.mockRejectedValue(new LocalApiError(0, "network_error", "offline"));
+    await expect(repo.free(entry.questionId, true, entry.id)).rejects.toThrow(
+      "offline",
+    );
+    expect(request).toHaveBeenCalledTimes(1);
+    expect(request.mock.calls[0]![0]).toBe("/entries");
+    expect(repo.pendingCopy(entry.id).entry?.text).toBe(
+      "unsaved original answer",
+    );
+  });
   it("reuses the comment operation after an acknowledged write followed by failed refresh", async () => {
     const { repo, state } = fixture();
     request

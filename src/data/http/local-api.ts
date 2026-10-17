@@ -26,7 +26,7 @@ export async function localRequest<T>(
     throw new LocalApiError(
       0,
       "network_error",
-      "未连接到本地服务，当前输入尚未同步。",
+      "未连接到本地服务，请确认服务已启动。",
     );
   }
   let value: unknown;

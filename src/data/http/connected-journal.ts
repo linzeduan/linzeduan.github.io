@@ -393,12 +393,28 @@ export class ConnectedJournal implements JournalController {
     await this.refresh();
     return value.id;
   }
-  async free(questionId: string, sensitiveConsent: boolean) {
+  async free(
+    questionId: string,
+    sensitiveConsent: boolean,
+    sourceEntryId?: string,
+  ) {
+    await this.flush();
+    const source = sourceEntryId
+      ? this.state.entries.find((e) => e.id === sourceEntryId)
+      : undefined;
+    if (sourceEntryId && (!source || source.questionId !== questionId))
+      throw new Error("原记录已变化，请重新打开后再邀请。");
+    const key = `free:${this.state.space?.id}:${questionId}:${sourceEntryId ?? ""}`;
     const value = await localRequest<{ id: string }>("/rounds/free", "POST", {
       questionId,
       sensitiveConsent,
+      roundId: this.operation(key),
+      ...(source
+        ? { sourceEntryId: source.id, expectedRevision: source.revision }
+        : {}),
     });
     await this.refresh();
+    this.operations.delete(key);
     return value.id;
   }
   async accept(roundId: string, consent: boolean) {

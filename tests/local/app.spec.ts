@@ -1,6 +1,13 @@
 import { spawn } from "node:child_process";
 import type { ChildProcess } from "node:child_process";
-import { mkdir, mkdtemp, rm, readFile } from "node:fs/promises";
+import {
+  mkdir,
+  mkdtemp,
+  rm,
+  readFile,
+  writeFile,
+  rename,
+} from "node:fs/promises";
 import { resolve, join } from "node:path";
 import { test, expect } from "@playwright/test";
 import type { BrowserContext, Page } from "@playwright/test";
@@ -10,15 +17,20 @@ const apiPort = 8789;
 let child: ChildProcess;
 let directory: string;
 const peers: BrowserContext[] = [];
-async function start() {
-  child = spawn(process.execPath, ["server/main.ts"], {
-    stdio: "pipe",
-    env: {
-      ...process.env,
-      BETWEEN_ANSWERS_DB: join(directory, "app.sqlite"),
-      BETWEEN_ANSWERS_PORT: String(apiPort),
+async function start(clock?: string) {
+  child = spawn(
+    process.execPath,
+    [clock ? "tests/local/clock-server.ts" : "server/main.ts"],
+    {
+      stdio: "pipe",
+      env: {
+        ...process.env,
+        BETWEEN_ANSWERS_DB: join(directory, "app.sqlite"),
+        BETWEEN_ANSWERS_PORT: String(apiPort),
+        ...(clock ? { BETWEEN_ANSWERS_TEST_CLOCK: clock } : {}),
+      },
     },
-  });
+  );
   await new Promise<void>((ready, reject) => {
     let output = "";
     const timer = setTimeout(
@@ -71,6 +83,18 @@ async function stop() {
     await ended;
   }
 }
+async function setTestClock(value: string) {
+  const target = resolve(directory, "clock.txt");
+  const staging = resolve(directory, "next-clock.txt");
+  if (
+    !target.startsWith(resolve(".local") + "\\local-e2e-") &&
+    !target.startsWith(resolve(".local") + "/local-e2e-")
+  )
+    throw new Error("Unsafe clock path");
+  await writeFile(staging, value, "utf8");
+  await rename(staging, target);
+  return target;
+}
 test.beforeEach(async () => {
   await mkdir(".local", { recursive: true });
   directory = await mkdtemp(resolve(".local/local-e2e-"));
@@ -93,6 +117,11 @@ test.afterEach(async () => {
 async function login(page: Page, profile: "a" | "b") {
   await page.goto("/");
   await page.getByLabel("我的账号").selectOption(profile);
+  if (profile === "a")
+    await page.screenshot({
+      path: `.local/screenshots/${test.info().project.name}-login.png`,
+      fullPage: true,
+    });
   await page.getByLabel("密码", { exact: true }).fill(password);
   await page.getByRole("button", { name: "登录", exact: true }).click();
   await expect(
@@ -249,7 +278,15 @@ test("two isolated sessions bind, persist, unlock, discuss, withdraw and retain 
   await expect(
     page.getByText("A 只给自己的笔记", { exact: true }),
   ).toBeVisible();
+  await page.route("**/api/entries/*/revisions", (route) =>
+    route.abort("connectionfailed"),
+  );
   await page.getByRole("link", { name: "历史版本", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "重试读取历史" }),
+  ).toBeVisible();
+  await page.unroute("**/api/entries/*/revisions");
+  await page.getByRole("button", { name: "重试读取历史" }).click();
   await expect(page.getByText("私人笔记：A 只给自己的笔记")).toBeVisible();
   await page.goto("/#/today?q=q014");
   await page.getByRole("button", { name: "发起共同问答" }).click();
@@ -518,4 +555,168 @@ test("comment retries stay unique, later typing survives, and incoming rounds do
   await expect(page.getByText("B shared answer", { exact: true })).toHaveCount(
     0,
   );
+});
+
+test("Shanghai midnight keeps the current answer attached to its original day", async ({
+  page,
+  browser,
+}) => {
+  await stop();
+  const clock = await setTestClock("2026-10-17T15:59:58Z");
+  await start(clock);
+  const peer = await browser.newContext({ baseURL: "http://127.0.0.1:4175" });
+  peers.push(peer);
+  const originalRound = await seedUnlocked(page, peer);
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", { name: "今天，聊一点自己" }),
+  ).toBeVisible();
+  const originalQuestion = await page.locator("#question-title").innerText();
+  await page
+    .getByLabel("我的回答", { exact: true })
+    .fill("跨过零点也属于原来这一题的回答");
+  await expect(page.getByText("已保存在本机", { exact: true })).toBeVisible();
+  await setTestClock("2026-10-17T16:00:01Z");
+  await page.evaluate(() => window.dispatchEvent(new Event("online")));
+  await expect(
+    page.getByRole("link", { name: "打开今日问题", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator("#question-title")).toHaveText(originalQuestion);
+  await expect(page.getByLabel("我的回答", { exact: true })).toHaveValue(
+    "跨过零点也属于原来这一题的回答",
+  );
+  await expect(page.locator(".page-footnote")).toContainText("10月17日");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth > innerWidth,
+    ),
+  ).toBe(false);
+  await page.screenshot({
+    path: `.local/screenshots/${test.info().project.name}-midnight.png`,
+    fullPage: !test.info().project.name.includes("mobile"),
+  });
+  await page
+    .getByLabel("我的回答", { exact: true })
+    .fill("零点之后继续写，仍不改变所属题目");
+  await expect(page.getByText("已保存在本机", { exact: true })).toBeVisible();
+  const state = await (await page.request.get("/api/state")).json();
+  expect(state.serverDay).toBe("2026-10-18");
+  expect(state.todayRoundId).not.toBe(originalRound);
+  expect(
+    state.entries.find((e: { roundId?: string }) => e.roundId === originalRound)
+      .text,
+  ).toBe("零点之后继续写，仍不改变所属题目");
+  expect(
+    state.entries.some(
+      (e: { roundId?: string }) => e.roundId === state.todayRoundId,
+    ),
+  ).toBe(false);
+  await page.getByRole("link", { name: "打开今日问题", exact: true }).click();
+  await expect(page.locator("#question-title")).not.toHaveText(
+    originalQuestion,
+  );
+  await expect(page.getByLabel("我的回答", { exact: true })).toHaveValue("");
+  await setTestClock("2028-01-01T04:00:00Z");
+  await page.evaluate(() => window.dispatchEvent(new Event("online")));
+  const reauth = page.getByRole("dialog", { name: "重新登录" });
+  await expect(reauth).toBeVisible();
+  await reauth.getByLabel("密码", { exact: true }).fill(password);
+  await reauth.getByRole("button", { name: "登录", exact: true }).click();
+  await expect(reauth).not.toBeVisible();
+  await page.goto("/#/today");
+  await expect(
+    page.getByRole("heading", { name: "推荐日程已经走完" }),
+  ).toBeVisible();
+  await expect(page.getByLabel("我的回答", { exact: true })).toHaveCount(0);
+});
+
+test("a private answer becomes an independent invitation draft without sharing its notes", async ({
+  page,
+  browser,
+}) => {
+  const peer = await browser.newContext({ baseURL: "http://127.0.0.1:4175" });
+  peers.push(peer);
+  const sharedRoundId = await seedUnlocked(page, peer);
+  await page.goto("/#/today?q=q014");
+  await page.getByLabel("我的回答", { exact: true }).fill("已经写好的私人回答");
+  await page.getByLabel("个人私密笔记").fill("复制后仍仅自己可见的笔记");
+  await expect(page.getByText("已保存在本机", { exact: true })).toBeVisible();
+  const before = await (await page.request.get("/api/state")).json();
+  const original = before.entries.find(
+    (e: { questionId: string }) => e.questionId === "q014",
+  );
+  await page.getByRole("button", { name: "发起共同问答", exact: true }).click();
+  await page
+    .getByRole("dialog")
+    .getByRole("button", { name: "发起共同问答", exact: true })
+    .click();
+  await expect(page.getByLabel("我的回答", { exact: true })).toHaveValue(
+    "已经写好的私人回答",
+  );
+  await expect(page.getByLabel("个人私密笔记")).toHaveValue(
+    "复制后仍仅自己可见的笔记",
+  );
+  const after = await (await page.request.get("/api/state")).json();
+  const created = after.roundViews.find(
+    (r: { kind: string }) => r.kind === "free",
+  );
+  expect(
+    after.entries.filter(
+      (e: { questionId: string }) => e.questionId === "q014",
+    ),
+  ).toHaveLength(2);
+  expect(
+    after.entries.find((e: { id: string }) => e.id === original.id),
+  ).toMatchObject({
+    text: original.text,
+    note: original.note,
+    revision: original.revision,
+  });
+  const otherState = await (await peer.request.get("/api/state")).json();
+  expect(JSON.stringify(otherState)).not.toContain("已经写好的私人回答");
+  expect(JSON.stringify(otherState)).not.toContain("复制后仍仅自己可见的笔记");
+  expect(
+    (
+      await peer.request.get(`/api/rounds/${created.roundId}/answers/a`)
+    ).status(),
+  ).toBe(403);
+  await page
+    .getByLabel("我的回答", { exact: true })
+    .fill("只修改新轮草稿，原来的回答保留");
+  await expect(page.getByText("已保存在本机", { exact: true })).toBeVisible();
+  expect(
+    (await (await page.request.get(`/api/entries/${original.id}`)).json()).text,
+  ).toBe("已经写好的私人回答");
+  await page.goto(`/#/today?q=q057&entry=${original.id}`);
+  await expect(
+    page.getByRole("heading", { name: "暂时无法打开这份回答" }),
+  ).toBeVisible();
+  await expect(page.getByLabel("我的回答", { exact: true })).toHaveCount(0);
+  expect(
+    (
+      await page.request.post(
+        `/api/rounds/${encodeURIComponent(sharedRoundId)}/withdraw`,
+        { data: {} },
+      )
+    ).status(),
+  ).toBe(200);
+  await page.goto(`/#/today?q=q057&round=${encodeURIComponent(sharedRoundId)}`);
+  await page.evaluate(() => window.dispatchEvent(new Event("online")));
+  await page
+    .getByRole("button", { name: "重新发起共同问答", exact: true })
+    .click();
+  await page
+    .getByRole("dialog")
+    .getByRole("button", { name: "发起共同问答", exact: true })
+    .click();
+  await expect(page.getByLabel("我的回答", { exact: true })).toHaveValue(
+    "A shared answer",
+  );
+  expect(
+    (
+      await peer.request.get(
+        `/api/rounds/${encodeURIComponent(sharedRoundId)}/answers/a`,
+      )
+    ).status(),
+  ).toBe(403);
 });

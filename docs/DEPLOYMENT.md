@@ -1,5 +1,7 @@
 # 部署和外部配置
 
+用户最新指定由 Work Buddy 使用已有域名和云数据库接入、上传。先读 HANDOFF_WORK_BUDDY.md；以下 GitHub Pages/Cloudflare 步骤作为历史参考保留，不是本轮必须执行的外部配置，也不要求新增 Cloudflare 账号。
+
 ## 版本控制
 
 目标仓库 https://github.com/linzeduan/linzeduan.github.io ，默认 main。旧站起点 1695756bcc6df930c43e6e466e316cd629d24e4b，已建立 archive/legacy-site-20261017 快照。开发使用 feat/between-answers，不 force-push，不清空 Git 历史。阶段提交先经过检查。

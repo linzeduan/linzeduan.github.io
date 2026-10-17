@@ -2,6 +2,8 @@
 
 ## 技术决策
 
+最新分工：生产资源由 Work Buddy 提供和接入，本轮交付产品设计、HTTP 合约及本机参考实现。以下 Cloudflare/Firebase 是此前研究候选，不要求为了交接新增账号或锁定供应商；现有云资源按 API_CONTRACT.md 适配即可。
+
 React、TypeScript strict、Vite、Tailwind，静态 PWA 托管于 linzeduan/linzeduan.github.io，根路径为 /，Hash 路由避免 Pages 深链接 404。所有外部资源打包。GitHub 中仅有代码、可公开题库和合成测试数据。
 
 生产后端尚未定案。首个验证候选为 Cloudflare Workers Free + D1 Free；默认 API 域名必须在双方真实网络实测，不能把开发电脑代理下成功当成可达性证据。Firebase 仍为候选，Supabase/Appwrite 的人工恢复和 CloudBase 的活动续期不符合已确认偏好。

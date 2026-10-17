@@ -235,9 +235,12 @@ export function createLocalServer(
         const data = fields(await body(request), [
           "questionId",
           "sensitiveConsent",
+          "roundId",
+          "sourceEntryId",
+          "expectedRevision",
         ]);
         send(
-          { id: store.free(uid, data.questionId, data.sensitiveConsent) },
+          { id: store.free(uid, data.questionId, data.sensitiveConsent, data) },
           201,
         );
         return;

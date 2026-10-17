@@ -7,6 +7,7 @@ export function HistoryPage({ entryId }: { entryId: string }) {
   const { repo, snapshot } = useApp();
   const [versions, setVersions] = useState<EntryRevision[]>();
   const [error, setError] = useState("");
+  const [retry, setRetry] = useState(0);
   const entry = snapshot.entries.find((e) => e.id === entryId);
   useEffect(() => {
     let active = true;
@@ -24,7 +25,7 @@ export function HistoryPage({ entryId }: { entryId: string }) {
     return () => {
       active = false;
     };
-  }, [repo, entryId]);
+  }, [repo, entryId, retry]);
   return (
     <>
       <a className="text-link" href="#/universe">
@@ -42,9 +43,17 @@ export function HistoryPage({ entryId }: { entryId: string }) {
         </div>
       </header>
       {error ? (
-        <p role="alert" className="error-text">
-          {error}
-        </p>
+        <div>
+          <p role="alert" className="error-text">
+            {error}
+          </p>
+          <button
+            className="button secondary"
+            onClick={() => setRetry((value) => value + 1)}
+          >
+            重试读取历史
+          </button>
+        </div>
       ) : !versions ? (
         <p role="status">正在读取版本…</p>
       ) : (
