@@ -6,6 +6,6 @@ export const systems=[
  {id:'discipline',title:'投资纪律',subtitle:'决策的边界',description:'先保证生活，再追求收益。给投资决策留一道边界。',icon:'investment'}
 ];
 const modules={beliefs,discipline};
-export function entries(){return `<div class="record-grid">${systems.map(s=>`<a class="record-card glass system-card" href="#systems/${s.id}"><span class="module-icon ${s.icon}">${icon(s.icon)}</span><div class="record-meta"><span>${s.subtitle}</span>${icon('arrow')}</div><h3>${s.title}</h3><p>${s.description}</p></a>`).join('')}</div>`;}
+export function entries(){return `<div class="record-grid system-directory">${systems.map(s=>`<a class="record-card glass system-card" href="#systems/${s.id}"><span class="module-icon ${s.icon}">${icon(s.icon)}</span><div class="record-meta"><span>${s.subtitle}</span>${icon('arrow')}</div><h3>${s.title}</h3><p>${s.description}</p></a>`).join('')}</div>`;}
 export function render(records,selected){const active=systems.find(s=>s.id===selected);return `<section class="page-heading"><div><span class="eyebrow">${active?active.subtitle:'A SYSTEM FOR LIVING'}</span><h1>${active?active.title:'我的原则'}<span class="heading-dot">.</span></h1><p>${active?active.description:'相信什么，如何决定，以及怎样一点点积累。'}</p></div></section>${active?modules[active.id].render():entries()}`;}
-export function mount(root,selected){if(Object.hasOwn(modules,selected))modules[selected].mount(root);}
+export function mount(root,selected){if(Object.hasOwn(modules,selected))return modules[selected].mount(root);}

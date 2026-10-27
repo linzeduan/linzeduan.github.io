@@ -1,2 +1,3 @@
-import {escapeHTML} from '../data/store.js';
-export function cards(records){return records.map(r=>`<article class="record-card glass"><div class="record-meta"><span>${{health:'健康',investment:'投资',learning:'学习'}[r.type]}</span><time>${new Date(r.createdAt).toLocaleDateString('zh-CN')}</time></div><h3>${escapeHTML(r.title)}</h3><p>${escapeHTML(r.body)}</p></article>`).join('');}
+import {escapeHTML as e} from '../data/store.js';
+import {icon} from './icons.js';
+export function cards(records){return records.map(r=>{const date=Number.isNaN(Date.parse(r.createdAt))?'':new Intl.DateTimeFormat('zh-CN',{month:'short',day:'numeric',timeZone:'Asia/Shanghai'}).format(new Date(r.createdAt));const long=r.body.length>240;return `<article class="record-card glass"><div class="record-meta"><span class="record-type ${r.type}">${icon(r.type)}${{health:'健康',investment:'投资',learning:'学习'}[r.type]||'记录'}</span><time>${date}</time></div><h3>${e(r.title)}</h3><p>${e(long?r.body.slice(0,240)+'…':r.body)}</p>${long?`<details><summary>展开全文</summary><p>${e(r.body)}</p></details>`:''}</article>`;}).join('');}
