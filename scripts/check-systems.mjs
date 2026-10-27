@@ -1,16 +1,10 @@
 import assert from 'node:assert/strict';
-import {readFile,access} from 'node:fs/promises';
-import vm from 'node:vm';
+import beliefs from '../src/modules/beliefs/content.js';
+import discipline from '../src/modules/discipline/content.js';
 import {systems,render} from '../src/modules/systems/index.js';
-for(const item of systems){
- const html=await readFile(`public/modules/${item.id}/index.html`,'utf8');
- for(const match of html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g))new vm.Script(match[1]);
- for(const match of html.matchAll(/href="([^"#][^"]*)"/g)){if(!/^(https?:|mailto:)/.test(match[1]))await access(new URL(match[1],new URL(`../public/modules/${item.id}/index.html`,import.meta.url)));}
- assert.ok(render([],item.id).includes(`src="${item.path}"`));
-}
-const wealth=await readFile('public/modules/wealth/index.html','utf8');
-assert.ok(wealth.includes('const seedRows=[];'));
-const seedScript=wealth.slice(wealth.indexOf('const initialMonth='),wealth.indexOf('const clone='));
-assert.equal(vm.runInNewContext(`${seedScript}seed.months[seed.selected].accounts.length`),0);
-assert.ok(!render([],'unknown').includes('<iframe'));
-console.log('Module scripts, local links, routes and empty public ledger passed.');
+import {empty,validate,newMonth,amount,totals} from '../src/modules/wealth/model.js';
+assert.equal(beliefs.chapters.length,5);assert.equal(beliefs.chapters.flatMap(c=>c.items).length,18);assert.equal(discipline.chapters.length,6);
+for(const item of systems){const html=render([],item.id);assert.ok(!html.includes('<iframe'));assert.ok(html.includes(item.title));}
+const state=empty();assert.deepEqual(state.months[state.selected].accounts,[]);assert.equal(amount('10.01'),1001);assert.equal(amount('1.001'),null);assert.equal(amount('-1'),null);
+state.selected='2026-01';state.months={'2026-01':{accounts:[{id:'a',name:'旧账本',group:'cash',cents:1001,reviewed:true}]}};validate(state);newMonth(state,'2026-02');assert.equal(state.months['2026-02'].accounts[0].reviewed,false);state.months['2026-02'].accounts[0].cents=2000;assert.equal(state.months['2026-01'].accounts[0].cents,1001);assert.equal(totals([{group:'cash',cents:1000},{group:'debt',cents:300}]).net,700);assert.throws(()=>validate({...state,selected:'missing'}));assert.throws(()=>newMonth(state,'2026-02'));
+console.log('Native content, routes, legacy ledger compatibility, amounts and month isolation passed.');
