@@ -4,10 +4,11 @@ import {render as overview} from './modules/overview/index.js';
 import {render as projects} from './modules/projects/index.js';
 import {render as ideas} from './modules/ideas/index.js';
 import {render as now} from './modules/now/index.js';
-const routes={overview,projects,ideas,now};
+import {render as systems} from './modules/systems/index.js';
+const routes={overview,projects,ideas,now,systems};
 document.querySelector('#app').innerHTML=shell();
 try{document.documentElement.dataset.theme=localStorage.getItem('zhongtai.theme')||'light';}catch{}
-function render(){const route=location.hash.slice(1);const id=Object.hasOwn(routes,route)?route:'overview';document.querySelector('#page').innerHTML=routes[id](readRecords());document.querySelector('#page-label').textContent=navigation.find(n=>n.id===id).label;document.querySelectorAll('[data-nav]').forEach(a=>{a.classList.toggle('active',a.dataset.nav===id);if(a.dataset.nav===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.body.classList.remove('nav-open');}
+function render(){const [route,selected]=location.hash.slice(1).split('/');const id=Object.hasOwn(routes,route)?route:'overview';document.querySelector('#page').innerHTML=routes[id](readRecords(),selected);document.querySelector('#page-label').textContent=navigation.find(n=>n.id===id).label;document.querySelectorAll('[data-nav]').forEach(a=>{a.classList.toggle('active',a.dataset.nav===id);if(a.dataset.nav===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.body.classList.remove('nav-open');}
 window.addEventListener('hashchange',render);window.addEventListener('storage',render);render();
 const dialog=document.querySelector('#editor');const form=document.querySelector('#record-form');
 document.addEventListener('click',event=>{const add=event.target.closest('[data-add]');if(add){form.reset();form.elements.type.value=add.dataset.add;document.querySelector('#form-error').textContent='';dialog.showModal();form.elements.title.focus();}});

@@ -1,0 +1,8 @@
+import {icon} from '../../components/icons.js';
+export const systems=[
+ {id:'beliefs',title:'人生信念',subtitle:'一个人的林地',description:'关于选择、自由、身体、成长与长期主义。',path:'./modules/beliefs/index.html',icon:'ideas'},
+ {id:'discipline',title:'投资纪律',subtitle:'长期原则',description:'先保证生活，再追求收益。给投资决策留一道边界。',path:'./modules/discipline/index.html',icon:'projects'},
+ {id:'wealth',title:'复利人生',subtitle:'月度资产记录',description:'记录账户、资产与债务，回看每个月的积累。',path:'./modules/wealth/index.html',icon:'now'}
+];
+export function entries(){return `<div class="record-grid">${systems.map(s=>`<a class="record-card glass system-card" href="#systems/${s.id}"><span class="module-icon ${s.icon}">${icon(s.icon)}</span><div class="record-meta"><span>${s.subtitle}</span>${icon('arrow')}</div><h3>${s.title}</h3><p>${s.description}</p></a>`).join('')}</div>`;}
+export function render(records,selected){const active=systems.find(s=>s.id===selected);return `<section class="page-heading"><div><span class="eyebrow">A SYSTEM FOR LIVING</span><h1>${active?active.title:'生活系统'}<span class="heading-dot">.</span></h1><p>${active?active.description:'相信什么，如何决定，以及怎样一点点积累。'}</p></div>${active?'<a class="button" href="#systems">返回目录</a>':''}</section>${active?`<nav class="system-tabs" aria-label="生活系统">${systems.map(s=>`<a class="button ${s.id===active.id?'primary':''}" ${s.id===active.id?'aria-current="page"':''} href="#systems/${s.id}">${s.title}</a>`).join('')}<a class="system-full" href="${active.path}" target="_blank" rel="noopener">独立打开 ↗</a></nav>${active.id==='wealth'?'<p class="system-note">从空白账本开始；数据只保存在当前浏览器。已有记录可在「历史 → 恢复备份」导入。</p>':''}<iframe class="system-frame" src="${active.path}" title="${active.title}" allow="clipboard-write"></iframe>`:entries()}`;}

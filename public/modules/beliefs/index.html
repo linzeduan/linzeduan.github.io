@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f3eb">
+<meta name="description" content="一个人的林地 · 我的人生信念。写给28岁的自己，也写给未来的自己。关于选择、财富、身体、学习与时间的18条信念。">
+<title>我的人生信念 · 一个人的林地</title>
+<style>
+:root{color-scheme:light;--paper:#f6f3eb;--surface:#fbfaf6;--ink:#21392e;--ink-light:#4f6157;--muted:#8a9487;--green:#315d45;--green-soft:#dce4d9;--gold:#a78850;--line:#d8ded2;--highlight:#edf1e7;--shadow:0 16px 50px #284c3412;--serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;--sans:"Inter","PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif;}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.75;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}::selection{background:#c1d1ba;color:#173025}
+/* paper grain: tiny CSS-only crosshatch avoids all external assets */
+body:before{content:"";position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.17;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.74' numOctaves='3' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}
+.site-header{height:90px;max-width:1320px;padding:0 48px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:inline-flex;align-items:center;gap:13px;font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:.14em}.brand-emblem{display:grid;place-items:center;width:38px;height:38px;color:var(--green)}.brand-emblem svg{width:29px;height:34px}.header-right{display:flex;align-items:center;gap:18px;color:var(--ink-light);font-size:11px;letter-spacing:.11em}.header-right .edition{font-family:Georgia,serif;letter-spacing:.12em}.header-right .header-divider{height:13px;width:1px;background:var(--line)}.header-link{border:0;background:transparent;padding:8px 0;transition:color .2s}.header-link:hover{color:var(--gold)}
+.page{max-width:1320px;margin:auto;padding:0 48px 0}.hero{min-height:560px;display:grid;grid-template-columns:1fr .92fr;align-items:center;gap:20px;padding:65px 0 70px;border-bottom:1px solid var(--line);position:relative}.eyebrow{color:var(--gold);font-family:Georgia,serif;letter-spacing:.24em;font-size:11px;font-weight:600;margin:0 0 32px}.hero-title{font-family:var(--serif);font-size:clamp(56px,6.2vw,94px);line-height:1.22;font-weight:600;letter-spacing:.06em;margin:0 0 23px}.hero-title .second-line{display:block;letter-spacing:.095em}.hero-sub{font-family:var(--serif);font-size:17px;color:var(--ink-light);letter-spacing:.12em;margin:0 0 33px}.hero-epigraph{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:14px;color:var(--ink-light);letter-spacing:.07em}.hero-epigraph:before{content:"";height:1px;width:30px;background:var(--gold)}.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:43px}.primary-cta,.ghost-cta{display:inline-flex;align-items:center;justify-content:center;gap:13px;font-size:12px;letter-spacing:.08em;padding:13px 22px;border-radius:3px;min-height:45px;transition:transform .2s,background .2s}.primary-cta{background:var(--green);color:white;border:1px solid var(--green)}.ghost-cta{border:1px solid #afbdad;background:transparent;color:var(--green)}.primary-cta:hover,.ghost-cta:hover{transform:translateY(-2px)}.ghost-cta:hover{background:var(--highlight)}
+.hero-art{width:100%;min-width:0;height:410px;position:relative;display:grid;align-items:center}.hero-art svg{width:100%;height:100%;overflow:visible}.hero-art-note{position:absolute;bottom:7px;right:8%;font:italic 12px Georgia,serif;letter-spacing:.14em;color:#8d947d}.hero-art:after{content:"";position:absolute;left:3%;top:14%;width:70%;height:65%;border:1px solid #9dab9847;border-radius:50%;pointer-events:none;transform:rotate(-19deg)}
+.hero-folio{position:absolute;right:0;bottom:22px;font:10px Georgia,serif;color:var(--muted);letter-spacing:.14em}
+.essay-layout{display:grid;grid-template-columns:244px minmax(0,1fr);column-gap:clamp(40px,6.5vw,105px);align-items:start}.sidebar{position:sticky;top:0;align-self:start;min-width:0;padding:54px 0 40px}.sidebar-label{font-size:10px;color:var(--gold);letter-spacing:.22em;margin:0 0 17px;font-weight:700}.toc{display:flex;flex-direction:column;gap:3px}.toc-link{display:grid;grid-template-columns:30px 1fr 12px;align-items:center;gap:7px;padding:12px 10px;border-left:2px solid transparent;color:var(--ink-light);font-size:13px;transition:background .2s,color .2s,border-color .2s}.toc-link:hover{background:#e6eadd75}.toc-link.active{background:#e6eadfa3;color:var(--green);border-left-color:var(--green);font-weight:700}.toc-num{font:12px Georgia,serif;color:var(--gold)}.toc-arrow{opacity:0;transition:opacity .2s}.toc-link.active .toc-arrow,.toc-link:hover .toc-arrow{opacity:1}.sidebar-note{border-top:1px solid var(--line);margin-top:24px;padding:23px 9px 0;font-family:var(--serif);color:var(--muted);font-size:12px;line-height:2}.sidebar-note strong{display:block;color:var(--ink-light);font-weight:500;margin-bottom:5px}.side-progress{margin-top:30px;padding:0 10px}.progress-head{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);letter-spacing:.06em}.progress-track{width:100%;height:3px;background:#dce2d8;margin-top:11px;overflow:hidden}.progress-fill{height:100%;width:0;background:var(--green);transition:width .4s}.side-actions{margin-top:22px;padding:0 10px}.side-random{width:100%;border:1px solid var(--line);background:transparent;display:flex;justify-content:space-between;align-items:center;padding:11px 12px;font-family:var(--serif);font-size:12px;color:var(--green)}.side-random:hover{background:var(--highlight)}
+.essay-main{min-width:0;max-width:810px;padding-bottom:85px}.letter{padding:72px 0 90px;border-bottom:1px solid var(--line)}.letter-top{font-family:Georgia,serif;font-size:11px;letter-spacing:.2em;color:var(--gold);margin-bottom:29px}.letter p{font-family:var(--serif);font-size:17px;line-height:2.18;letter-spacing:.025em;margin:0 0 16px;color:var(--ink-light)}.letter p:first-of-type{font-size:22px;color:var(--ink);font-weight:600;line-height:1.9;margin-bottom:26px}.letter p:last-child{margin-bottom:0}.letter .drop{display:inline-block;font-family:Georgia,serif;font-size:35px;color:var(--gold);vertical-align:-3px;margin-right:7px}
+.chapter{scroll-margin-top:30px;padding-top:76px}.chapter-intro{position:relative;padding-bottom:28px;border-bottom:1px solid var(--line)}.chapter-kicker{font:11px Georgia,serif;color:var(--gold);letter-spacing:.17em;margin-bottom:15px}.chapter-title-wrap{display:flex;justify-content:space-between;align-items:baseline;gap:15px}.chapter h2{font:600 clamp(27px,3vw,37px)/1.4 var(--serif);letter-spacing:.06em;margin:0}.chapter-index{font:italic 54px Georgia,serif;color:#d3dacc}.chapter-description{color:var(--muted);font-family:var(--serif);font-size:13px;letter-spacing:.08em;margin:12px 0 0}.belief{display:grid;grid-template-columns:55px minmax(0,1fr) 18px;gap:13px;position:relative;padding:33px 0 36px;scroll-margin-top:50px;border-bottom:1px solid #dce2d9;transition:background .5s,padding .3s}.belief:last-child{border-bottom:0}.belief-index{font:16px Georgia,serif;color:var(--gold);padding-top:4px}.belief h3{font-family:var(--serif);font-weight:600;font-size:clamp(17px,2vw,21px);letter-spacing:.025em;line-height:1.85;margin:0 0 11px;color:var(--ink)}.belief p{font-family:var(--serif);font-size:15px;line-height:2.05;color:var(--ink-light);margin:0}.leafmark{color:#b2bea8;font-size:15px;opacity:.55;padding-top:5px}.belief.spotlight{background:#e1e9d9a6;box-shadow:0 0 0 15px #e1e9d9a6;border-radius:1px}
+.closing{margin-top:85px;padding:77px 38px 65px;position:relative;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.closing-icon{color:var(--gold);font-size:32px;line-height:1;margin-bottom:31px}.closing p{font-family:var(--serif);color:var(--ink-light);font-size:15px;line-height:2.1;margin:0 0 17px}.closing blockquote{font-family:var(--serif);font-weight:600;letter-spacing:.06em;font-size:clamp(21px,3vw,32px);line-height:1.8;color:var(--green);margin:34px 0 0}.closing small{display:block;font:11px Georgia,serif;color:var(--gold);letter-spacing:.18em;margin-top:22px}.site-footer{display:flex;justify-content:space-between;align-items:center;gap:15px;max-width:1320px;padding:42px 48px 53px;margin:auto;color:var(--muted);font-size:11px}.footer-brand{font-family:var(--serif);font-size:14px;color:var(--green);letter-spacing:.12em}.footer-right{font:11px Georgia,serif;letter-spacing:.1em}.back-top{display:none;position:fixed;right:26px;bottom:26px;z-index:10;border:1px solid #cbd8c9;background:#f8f7efeb;color:var(--green);padding:12px 14px;border-radius:3px;box-shadow:var(--shadow)}.back-top.visible{display:block}.sr-only{position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden}
+@media(max-width:1050px){.site-header,.page,.site-footer{padding-left:30px;padding-right:30px}.hero{min-height:505px}.hero-art{height:350px}.essay-layout{grid-template-columns:205px minmax(0,1fr);gap:40px}}
+@media(max-width:760px){.site-header{height:69px;padding:0 21px}.brand{font-size:13px;gap:8px}.brand-emblem{width:27px;height:32px}.brand-emblem svg{width:24px;height:30px}.header-right{gap:9px;font-size:10px}.header-right .edition{display:none}.header-right .header-divider{display:none}.page{padding:0 22px}.hero{padding:54px 0 43px;display:flex;flex-direction:column;align-items:stretch;gap:0;min-height:auto}.eyebrow{margin-bottom:21px;font-size:10px}.hero-title{font-size:clamp(45px,11vw,68px);margin-bottom:19px}.hero-sub{font-size:14px;margin-bottom:24px}.hero-epigraph{font-size:12px}.hero-actions{margin-top:30px}.hero-art{height:270px;margin-top:15px;max-width:460px;align-self:center}.hero-art-note{bottom:-6px}.hero-folio{bottom:13px;font-size:9px}.essay-layout{display:block}.sidebar{position:sticky;top:0;z-index:5;padding:0;margin:0 -22px;background:#f6f3ebf2;border-bottom:1px solid var(--line);backdrop-filter:blur(15px)}.sidebar-label,.sidebar-note,.side-progress,.side-actions{display:none}.toc{display:flex;overflow-x:auto;scrollbar-width:none;gap:5px;padding:8px 14px}.toc::-webkit-scrollbar{display:none}.toc-link{display:flex;white-space:nowrap;gap:7px;padding:10px 11px;border-left:0;border-bottom:2px solid transparent;font-size:11px;flex:0 0 auto}.toc-link.active{border-left:0;border-bottom-color:var(--green)}.toc-arrow{display:none}.toc-num{font-size:10px}.essay-main{max-width:none;padding-bottom:45px}.letter{padding:46px 0 54px}.letter p{font-size:15px;line-height:2.05}.letter p:first-of-type{font-size:19px}.chapter{padding-top:60px;scroll-margin-top:70px}.chapter-index{font-size:45px}.chapter-description{font-size:12px}.belief{grid-template-columns:34px minmax(0,1fr);gap:11px;padding:29px 0}.belief-index{font-size:14px}.belief h3{font-size:18px;line-height:1.8}.belief p{font-size:14px;line-height:2.05}.leafmark{display:none}.closing{margin-top:50px;padding:62px 3px 54px}.closing p{font-size:14px}.site-footer{padding:28px 22px 42px;align-items:flex-start;flex-direction:column;gap:8px}.back-top{right:16px;bottom:16px;padding:9px 12px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+@media print{*{box-shadow:none!important}html,body{background:#fff;color:#111}body:before,.site-header,.hero-art,.sidebar,.hero-actions,.back-top{display:none!important}.page{width:auto;max-width:none;padding:0 15mm}.hero{display:block;min-height:auto;padding:10mm 0 6mm}.hero-title{font-size:46px}.hero-folio{position:static;margin-top:8px}.essay-layout{display:block}.essay-main{max-width:none}.letter{padding:12mm 0;break-inside:avoid}.chapter{padding-top:10mm;break-before:page}.belief{break-inside:avoid;padding:5mm 0}.closing{break-inside:avoid}.site-footer{padding:10mm 15mm} @page{size:A4;margin:16mm}}
+</style>
+</head>
+<body>
+<header class="site-header" id="top">
+  <a class="brand" href="#top" aria-label="一个人的林地，返回顶部"><span class="brand-emblem" aria-hidden="true"><svg viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 35V3M18 14C11 13 9 9 8 5M18 20c7-1 10-6 11-10M18 27c-8-1-12-6-13-11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 5c3 0 5 2 6 6M29 10c-5 .1-7 3-9 7M5 16c5 0 9 4 11 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>一个人的林地</a>
+  <div class="header-right"><span class="edition">LIFE BELIEFS · VOL. 01</span><span class="header-divider"></span><button class="header-link" id="printButton" type="button" title="打印或保存为 PDF">打印 / 保存</button></div>
+</header>
+<div class="page">
+ <section class="hero" aria-labelledby="page-title">
+  <div class="hero-copy">
+   <p class="eyebrow">NOTES FROM A PRIVATE FOREST · 2026</p>
+   <h1 id="page-title" class="hero-title">我的<span class="second-line">人生信念<span style="color:var(--gold)">。</span></span></h1>
+   <p class="hero-sub">写给28岁的自己，也写给未来的自己。</p>
+   <div class="hero-epigraph">别急着正确，先试着诚实。</div>
+   <div class="hero-actions"><a class="primary-cta" href="#letter">走进林地 <span aria-hidden="true">↗</span></a><button class="ghost-cta" type="button" id="randomTop">随机捡起一片叶子 <span aria-hidden="true">✳</span></button></div>
+  </div>
+  <div class="hero-art" role="img" aria-label="一轮圆日照向层层青绿山林，独立生长的树木和山路象征漫长人生">
+   <svg viewBox="0 0 530 430" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs><linearGradient id="sun" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dccda0"/><stop offset="1" stop-color="#f4e8c9"/></linearGradient><linearGradient id="slope" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#d1dbcd"/><stop offset="1" stop-color="#91a792"/></linearGradient></defs>
+    <circle cx="348" cy="168" r="113" fill="url(#sun)" opacity=".79"/>
+    <path d="M24 295C103 237 144 246 205 267c77-69 145-82 294-28v144H24z" fill="#c7d4c1" opacity=".78"/>
+    <path d="M8 342c75-42 116-75 175-57 89-81 191-58 339-6v125H8z" fill="url(#slope)" opacity=".82"/>
+    <path d="M0 379c117-77 181-33 268-64 91-29 163-16 262 44v71H0z" fill="#506f5a"/>
+    <path d="M0 412c81-33 132-38 202-28 65 9 139-40 213-24 62 14 92 30 115 44v26H0z" fill="#2f5945"/>
+    <g stroke="#315742" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M110 361V171M110 242l-38-43M110 214l38-52M110 289l-56-55M110 274l54-60"/><path d="M110 175c-16 2-28-9-35-18M148 162c-17 0-29 17-38 30M54 234c18 0 32 18 44 34M165 214c-24 0-41 17-54 35" stroke-width="2"/></g>
+    <g fill="#426c50"><path d="M70 193c-17-4-25-19-20-35 18 0 28 14 27 29z"/><path d="M144 151c9-18 23-21 37-16-2 18-18 29-33 27z"/><path d="M52 225c-20-12-32-8-39 4 11 14 28 18 41 9z"/><path d="M163 208c13-15 26-16 38-7-7 17-20 24-37 21z"/><path d="M110 145c-12-17-11-33 2-48 16 17 16 32 0 48z"/></g>
+    <g stroke="#f2eacb" stroke-width="1.2" fill="none" opacity=".58"><path d="M292 352C337 323 391 302 447 309" stroke-dasharray="3 5"/><path d="M371 357c22-8 44-11 65-8"/></g>
+    <g fill="#d6c394" opacity=".75"><circle cx="264" cy="113" r="2"/><circle cx="283" cy="99" r="1.5"/><circle cx="470" cy="144" r="2"/></g>
+   </svg>
+   <span class="hero-art-note">grow at your own pace.</span>
+  </div>
+  <div class="hero-folio">A PERSONAL DOCUMENT / VERSION 0.1 / OCT 2026</div>
+ </section>
+ <div class="essay-layout">
+  <aside class="sidebar" aria-label="章节导航">
+    <p class="sidebar-label">漫游目录 / CONTENTS</p>
+    <nav class="toc"><a class="toc-link" href="#choices" data-target="choices"><span class="toc-num">01</span><span>关于人生与选择</span><span class="toc-arrow" aria-hidden="true">↗</span></a><a class="toc-link" href="#wealth" data-target="wealth"><span class="toc-num">02</span><span>关于财富与自由</span><span class="toc-arrow" aria-hidden="true">↗</span></a><a class="toc-link" href="#living" data-target="living"><span class="toc-num">03</span><span>关于身体与生活</span><span class="toc-arrow" aria-hidden="true">↗</span></a><a class="toc-link" href="#learning" data-target="learning"><span class="toc-num">04</span><span>关于学习与成长</span><span class="toc-arrow" aria-hidden="true">↗</span></a><a class="toc-link" href="#time" data-target="time"><span class="toc-num">05</span><span>关于时间与长期主义</span><span class="toc-arrow" aria-hidden="true">↗</span></a></nav>
+    <div class="sidebar-note"><strong>一份不保证正确的私人档案。</strong>我允许它不断修改，也希望它永远不必定稿。</div>
+    <div class="side-progress"><div class="progress-head"><span>走过的林地</span><span id="progress-label">0 / 18</span></div><div class="progress-track"><div class="progress-fill" id="progress-bar"></div></div></div>
+    <div class="side-actions"><button class="side-random" type="button" id="randomSide"><span>随机读一条</span><span aria-hidden="true">↗</span></button></div>
+  </aside>
+  <main class="essay-main" id="main-content">
+   <section id="letter" class="letter" aria-label="写在前面">
+    <div class="letter-top">PROLOGUE · 写在前面</div>
+    <p>我越来越意识到，人生不是一道有标准答案的数学题。</p>
+    <p>过去，我总希望找到一个最优解：最合理的投资组合、最高效的学习方式、最完美的时间安排。</p>
+    <p>但随着经历增加，我开始接受不确定性，认识自己的局限，也逐渐明白，很多重要的事情不能只靠计算来决定。</p>
+    <p>以下是我截至目前逐渐形成的信念。它们不一定正确，也不需要永远正确。</p>
+    <p>我希望通过持续生活、思考和实践，不断修正它们。</p>
+   </section>
+   <section id="choices" class="chapter" aria-labelledby="heading-choices">
+      <div class="chapter-intro"><div class="chapter-kicker">I. CHOICES &amp; LIFE</div>
+      <div class="chapter-title-wrap"><h2 id="heading-choices">关于人生与选择</h2><span class="chapter-index" aria-hidden="true">01</span></div>
+      <p class="chapter-description">在无数条路之间，先弄清自己为何出发。</p></div>
+      <div class="belief-list"><article id="belief-01" class="belief" data-index="1">
+          <div class="belief-index" aria-hidden="true">01</div>
+          <div class="belief-copy"><h3>人生不是追求某个阶段的最优解，而是不断增加未来的选择权。</h3><p>我希望十年后的自己拥有更多自由，而不是被今天的决定困住。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-02" class="belief" data-index="2">
+          <div class="belief-index" aria-hidden="true">02</div>
+          <div class="belief-copy"><h3>我不需要在每一个领域都赢。</h3><p>一个均衡、健康、自由且有趣的人生，比任何单一维度的成功都更值得追求。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-03" class="belief" data-index="3">
+          <div class="belief-index" aria-hidden="true">03</div>
+          <div class="belief-copy"><h3>真正重要的决定，要放到足够长的时间尺度里衡量。</h3><p>今天看似吃亏的选择，可能在十年后成为最值得的投资。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-04" class="belief" data-index="4">
+          <div class="belief-index" aria-hidden="true">04</div>
+          <div class="belief-copy"><h3>允许自己不知道，也允许人生暂时没有答案。</h3><p>不确定不是必须立刻消除的缺陷，而是生活本来的样子。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article></div>
+    </section>
+<section id="wealth" class="chapter" aria-labelledby="heading-wealth">
+      <div class="chapter-intro"><div class="chapter-kicker">II. WEALTH &amp; FREEDOM</div>
+      <div class="chapter-title-wrap"><h2 id="heading-wealth">关于财富与自由</h2><span class="chapter-index" aria-hidden="true">02</span></div>
+      <p class="chapter-description">钱应当替生活开路，而不是占领生活。</p></div>
+      <div class="belief-list"><article id="belief-05" class="belief" data-index="5">
+          <div class="belief-index" aria-hidden="true">05</div>
+          <div class="belief-copy"><h3>金钱是扩大人生选择权的工具，而不是衡量人生价值的尺子。</h3><p>财富增长应该让我更自由，而不是更加焦虑。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-06" class="belief" data-index="6">
+          <div class="belief-index" aria-hidden="true">06</div>
+          <div class="belief-copy"><h3>我不需要预测未来，也可以为未来做好准备。</h3><p>分散风险、保持储蓄、持续投入，比不断猜测市场更适合我。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-07" class="belief" data-index="7">
+          <div class="belief-index" aria-hidden="true">07</div>
+          <div class="belief-copy"><h3>最值得避免的不是小损失，而是无法承受的大错误。</h3><p>先保证自己能够长期留在游戏里，再考虑如何获得回报。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-08" class="belief" data-index="8">
+          <div class="belief-index" aria-hidden="true">08</div>
+          <div class="belief-copy"><h3>注意力同样是有限的资本。</h3><p>如果把所有时间都用于追求更高收益，我可能会失去财富原本应该带来的生活。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article></div>
+    </section>
+<section id="living" class="chapter" aria-labelledby="heading-living">
+      <div class="chapter-intro"><div class="chapter-kicker">III. BODY &amp; LIVING</div>
+      <div class="chapter-title-wrap"><h2 id="heading-living">关于身体与生活</h2><span class="chapter-index" aria-hidden="true">03</span></div>
+      <p class="chapter-description">先成为一个能够感受世界的人。</p></div>
+      <div class="belief-list"><article id="belief-09" class="belief" data-index="9">
+          <div class="belief-index" aria-hidden="true">09</div>
+          <div class="belief-copy"><h3>身体是我体验世界的基础。</h3><p>财富、知识、事业都很重要，但我需要健康的身体去感受和使用它们。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-10" class="belief" data-index="10">
+          <div class="belief-index" aria-hidden="true">10</div>
+          <div class="belief-copy"><h3>好习惯不是靠偶尔的热情，而是靠能够重复的生活方式。</h3><p>我更愿意持续做一件小事，而不是反复制定宏大的计划。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-11" class="belief" data-index="11">
+          <div class="belief-index" aria-hidden="true">11</div>
+          <div class="belief-copy"><h3>生活不能永远处于准备阶段。</h3><p>旅行、友谊、爱情、兴趣、创造和快乐，不必等到财务自由后才开始。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article></div>
+    </section>
+<section id="learning" class="chapter" aria-labelledby="heading-learning">
+      <div class="chapter-intro"><div class="chapter-kicker">IV. LEARNING &amp; MAKING</div>
+      <div class="chapter-title-wrap"><h2 id="heading-learning">关于学习与成长</h2><span class="chapter-index" aria-hidden="true">04</span></div>
+      <p class="chapter-description">允许疑问留下来，也允许自己继续走。</p></div>
+      <div class="belief-list"><article id="belief-12" class="belief" data-index="12">
+          <div class="belief-index" aria-hidden="true">12</div>
+          <div class="belief-copy"><h3>不懂，并不意味着不能继续前进。</h3><p>我需要培养带着困惑行动的能力，而不是要求自己理解一切之后才开始。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-13" class="belief" data-index="13">
+          <div class="belief-index" aria-hidden="true">13</div>
+          <div class="belief-copy"><h3>信息的积累不等于认知的增长。</h3><p>阅读、思考和学习只有逐渐改变我的判断与行动，才真正成为我的一部分。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-14" class="belief" data-index="14">
+          <div class="belief-index" aria-hidden="true">14</div>
+          <div class="belief-copy"><h3>工具会改变能力的边界，但不会自动赋予人判断力。</h3><p>AI可以帮助我完成过去做不到的事情，但我仍需要理解问题、检验结果并承担决策责任。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-15" class="belief" data-index="15">
+          <div class="belief-index" aria-hidden="true">15</div>
+          <div class="belief-copy"><h3>创造作品，是把认知留在现实世界的一种方式。</h3><p>相比只知道很多事情，我更希望能够实际做出一些东西。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article></div>
+    </section>
+<section id="time" class="chapter" aria-labelledby="heading-time">
+      <div class="chapter-intro"><div class="chapter-kicker">V. TIME &amp; LONGEVITY</div>
+      <div class="chapter-title-wrap"><h2 id="heading-time">关于时间与长期主义</h2><span class="chapter-index" aria-hidden="true">05</span></div>
+      <p class="chapter-description">慢慢长，长成自己的样子。</p></div>
+      <div class="belief-list"><article id="belief-16" class="belief" data-index="16">
+          <div class="belief-index" aria-hidden="true">16</div>
+          <div class="belief-copy"><h3>持续比完美更重要。</h3><p>一个能够运行十年的普通系统，可能比只能坚持十天的完美计划更有价值。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-17" class="belief" data-index="17">
+          <div class="belief-index" aria-hidden="true">17</div>
+          <div class="belief-copy"><h3>并不是所有时间都需要有明确的产出。</h3><p>好奇、探索、放空、娱乐与偶然的相遇，也可能成为人生中珍贵的部分。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article><article id="belief-18" class="belief" data-index="18">
+          <div class="belief-index" aria-hidden="true">18</div>
+          <div class="belief-copy"><h3>我可以改变自己的观点，而不必否定过去的自己。</h3><p>当新的事实和经历出现时，修正信念不是软弱，而是成长。</p></div>
+          <span class="leafmark" aria-hidden="true">✳</span>
+        </article></div>
+    </section>
+   <section class="closing" aria-label="写在最后"><div class="closing-icon" aria-hidden="true">✳</div>
+     <p>我希望未来的自己回头阅读这些文字时，不必发现它们全部正确。</p>
+     <p>我更希望看到：自己曾认真生活、独立思考，并且愿意在认识世界的过程中不断改变。</p>
+     <blockquote>人生可以被规划，<br>但不必被算尽。</blockquote>
+     <small>TO BE CONTINUED · 林地仍在生长</small>
+   </section>
+  </main>
+ </div>
+</div>
+<footer class="site-footer"><span class="footer-brand">一个人的林地 <span aria-hidden="true">✳</span></span><span class="footer-right">PRIVATE FOREST NOTES · 2026 · V0.1</span></footer>
+<button id="backTop" class="back-top" type="button" aria-label="返回页面顶部">↑ 顶部</button>
+<div id="announcer" class="sr-only" aria-live="polite"></div>
+<script>
+(()=>{'use strict';
+ const toc=[...document.querySelectorAll('.toc-link')];
+ const chapters=[...document.querySelectorAll('.chapter')];
+ const beliefs=[...document.querySelectorAll('.belief')];
+ const back=document.getElementById('backTop');
+ const motion=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
+ const goTo=el=>el&&el.scrollIntoView({behavior:motion,block:'center'});
+ function randomBelief(){const item=beliefs[Math.floor(Math.random()*beliefs.length)];if(!item)return;beliefs.forEach(e=>e.classList.remove('spotlight'));goTo(item);item.classList.add('spotlight');document.getElementById('announcer').textContent='正在阅读第 '+item.dataset.index+' 条信念';setTimeout(()=>item.classList.remove('spotlight'),3200)}
+ document.getElementById('randomTop').addEventListener('click',randomBelief);
+ document.getElementById('randomSide').addEventListener('click',randomBelief);
+ document.getElementById('printButton').addEventListener('click',()=>window.print());
+ back.addEventListener('click',()=>window.scrollTo({top:0,behavior:motion}));
+ function update(){
+   const pivot=window.innerHeight*.34+60;
+   let current=chapters[0]?.id;
+   for(const c of chapters){if(c.getBoundingClientRect().top<=pivot)current=c.id}
+   toc.forEach(a=>{const active=a.dataset.target===current;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')});
+   const reached=beliefs.filter(b=>b.getBoundingClientRect().top<window.innerHeight*.86).length;
+   document.getElementById('progress-label').textContent=reached+' / '+beliefs.length;
+   document.getElementById('progress-bar').style.width=(100*reached/beliefs.length)+'%';
+   back.classList.toggle('visible',window.scrollY>600)
+ }
+ let pending=false;
+ window.addEventListener('scroll',()=>{if(pending)return;pending=true;requestAnimationFrame(()=>{update();pending=false})},{passive:true});
+ window.addEventListener('resize',update,{passive:true});
+ update();
+})();
+</script>
+</body></html>

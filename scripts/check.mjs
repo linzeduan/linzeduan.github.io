@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';import {readdir} from 'node:fs/promises';import {execFileSync} from 'node:child_process';
+import './check-systems.mjs';
 for(const file of await readdir('src',{recursive:true}))if(file.endsWith('.js'))execFileSync(process.execPath,['--check',`src/${file}`]);
 const values=new Map();globalThis.localStorage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)};
 const {readRecords,addRecord,escapeHTML}=await import('../src/data/store.js');assert.deepEqual(readRecords(),[]);addRecord({type:'ideas',title:'测试',body:'<script>'});assert.equal(readRecords()[0].title,'测试');assert.equal(escapeHTML('<script>'),'&lt;script&gt;');values.set('zhongtai.records.v1','broken');assert.deepEqual(readRecords(),[]);
