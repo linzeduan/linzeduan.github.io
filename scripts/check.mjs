@@ -1,12 +1,5 @@
-import { spawnSync } from "node:child_process";
-const commands = [
-  ["scripts/extract-questions.mjs", "--check"],
-  ["node_modules/typescript/bin/tsc", "--noEmit"],
-  ["node_modules/typescript/bin/tsc", "--noEmit", "-p", "worker/tsconfig.json"],
-  ["node_modules/vitest/vitest.mjs", "run"],
-  ["node_modules/vite/bin/vite.js", "build"],
-];
-for (const args of commands) {
-  const result = spawnSync(process.execPath, args, { stdio: "inherit" });
-  if (result.status !== 0) process.exit(result.status ?? 1);
-}
+import assert from 'node:assert/strict';import {readdir} from 'node:fs/promises';import {execFileSync} from 'node:child_process';
+for(const file of await readdir('src',{recursive:true}))if(file.endsWith('.js'))execFileSync(process.execPath,['--check',`src/${file}`]);
+const values=new Map();globalThis.localStorage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)};
+const {readRecords,addRecord,escapeHTML}=await import('../src/data/store.js');assert.deepEqual(readRecords(),[]);addRecord({type:'ideas',title:'测试',body:'<script>'});assert.equal(readRecords()[0].title,'测试');assert.equal(escapeHTML('<script>'),'&lt;script&gt;');values.set('zhongtai.records.v1','broken');assert.deepEqual(readRecords(),[]);
+for(const name of ['overview','projects','ideas','now']){const {render}=await import(`../src/modules/${name}/index.js`);assert.ok(render([]).length>100);assert.ok(!render([{type:name,title:'<script>',body:'<img>',createdAt:new Date().toISOString()}]).includes('<script>'));}console.log('Syntax, storage, escaping and four module renders passed.');

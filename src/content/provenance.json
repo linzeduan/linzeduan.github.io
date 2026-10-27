@@ -1,7 +1,0 @@
-{
-  "sourceFile": "docs/400问.docx",
-  "sourceFileSha256": "7120cebe668321a5b25f127a37e8bed1f43deb2d5de5027b3f2a3d7509664352",
-  "originalContentSha256": "6150bd1200494106cd8a17a7f9019ccf8982b5de06b0383e0c8f92cbc50f7324",
-  "count": 400,
-  "parsing": "OOXML w:t text joined in document order; numeric delimiters; trim surrounding whitespace only"
-}

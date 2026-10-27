@@ -1,3 +1,0 @@
-# Copy to worker/.dev.vars for local tests only. Never use these public examples remotely.
-PROBE_TOKEN_A=local-demo-only-token-a-minimum-32-characters
-PROBE_TOKEN_B=local-demo-only-token-b-minimum-32-characters
