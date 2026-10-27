@@ -1,33 +1,37 @@
-# 中台
+# 中台 · 一个人的林地
 
-用于归集个人项目、灵感和近况的轻量工作台。原生 HTML / CSS / ES Modules，无第三方运行依赖。
+围绕健康、投资、学习的个人生活中台。原生 HTML / CSS / ES Modules，无第三方运行依赖。
 
 ## 运行
 
-需要 Node.js 20 或更新版本。在本目录运行 `node scripts/serve.mjs`，访问 http://127.0.0.1:4173。`node scripts/check.mjs` 验证脚本及核心数据行为，`node scripts/build.mjs` 生成 dist，无需安装 npm 依赖。
+需要 Node.js 20 或更新版本。在本目录运行 `node scripts/serve.mjs`，访问 http://127.0.0.1:4173。
+`node scripts/check.mjs` 验证代码与数据行为，`node scripts/build.mjs` 生成 dist，无需安装 npm 依赖。
 
-## 目录约定
+## 页面与功能
 
-- `src/layout/`：侧栏、顶栏与页面框架。
-- `src/modules/overview/`：总览视图与独立样式。
-- `src/modules/projects/`：项目模块。
-- `src/modules/ideas/`：灵感模块。
-- `src/modules/now/`：近况模块。
-- `src/components/`：图标、列表、弹窗等共用界面。
-- `src/data/`：浏览器存储与内容转义。
-- `src/styles/`：全局视觉变量与基础样式。
-- `scripts/`：本地启动、构建和验证。
-- `public/`：原样复制到部署根目录的静态文件，包含旧站点 Service Worker 退出脚本。
-- `.github/workflows/`：GitHub Pages 验证、构建与部署。
+- 总览：三个主题入口、今日小事、原则阅读入口、最近记录。
+- 健康：运动、睡眠和身体感受的文字记录。
+- 投资：决策依据与复盘，连接原有投资纪律。
+- 学习：阅读、练习、思考笔记，连接原有人生信念。
+- 我的原则：人生信念和投资纪律的原生阅读页，支持章节跳转、随机阅读、复制和打印。
 
-每个模块对外导出 render(records)。模块专属功能和样式放在自己的目录，只有实际复用的实现才提升到公共目录。新增模块时在 app.js 注册路由、layout/shell.js 注册导航。
+所有新记录和今日勾选保存在当前浏览器，不跨设备同步；每日勾选按上海时区重置。健康、投资和学习记录使用原存储键，旧项目、灵感和近况数据保留但不再展示。无法读取的存储不会在新增时被覆盖。
 
-## 当前范围
+“富裕人生”暂时隐藏，账本代码及原有存储保留；不提供当前页面入口。原始 HTML 在工作区“源文件”中，未修改、未嵌入页面。
 
-已实现响应式框架、四个页面、深浅主题、新增记录与总览同步。初始内容为空；没有虚构项目或统计。记录保存在当前浏览器 localStorage，尚未接入服务端、跨设备同步、附件或编辑删除。主题也保存在本地。后续有持久化需求时，可从 src/data 单独替换数据实现。
+## 目录
 
-## 部署
+`src/layout/` 页面框架；`src/modules/overview/` 首页；`src/modules/domains/` 三个主题；
+`src/modules/systems/` 原则阅读；`src/components/` 图标、记录与每日勾选；
+`src/data/` 浏览器存储；`src/styles/` 全局样式。
 
-目标仓库：https://github.com/linzeduan/linzeduan.github.io 。main 分支更新后，GitHub Actions 验证并构建 dist，发布到 https://linzeduan.github.io/ 。仓库与页面公开，浏览器新增记录仍只保存在使用者自己的浏览器，不会写回仓库。
+## 视觉约定
 
-以旧 main 提交 `746c4b6e519ef628fb4a7c7c7ebba6a59ba0bef2` 为父提交完成替换，保留历史，移除旧站点工作文件。旧站点历史分支、标签及仓库外服务不受影响。域名改变后，原 Sites 域名下的浏览器记录不会自动迁移。
+借鉴源 HTML 的纸张底色、林地色彩和中文衬线排版，原生实现响应式布局。纸白 #f6f4ed、深绿 #293f33、苔绿 #375e46、草绿 #e8eddf、麦色 #f0eada、雾蓝 #e6eceb。首页插画由 SVG 原生绘制；不依赖外部字体、图片和 CDN。
+
+## 验证与部署
+
+`node scripts/check.mjs` 覆盖数据保留、异常存储保护、按日重置、内容转义与原有阅读及账本模型。
+`scripts/browser-check.mjs` 用 Playwright 实际检查三类记录、刷新持久化、今日勾选、阅读、深色和移动端。可通过 PLAYWRIGHT_MODULE、BROWSER_CHANNEL、QA_DIR 设置浏览器环境。
+
+现有发布目标是 https://github.com/linzeduan/linzeduan.github.io ，main 更新后由 GitHub Actions 构建并发布至 https://linzeduan.github.io/ 。不使用遗留 .openai/hosting.json 重新创建 Sites 站点。浏览器记录不会上传到仓库。
