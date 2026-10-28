@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.tar.gz
 *.log
+
+qa-output/
+private-data/
+*backup*.json

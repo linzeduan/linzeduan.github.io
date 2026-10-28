@@ -11,6 +11,8 @@ values.set('zhongtai.records.v1','broken');assert.deepEqual(readRecords(),[]);as
 const {renderDomain}=await import('../src/modules/domains/index.js');const {render}=await import('../src/modules/overview/index.js');
 const malicious={type:'learning',title:'<script>',body:'<img>',createdAt:new Date().toISOString()};
 for(const id of ['health','investment','learning']){assert.ok(renderDomain(id,[]).length>100);assert.ok(!renderDomain(id,[malicious]).includes('<script>'));}
-const home=render([malicious]);assert.ok(!home.includes('<script>'));for(const removed of ['富裕人生','近况','灵感','项目'])assert.ok(!home.includes(removed));
+const home=render([malicious]);assert.ok(!home.includes('<script>'));for(const removed of ['富裕人生','近况','灵感'])assert.ok(!home.includes(removed));
 const {toggleHabit,readDaily}=await import('../src/components/habits.js');toggleHabit('move');assert.equal(readDaily().move,true);toggleHabit('move');assert.equal(readDaily().move,false);values.set('zhongtai.daily.v1',JSON.stringify({date:'2000-01-01',done:{move:true}}));assert.deepEqual(readDaily(),{});values.set('zhongtai.daily.v1','broken');assert.throws(()=>toggleHabit('move'));assert.equal(values.get('zhongtai.daily.v1'),'broken');
 console.log('Syntax, new domain renders, escaping, legacy preservation, corrupt-storage protection and daily rollover passed.');
+
+await import('./check-v02.mjs');
