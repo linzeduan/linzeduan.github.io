@@ -1,7 +1,7 @@
 import {icon} from '../../components/icons.js';
 import {cards} from '../../components/collection.js';
 import {habitsMarkup} from '../../components/habits.js';
-import {motif} from '../../components/garden.js';
+import {motif} from '../../components/domain-art.js';
 export const domains={
  health:{id:'health',short:'照顾自己',title:'身心健康',summary:'身体的状态，是一切的起点。',description:'记录运动、睡眠与身体感受，找到适合自己的节奏。',action:'记录健康',empty:'从一次好好照顾自己开始。',hint:'一次散步、一夜好眠，或今天的身体感受，都值得记下。',prompts:['今天做了什么运动？','睡醒后，身体感觉怎么样？','有什么让自己放松了下来？'],placeholder:'今天做了什么，身体感觉如何？',thought:'听见身体的声音，也给自己一点休息的余地。'},
  investment:{id:'investment',short:'保持判断',title:'投资与判断',summary:'少一点噪声，多一点自己的判断。',description:'留下决策依据与事后复盘，慢慢建立自己的判断。',action:'写投资复盘',empty:'先记录判断，再回看结果。',hint:'写下决策的原因、风险，以及什么情况会改变你的想法。',prompts:['这次决策的依据是什么？','最坏的情况，能否承受？','这次行动符合自己的纪律吗？'],link:'discipline',linkTitle:'投资纪律',linkDescription:'做决定之前，先看看自己定下的边界。',placeholder:'决策的依据、可能的风险，以及准备如何行动。',thought:'给决定留一道边界，给生活留更多余地。'},

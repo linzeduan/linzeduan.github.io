@@ -1,4 +1,4 @@
-# 中台 · 一个人的林地
+# 中台 · 个人生活系统
 
 围绕健康、投资、学习的个人生活中台。原生 HTML / CSS / ES Modules，无第三方运行依赖。
 
@@ -25,13 +25,13 @@
 `src/modules/systems/` 原则阅读；`src/components/` 图标、记录与每日勾选；
 `src/data/` 浏览器存储；`src/styles/` 全局样式。
 
-## 视觉约定
+## 视觉与交互
 
-深绿导航、浅色内容区与三种主题色组成完整界面。首页使用林地 SVG 封面；主题页使用记录主栏与辅助阅读栏；长文使用带当前章节标识的阅读目录。手机底部导航可直接切换主页面。
+采用 iOS 风格的简约界面：银白与石墨、系统无衬线字体、透明浮动导航、三个主题强调色。首页焦点球反映今日真实完成数量。
 
-记录弹窗支持分类切换和保存反馈，长记录可展开全文。今日小事的完成环只展示实际勾选。主题在首次加载时恢复；菜单抽屉支持键盘焦点和 Escape 关闭。
+共享卡片展开、弹性导航底板、按钮原点弹窗、完成粒子与进度环、主题圆形揭幕由原生 CSS 和 Web Animations 实现。支持减少动态效果和浏览器 API 回退，不引入第三方运行依赖。
 
-颜色、字体、组件与响应式约定见 [docs/UI.md](docs/UI.md)。全部插画与图标为原生 SVG，无远程字体、图片或 CDN 依赖。
+视觉与动效的具体约定见 [docs/UI.md](docs/UI.md)。
 
 ## 验证与部署
 
@@ -39,3 +39,5 @@
 `scripts/browser-check.mjs` 用 Playwright 实际检查三类记录、刷新持久化、今日勾选、阅读、深色和移动端。可通过 PLAYWRIGHT_MODULE、BROWSER_CHANNEL、QA_DIR 设置浏览器环境。
 
 现有发布目标是 https://github.com/linzeduan/linzeduan.github.io ，main 更新后由 GitHub Actions 构建并发布至 https://linzeduan.github.io/ 。不使用遗留 .openai/hosting.json 重新创建 Sites 站点。浏览器记录不会上传到仓库。
+
+运行 `node scripts/check-motion.mjs` 可额外验证动效中断、弹窗焦点、触屏减少动态效果和 API 回退，环境变量与浏览器测试相同。

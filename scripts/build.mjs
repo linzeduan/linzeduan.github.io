@@ -1,2 +1,10 @@
-import {mkdir,copyFile,cp} from 'node:fs/promises';
-await mkdir('dist',{recursive:true});await copyFile('index.html','dist/index.html');await cp('src','dist/src',{recursive:true});await cp('public','dist',{recursive:true});console.log('Built dist/');
+import {mkdir,copyFile,cp,rm} from 'node:fs/promises';
+import {resolve,dirname,basename} from 'node:path';
+const destination=resolve('dist');
+if(dirname(destination)!==process.cwd()||basename(destination)!=='dist')throw new Error('Build output must stay inside the current project.');
+await rm(destination,{recursive:true,force:true});
+await mkdir(destination,{recursive:true});
+await copyFile('index.html',destination+'/index.html');
+await cp('src',destination+'/src',{recursive:true});
+await cp('public',destination,{recursive:true});
+console.log('Built dist/');
