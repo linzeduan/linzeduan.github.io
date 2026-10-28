@@ -1,1 +1,1 @@
-export {render} from './garden.js';
+export {render} from './editorial.js';

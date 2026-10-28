@@ -33,3 +33,13 @@ scripts/browser-room.mjs 检查屏幕点击进入、镜头推进、边缘移动�
 scripts/check-motion.mjs 额外检查共享转场、快速导航、粒子回收、弹窗取消及焦点恢复、触屏减少动态效果和 API 缺失时的回退。
 
 保持现有存储键，账本继续隐藏，不增加第三方服务或远程资源依赖。
+
+## 正式 WebGL 发布版
+
+本节取代此前 CSS 透视平面房间的实现说明。public/atelier/room.js 与 details.js 使用本地 Three.js 0.180.0、真实透视相机、PBR 木纹/织物和 CC0 glTF 绿植；入口由 src/components/arrival.js 负责原生弹窗、按需加载、首次访问、焦点及滚动恢复。场景不读取或写入私人记录。点击屏幕或按钮进入内容，只有“回到房间”按钮返回场景。
+
+首页由 src/modules/overview/editorial.js 和 src/styles/editorial.css 实现，采用已确认样稿的大图文、短笔记、横卡、引用与图解混排；实际记录与项目取自原有本地存储，不带样稿示例记录。左侧导航及移动快捷入口保留，优先事项收成横向编辑区。
+
+发布资产在 public/atelier/，构建复制到站点 /atelier/。插画转为 WebP，原始样稿、录像、截图及私人数据均不在发布目录。Three.js MIT 与素材许可保留；来源见 public/atelier/assets/CREDITS.md。
+
+node scripts/browser-room.mjs 现在验证真实 WebGL 入场、明确按钮返回、数据与滚动保留、移动布局、减少动态效果、场景脚本缺失和 WebGL 回退。

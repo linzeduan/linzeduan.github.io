@@ -1,0 +1,44 @@
+{
+  "source": "https://polyhaven.com/a/potted_plant_02",
+  "license": "CC0",
+  "include": {
+    "textures/potted_plant_02_leaves_diff_1k.jpg": {
+      "size": 167700,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_leaves_diff_1k.jpg",
+      "md5": "e8a026bd7bfa6497729d855c59da03ce"
+    },
+    "potted_plant_02.bin": {
+      "size": 1852244,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/potted_plant_02/potted_plant_02.bin",
+      "md5": "cdbd4619b2596c9c469ad34676085fa8"
+    },
+    "textures/potted_plant_02_pot_rough_1k.jpg": {
+      "size": 114886,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_pot_rough_1k.jpg",
+      "md5": "68ed80fa32791fb0e81df61a75de40b4"
+    },
+    "textures/potted_plant_02_leaves_rough_1k.jpg": {
+      "size": 102396,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_leaves_rough_1k.jpg",
+      "md5": "ba934a78cc6496d934c014eb8a33af37"
+    },
+    "textures/potted_plant_02_pot_diff_1k.jpg": {
+      "size": 155244,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_pot_diff_1k.jpg",
+      "md5": "97e149c93eb0d962e491d4c82d3ce477"
+    },
+    "textures/potted_plant_02_leaves_nor_gl_1k.jpg": {
+      "size": 127232,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_leaves_nor_gl_1k.jpg",
+      "md5": "2420d5c0ab87426f5318a5e91d1ea3bb"
+    },
+    "textures/potted_plant_02_pot_nor_gl_1k.jpg": {
+      "size": 108343,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_pot_nor_gl_1k.jpg",
+      "md5": "fbb44ccc1c6564b2837b79a11ed45d58"
+    }
+  },
+  "size": 6653,
+  "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/potted_plant_02/potted_plant_02_1k.gltf",
+  "md5": "9999d7e6c51018a85551840e1bdae656"
+}
