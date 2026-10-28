@@ -5,7 +5,7 @@ const {chromium}=await import(process.env.PLAYWRIGHT_MODULE?(process.env.PLAYWRI
 const browser=await chromium.launch({headless:true,channel:process.env.BROWSER_CHANNEL||'msedge'});
 const out=process.env.QA_DIR||'qa-output';await mkdir(out,{recursive:true});
 try{
- const page=await browser.newPage({viewport:{width:1440,height:1100},deviceScaleFactor:1});const errors=[];page.on('pageerror',err=>errors.push(err.message));await page.goto('http://127.0.0.1:4173/');await page.locator('.life-areas').waitFor();
+ const page=await browser.newPage({viewport:{width:1440,height:1100},deviceScaleFactor:1});const errors=[];page.on('pageerror',err=>errors.push(err.message));await page.addInitScript(()=>sessionStorage.setItem('zhongtai.arrival.v1','entered'));await page.goto('http://127.0.0.1:4173/');await page.locator('.life-areas').waitFor();
  assert.equal(await page.locator('.area').count(),3);for(const word of ['富裕人生','近况','灵感'])assert.ok(!(await page.locator('body').innerText()).includes(word));
  await page.screenshot({path:out+'/overview-desktop.png',fullPage:true});await page.locator('[data-habit=move]').click();assert.equal(await page.locator('[data-habit=move]').getAttribute('aria-pressed'),'true');assert.equal(await page.locator('.daily-progress').getAttribute('aria-valuenow'),'1');await page.reload();assert.equal(await page.locator('[data-habit=move]').getAttribute('aria-pressed'),'true');
  for(const id of ['health','investment','learning']){

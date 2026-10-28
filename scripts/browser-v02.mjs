@@ -4,6 +4,7 @@ import {pathToFileURL} from 'node:url';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE?(/^[A-Z]:/i.test(process.env.PLAYWRIGHT_MODULE)?pathToFileURL(process.env.PLAYWRIGHT_MODULE).href:process.env.PLAYWRIGHT_MODULE):'playwright');
 const browser=await chromium.launch({headless:true,channel:process.env.BROWSER_CHANNEL||'msedge'}),out=process.env.QA_DIR||'qa-output';await mkdir(out,{recursive:true});
 try{const page=await browser.newPage({viewport:{width:1440,height:1100},reducedMotion:'reduce'}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.addInitScript(()=>sessionStorage.setItem('zhongtai.arrival.v1','entered'));
 const go=async route=>{await page.goto('http://127.0.0.1:4173/#'+route);await page.locator('h1').waitFor();};
 await go('overview');await page.locator('#focus-text').fill('完成一个小步骤');await page.locator('#focus-form button').click();await page.reload();assert.equal(await page.locator('#focus-text').inputValue(),'完成一个小步骤');
 await page.locator('.top-actions [data-add]').click();await page.locator('[name=title]').fill('原始标题');await page.locator('[name=body]').fill('x'.repeat(300)+'全文关键词');await page.locator('#record-form [type=submit]').click();await page.locator('#editor').waitFor({state:'hidden'});
